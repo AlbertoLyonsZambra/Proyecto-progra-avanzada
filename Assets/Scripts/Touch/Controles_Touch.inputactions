@@ -1,0 +1,34 @@
+{
+    "name": "Controles Touch",
+    "maps": [
+        {
+            "name": "Touch",
+            "id": "42c5e878-ff1b-4a91-b5e5-c525dd1afb8d",
+            "actions": [
+                {
+                    "name": "Entrada Touch",
+                    "type": "PassThrough",
+                    "id": "6883fa26-79fb-42cc-9fec-edd2c76a3cf5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9442e75f-899e-4adf-9833-9bcf2480040c",
+                    "path": "<Touchscreen>/Press",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Entrada Touch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

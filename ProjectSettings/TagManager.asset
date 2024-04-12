@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Collider_Generador_Procedural
+  - Collider_GP_1
+  - Collider_GP_2
+  - Collider_GP_3
+  - Collider_DP
   layers:
   - Default
   - TransparentFX
