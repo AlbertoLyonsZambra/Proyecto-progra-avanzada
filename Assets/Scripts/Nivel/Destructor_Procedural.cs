@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Destructor_Procedural : MonoBehaviour
 {
-    public GameObject Campo1;
-    public GameObject Campo2;
+    public GameObject Campo;
+    public GameObject Generador;
     void Start()
     {
         
@@ -18,8 +18,8 @@ public class Destructor_Procedural : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other){
         if (other.gameObject.CompareTag("Collider_DP")){
-            Destroy(Campo1);
-            Destroy(Campo2);
+            Destroy(Campo);
+            Destroy(Generador);
             Destroy(gameObject);
         }
     }
