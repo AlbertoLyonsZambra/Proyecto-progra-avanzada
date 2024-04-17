@@ -17,8 +17,8 @@ public class Player : MonoBehaviour
     // public GameObject seccionAsteroides2;
     private float velocidadWASD = 5f;
     private void OnTriggerEnter(Collider other){
-        if (other.gameObject.CompareTag("Collider_GP_1")){ Instantiate(seccionAsteroides1, new Vector3(0, 0, 1000), Quaternion.identity); }
-        if (other.gameObject.CompareTag("Collider_GP_2")){ Instantiate(seccionAsteroides1, new Vector3(0, 0, 1000), Quaternion.identity); }
+        //if (other.gameObject.CompareTag("Collider_GP_1")){ Instantiate(seccionAsteroides1, new Vector3(0, 0, 1000), Quaternion.identity); }
+        //if (other.gameObject.CompareTag("Collider_GP_2")){ Instantiate(seccionAsteroides1, new Vector3(0, 0, 1000), Quaternion.identity); }
         // if (other.gameObject.CompareTag("Collider_GP_3")){ Instantiate(seccionAsteroides, new Vector3(0, 0, 970*1), Quaternion.identity); }
     }
     
