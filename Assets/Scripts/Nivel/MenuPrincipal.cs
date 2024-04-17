@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuManager : MonoBehaviour
+public class MenuPrincipal : MonoBehaviour
 {
-    [SerializeField] private AudioClip buttonSound;
-    [SerializeField] private AudioSource audiosource;
+    //[SerializeField] private AudioClip buttonSound;
+    //[SerializeField] private AudioSource audiosource;
 
     public void ChangeScene(string nameScene)
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(nameScene);
-        audiosource.clip = buttonSound;
-        audiosource.Play();
+        //audiosource.clip = buttonSound;
+        //audiosource.Play();
     }
     public void QuitApp()
     {
