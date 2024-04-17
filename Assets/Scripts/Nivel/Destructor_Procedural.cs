@@ -18,6 +18,7 @@ public class Destructor_Procedural : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other){
         if (other.gameObject.CompareTag("Collider_DP")){
+            Campo.SetActive(false);
             Destroy(Campo);
             Destroy(Generador);
             Destroy(gameObject);
