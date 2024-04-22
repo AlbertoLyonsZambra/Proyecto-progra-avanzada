@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         temporizadorDisparoLaser += Time.deltaTime;
-        MovimientoWASD();
+        //MovimientoWASD();
         disparoLaser();
     }
     private void MovimientoWASD(){

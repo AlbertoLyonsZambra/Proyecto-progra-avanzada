@@ -7,6 +7,7 @@ public class MenuPrincipal : MonoBehaviour
 {
     //[SerializeField] private AudioClip buttonSound;
     //[SerializeField] private AudioSource audiosource;
+    [SerializeField] private GameObject menuPrincipal;
 
     public void ChangeScene(string nameScene)
     {
@@ -20,5 +21,9 @@ public class MenuPrincipal : MonoBehaviour
         Application.Quit();
         Debug.Log("Se ha cerrado la aplicacion.");
 
+    }
+    public void Jugar()
+    {
+        menuPrincipal.SetActive(false);
     }
 }
