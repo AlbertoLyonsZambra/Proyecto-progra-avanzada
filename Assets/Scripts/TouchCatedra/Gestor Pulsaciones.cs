@@ -5,7 +5,7 @@ using UnityEngine;
 public class GestorPulsaciones : MonoBehaviour
 {
     private Touch pulsacion;
-    private bool pulsando
+    private bool pulsando;
 
     void Start()
     {
@@ -48,13 +48,15 @@ public class GestorPulsaciones : MonoBehaviour
         Vector3 posicionPulsacion = pulsacion.position;
         if (Input.GetKey(KeyCode.Mouse0) || pulsando)
         {
+            Ray rayo;
+            
             if (!pulsando)
             {
-                Ray rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
+                rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
             }
             else
             {
-                Ray rayo = Camera.main.ScreenPointToRay(posicionPulsacion);
+                rayo = Camera.main.ScreenPointToRay(posicionPulsacion);
             }
             
 
