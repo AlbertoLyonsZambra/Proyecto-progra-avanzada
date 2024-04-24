@@ -10,8 +10,22 @@ public class Carriles : MonoBehaviour
     public float velocidad = 5f;
     private int columnaActual = 1;
     private int filaActual = 1;
+    public Vector3[][] matriz;
 
+    private void Start()
+    {
+        matriz = new Vector3[filas.Length][];
+        print(matriz[2][2]);
+    }
     void Update()
+    {
+        if (transform.gameObject.CompareTag("Player"))
+        {
+            MovimientoJugador();
+        }
+        
+    }
+    void MovimientoJugador()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -29,7 +43,7 @@ public class Carriles : MonoBehaviour
                 columnaActual++;
             }
         }
-        if (Input.GetKeyDown (KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (filaActual > 0)
             {
