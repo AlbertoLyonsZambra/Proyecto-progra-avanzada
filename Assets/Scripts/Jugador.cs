@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private float cadenciaDisparoLaser = 0.2f;
     private float duracionLaser = 0.05f;
     LineRenderer laser;
+    [SerializeField] private GameObject laserPorDisparar;
     
     float temporizadorDisparoLaser;
     public GameObject seccionAsteroides1;
@@ -61,12 +62,22 @@ public class Player : MonoBehaviour
     private void disparoLaser()
     {
         if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparoLaser)
+        { 
+            temporizadorDisparoLaser = 0;
+            GameObject laser = Instantiate(laserPorDisparar);
+            laser.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -210.6f);
+            StartCoroutine(dispararLaser());
+        }
+
+        /*
+        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparoLaser)
         {
             temporizadorDisparoLaser = 0;
             laser.SetPosition(0, origenLaserIzq.position);
             laser.SetPosition(0, origenLaserDer.position);
             StartCoroutine(dispararLaser());
         }
+        */
     }
     IEnumerator dispararLaser()
     {

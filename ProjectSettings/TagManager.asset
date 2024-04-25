@@ -9,6 +9,7 @@ TagManager:
   - Collider_GP_2
   - Collider_GP_3
   - Collider_DP
+  - Laser
   layers:
   - Default
   - TransparentFX
