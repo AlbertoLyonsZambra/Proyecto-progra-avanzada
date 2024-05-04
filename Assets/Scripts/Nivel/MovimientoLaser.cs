@@ -12,4 +12,5 @@ public class MovimientoLaser : MonoBehaviour
         Vector3 movimiento = new Vector3(0,0,velocidad) * Time.deltaTime;
         transform.Translate(movimiento);
     }
+ 
 }

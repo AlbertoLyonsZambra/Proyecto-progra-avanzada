@@ -15,8 +15,8 @@ public class ColisionLaser : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Laser"))
         {
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            Destroy(other.transform.parent.gameObject);
+            //Destroy(gameObject);
         }
     }
 }
