@@ -15,7 +15,6 @@ public class Carriles : MonoBehaviour
     private void Start()
     {
         matriz = new Vector3[filas.Length][];
-        print(matriz[2][2]);
     }
     void Update()
     {
