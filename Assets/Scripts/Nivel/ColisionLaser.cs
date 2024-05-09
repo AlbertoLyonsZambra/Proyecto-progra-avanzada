@@ -18,5 +18,9 @@ public class ColisionLaser : MonoBehaviour
             Destroy(other.transform.parent.gameObject);
             //Destroy(gameObject);
         }
+        if (other.gameObject.CompareTag("Collider_DP"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

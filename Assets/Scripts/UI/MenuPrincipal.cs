@@ -8,6 +8,7 @@ public class MenuPrincipal : MonoBehaviour
     //[SerializeField] private AudioClip buttonSound;
     //[SerializeField] private AudioSource audiosource;
     [SerializeField] private GameObject menuPrincipal;
+    [SerializeField] private GameObject sistemaCarriles;
 
     public void ChangeScene(string nameScene)
     {
@@ -25,5 +26,6 @@ public class MenuPrincipal : MonoBehaviour
     public void Jugar()
     {
         menuPrincipal.SetActive(false);
+        sistemaCarriles.SetActive(true);
     }
 }
