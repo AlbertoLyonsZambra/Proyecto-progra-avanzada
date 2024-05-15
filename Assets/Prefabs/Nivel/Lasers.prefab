@@ -9920,6 +9920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 6
+  canMove: 0
 --- !u!114 &2869998571743642958
 MonoBehaviour:
   m_ObjectHideFlags: 0

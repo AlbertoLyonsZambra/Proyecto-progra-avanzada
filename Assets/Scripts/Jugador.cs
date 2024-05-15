@@ -2,18 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(LineRenderer))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform origenLaserIzq;
-    [SerializeField] private Transform origenLaserDer;
-    private float rangoLaser = 1f;
-    private float cadenciaDisparoLaser = 0.2f;
-    private float duracionLaser = 0.05f;
-    LineRenderer laser;
+    [SerializeField] private float cadenciaDisparo = 0.2f;
     [SerializeField] private SimpleObjectPool laserPorDisparar;
-
-    public Transform spawnPos;
+    [SerializeField] private Transform generadorLaserPos;
     
     float temporizadorDisparoLaser;
     public GameObject seccionAsteroides1;
@@ -27,7 +20,7 @@ public class Player : MonoBehaviour
     
     void Awake()
     {
-        laser = GetComponent<LineRenderer>();
+
     }
     void Start()
     {
@@ -63,31 +56,13 @@ public class Player : MonoBehaviour
     }
     private void disparoLaser()
     {
-        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparoLaser)
+        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparo)
         { 
             temporizadorDisparoLaser = 0;
             GameObject laser = laserPorDisparar.GetPooledGameObject();
-            laser.transform.position = spawnPos.transform.position;
+            laser.transform.position = generadorLaserPos.transform.position;
             laser.SetActive(true);
-
-            //laser.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, -210.6f);
-            //StartCoroutine(dispararLaser());
         }
 
-        /*
-        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparoLaser)
-        {
-            temporizadorDisparoLaser = 0;
-            laser.SetPosition(0, origenLaserIzq.position);
-            laser.SetPosition(0, origenLaserDer.position);
-            StartCoroutine(dispararLaser());
-        }
-        */
-    }
-    IEnumerator dispararLaser()
-    {
-        laser.enabled = true;
-        yield return new WaitForSecondsRealtime(duracionLaser);
-        laser.enabled = false;
     }
 }

@@ -11,17 +11,8 @@ public class ReubicacionCampo : MonoBehaviour
 
         if (other.gameObject.CompareTag("Collider_DP"))
         {
-            /*
-             * public GameObject Generador
-            Destruccion del campo generado
-            Campo.SetActive(false);
-            Destroy(Campo);
-            Destroy(Generador);
-            Destroy(gameObject);
-             */
-            Vector3 posicionInicial = new Vector3(601, -25, 2000);
-                Campo.transform.position = posicionInicial;
-
+           Vector3 posicionInicial = new Vector3(601, -25, 2000);
+           Campo.transform.position = posicionInicial;
         }
     }
 }

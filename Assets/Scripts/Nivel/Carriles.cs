@@ -11,6 +11,7 @@ public class Carriles : MonoBehaviour
     private int columnaActual = 1;
     private int filaActual = 1;
     public Vector3[][] matriz;
+    private float fuerzaGiro = 13f;
 
     private void Start()
     {
@@ -26,10 +27,12 @@ public class Carriles : MonoBehaviour
     }
     void MovimientoJugador()
     {
+        
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             if (columnaActual > 0)
             {
+                transform.Rotate(0f, 0f, fuerzaGiro);
                 columnaActual--;
             }
         }
@@ -39,6 +42,7 @@ public class Carriles : MonoBehaviour
         {
             if (columnaActual < columnas.Length - 1)
             {
+                transform.Rotate(0f, 0f, -fuerzaGiro);
                 columnaActual++;
             }
         }
@@ -46,6 +50,7 @@ public class Carriles : MonoBehaviour
         {
             if (filaActual > 0)
             {
+                transform.Rotate(-fuerzaGiro, 0f, 0f);
                 filaActual--;
             }
         }
@@ -53,11 +58,14 @@ public class Carriles : MonoBehaviour
         {
             if (filaActual < columnas.Length - 1)
             {
+                transform.Rotate(fuerzaGiro, 0f, 0f);
                 filaActual++;
             }
         }
-        // Interpolar hacia la posición del carril actual
+        // Interpolar hacia la posiciï¿½n del carril actual
         Vector3 posicion = new Vector3(columnas[columnaActual].position.x, filas[filaActual].position.y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, posicion, velocidad * Time.deltaTime);
+    
     }
 }
+
