@@ -6,7 +6,9 @@ public class GestorPulsaciones : MonoBehaviour
 {
     private Touch pulsacion;
     private bool pulsando;
-
+    private Vector2 inicioPulsacion;
+    private Vector2 finPulsacion;
+    [SerializeField] private float sensibilidadDeslizamiento = 200f;
     void Start()
     {
         
@@ -17,7 +19,9 @@ public class GestorPulsaciones : MonoBehaviour
     {
         fasesTouch();
         entradaPulasciones();
+        touchJugador();
     }
+
     void fasesTouch()
     {
         if (Input.touchCount > 0)
@@ -27,11 +31,13 @@ public class GestorPulsaciones : MonoBehaviour
             {
                 case TouchPhase.Began:
                     pulsando = true;
+                    inicioPulsacion = pulsacion.position;
                     break;
                 case TouchPhase.Moved:
                     pulsando = true;
                     break;
                 case TouchPhase.Ended:
+                    finPulsacion = pulsacion.position;
                     pulsando = false;
                     break;
                 case TouchPhase.Stationary:
@@ -68,11 +74,41 @@ public class GestorPulsaciones : MonoBehaviour
             {
                 if (colision.collider != null)
                 {
-                    print("Chocando con" + colision.collider.gameObject.name);
+                    //print("Chocando con" + colision.collider.gameObject.name);
                 }
             }
         }
         
     }
+    public void touchJugador()
+    {
+        if (!pulsando && (inicioPulsacion != Vector2.zero || finPulsacion != Vector2.zero))
+        {
+            Vector2 diferencia = finPulsacion - inicioPulsacion;
+
+            if (diferencia.y > sensibilidadDeslizamiento)
+            {
+                print("DESLIZAMIENTO ARRIBA");
+            }
+            else if (diferencia.y < -sensibilidadDeslizamiento)
+            {
+                print("DESLIZAMIENTO ABAJO");
+            }
+
+            if (diferencia.x > sensibilidadDeslizamiento)
+            {
+                print("DESLIZAMIENTO DERECHA");
+            }
+            else if (diferencia.x < -sensibilidadDeslizamiento)
+            {
+                print("DESLIZAMIENTO IZQUIERDA");
+            }
+
+            // Restablecer las posiciones después de procesar el deslizamiento
+            inicioPulsacion = Vector2.zero;
+            finPulsacion = Vector2.zero;
+        }
+    }
 }
+
 
