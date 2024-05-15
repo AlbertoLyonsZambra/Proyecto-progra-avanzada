@@ -18,6 +18,11 @@ public class MenuPrincipal : MonoBehaviour
         //audiosource.clip = buttonSound;
         //audiosource.Play();
     }
+    void Start()
+    {
+        Application.targetFrameRate = 70;
+    }
+
     public void QuitApp()
     {
         Application.Quit();
