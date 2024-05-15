@@ -20,7 +20,7 @@ public class MenuPrincipal : MonoBehaviour
     }
     void Start()
     {
-        Application.targetFrameRate = 70;
+        Application.targetFrameRate = 60;
     }
 
     public void QuitApp()

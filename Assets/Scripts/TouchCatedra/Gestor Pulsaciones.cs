@@ -9,19 +9,12 @@ public class GestorPulsaciones : MonoBehaviour
     private Vector2 inicioPulsacion;
     private Vector2 finPulsacion;
     [SerializeField] private float sensibilidadDeslizamiento = 200f;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         fasesTouch();
         entradaPulasciones();
         touchJugador();
     }
-
     void fasesTouch()
     {
         if (Input.touchCount > 0)
@@ -88,25 +81,41 @@ public class GestorPulsaciones : MonoBehaviour
 
             if (diferencia.y > sensibilidadDeslizamiento)
             {
-                print("DESLIZAMIENTO ARRIBA");
+                //print("DESLIZAMIENTO ARRIBA");
+                MovimientoCarriles.Instance.MovimientoJugador("arr");
+                // Restablecer las posiciones después de hacer el deslizamiento
+                inicioPulsacion = Vector2.zero;
+                finPulsacion = Vector2.zero;
+                return;
             }
             else if (diferencia.y < -sensibilidadDeslizamiento)
             {
-                print("DESLIZAMIENTO ABAJO");
+                //print("DESLIZAMIENTO ABAJO");
+                MovimientoCarriles.Instance.MovimientoJugador("aba");
+                // Restablecer las posiciones después de hacer el deslizamiento
+                inicioPulsacion = Vector2.zero;
+                finPulsacion = Vector2.zero;
+                return;
             }
 
             if (diferencia.x > sensibilidadDeslizamiento)
             {
-                print("DESLIZAMIENTO DERECHA");
+                //print("DESLIZAMIENTO DERECHA");
+                MovimientoCarriles.Instance.MovimientoJugador("der");
+                // Restablecer las posiciones después de hacer el deslizamiento
+                inicioPulsacion = Vector2.zero;
+                finPulsacion = Vector2.zero;
+                return;
             }
             else if (diferencia.x < -sensibilidadDeslizamiento)
             {
-                print("DESLIZAMIENTO IZQUIERDA");
+                //print("DESLIZAMIENTO IZQUIERDA");
+                MovimientoCarriles.Instance.MovimientoJugador("izq");
+                // Restablecer las posiciones después de procesar el deslizamiento
+                inicioPulsacion = Vector2.zero;
+                finPulsacion = Vector2.zero;
+                return;
             }
-
-            // Restablecer las posiciones después de procesar el deslizamiento
-            inicioPulsacion = Vector2.zero;
-            finPulsacion = Vector2.zero;
         }
     }
 }

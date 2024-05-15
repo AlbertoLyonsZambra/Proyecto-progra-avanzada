@@ -6,7 +6,7 @@ public class MatrizCarriles : GenericSingleton<MatrizCarriles>
 {
     [SerializeField] private GameObject carriles;
     private Vector2[,] matrizCarriles;
- 
+
     protected override void Initialization()
     {
         this.matrizCarriles = new Vector2[3, 3];
