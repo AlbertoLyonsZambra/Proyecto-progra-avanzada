@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "[repo] Proyecto Unity.sln"
+    "dotnet.defaultSolution": "Proyecto-progra-avanzada.sln"
 }
