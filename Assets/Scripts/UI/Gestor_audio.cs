@@ -12,6 +12,8 @@ public class Gestor_audio : GenericSingleton<Gestor_audio>
     [SerializeField] public AudioClip naveSFX;
     [SerializeField] public AudioClip musicaMenu;
     [SerializeField] public AudioClip musicaJuego;
+    public bool isMusicaMute;
+    public bool isSFXMute;
    
     void Start()
     {
@@ -20,20 +22,31 @@ public class Gestor_audio : GenericSingleton<Gestor_audio>
     }
     public void cambioSilenciadoMusica(bool isOn)
     {
-        if(!isOn){audioSourceMusica.mute = true;}
-        else{audioSourceMusica.mute = false;}
+        if(isOn){audioSourceMusica.mute = true; isMusicaMute = true;}
+        else{audioSourceMusica.mute = false; isMusicaMute = true;}
     }
     public void cambioSilenciadoSonido(bool isOn)
     {
-        if(isOn){audioSourceSFX.mute = true;}
-        else{audioSourceSFX.mute = false;}
+        if(isOn){audioSourceSFX.mute = true; isSFXMute = false;}
+        else{audioSourceSFX.mute = false; isMusicaMute = false;}
     }
     
     public void ejecutarSFX(AudioClip audioClip)
     {
+        if(isSFXMute)
+        {
         audioSourceSFX.loop = false;
         audioSourceSFX.clip = audioClip;
-        audioSourceSFX.Play();
         audioSourceSFX.PlayOneShot(audioClip);
+        }
+    }
+    public void ejecutarMusica(AudioClip audioClip)
+    {
+        if(isMusicaMute)
+        {
+        audioSourceMusica.loop = true;
+        audioSourceMusica.clip = audioClip;
+        audioSourceMusica.Play();
+        }
     }
 }

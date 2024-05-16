@@ -15,21 +15,6 @@ public class InstanciadorObjetos : MonoBehaviour
     void Start()
     {
         matrizCarriles = MatrizCarriles.Instance.getMatriz();
-        /*
-        matrizCarriles = new Vector2[3, 3];
-        matrizCarriles[0, 0] = new Vector2(carriles.transform.Find("Columna 1").position.x, carriles.transform.Find("Fila 1").position.y);
-        matrizCarriles[0, 1] = new Vector2(carriles.transform.Find("Fila 1").position.x, carriles.transform.Find("Fila 1").position.y);
-        matrizCarriles[0, 2] = new Vector2(carriles.transform.Find("Columna 3").position.x, carriles.transform.Find("Fila 1").position.y);
-        matrizCarriles[1, 0] = new Vector2(carriles.transform.Find("Columna 1").position.x, carriles.transform.Find("Columna 1").position.y);
-        matrizCarriles[1, 1] = new Vector2(carriles.transform.Find("Fila 2").position.x, carriles.transform.Find("Fila 2").position.y);
-        matrizCarriles[1, 2] = new Vector2(carriles.transform.Find("Columna 3").position.x, carriles.transform.Find("Columna 3").position.y);
-        matrizCarriles[2, 0] = new Vector2(carriles.transform.Find("Columna 1").position.x, carriles.transform.Find("Fila 3").position.y);
-        matrizCarriles[2, 1] = new Vector2(carriles.transform.Find("Fila 3").position.x, carriles.transform.Find("Fila 3").position.y);
-        matrizCarriles[2, 2] = new Vector2(carriles.transform.Find("Columna 3").position.x, carriles.transform.Find("Fila 3").position.y);
-
-        print("MATRIZ SINGLETON: " +MatrizCarriles.Instance.getPosicion(1,1));
-        print("MATRIZ BASE: " + matrizCarriles[1, 1]);
-        */
         StartCoroutine(AparecerAsteroideCoroutine(null));
     }
 

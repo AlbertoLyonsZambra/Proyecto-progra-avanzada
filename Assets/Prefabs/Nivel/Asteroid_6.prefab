@@ -102,6 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
+  aumentoInicial: 1e-16
+  aumentoMaximo: 0.1
+  tiempoMaximo: 60
 --- !u!135 &8178394324972716383
 SphereCollider:
   m_ObjectHideFlags: 0

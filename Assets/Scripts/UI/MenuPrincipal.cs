@@ -9,6 +9,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     [SerializeField] private GameObject menuPrincipal;
     [SerializeField] private GameObject sistemaCarriles;
     [SerializeField] private GameObject laseres;
+    [SerializeField] public int velocidadObstaculos;
     [HideInInspector] public bool jugando = false ;
     void Start()
     {
@@ -22,11 +23,10 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     }
     public void Jugar()
     {
+        Gestor_audio.Instance.ejecutarMusica(Gestor_audio.Instance.musicaJuego);
         jugando = true ;
         menuPrincipal.SetActive(false);
         sistemaCarriles.SetActive(true);
         laseres.SetActive(true);
-        Gestor_audio.Instance.audioSourceMusica.mute = true;
-        Gestor_audio.Instance.audioSourceSFX.mute = false;
     }
 }
