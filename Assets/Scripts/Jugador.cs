@@ -7,15 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float cadenciaDisparo = 0.2f;
     [SerializeField] private SimpleObjectPool laserPorDisparar;
     [SerializeField] private Transform generadorLaserPos;
-    
-    float temporizadorDisparoLaser;
-    public GameObject seccionAsteroides1;
-    // public GameObject seccionAsteroides2;
-    private void OnTriggerEnter(Collider other){
-        //if (other.gameObject.CompareTag("Collider_GP_1")){ Instantiate(seccionAsteroides1, new Vector3(0, 0, 1000), Quaternion.identity); }
-        //if (other.gameObject.CompareTag("Collider_GP_2")){ Instantiate(seccionAsteroides1, new Vector3(0, 0, 1000), Quaternion.identity); }
-        // if (other.gameObject.CompareTag("Collider_GP_3")){ Instantiate(seccionAsteroides, new Vector3(0, 0, 970*1), Quaternion.identity); }
-    }
+    private float temporizadorDisparoLaser;
     
     void Awake()
     {
@@ -32,9 +24,10 @@ public class Player : MonoBehaviour
     }
     private void disparoLaser()
     {
-        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparo)
+        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparo && MenuPrincipal.Instance.jugando)
         { 
-            temporizadorDisparoLaser = 0;
+            Gestor_audio.Instance.ejecutarSFX(Gestor_audio.Instance.laserSFX);
+            temporizadorDisparoLaser = 0f;
             GameObject laser = laserPorDisparar.GetPooledGameObject();
             laser.transform.position = generadorLaserPos.transform.position;
             laser.SetActive(true);

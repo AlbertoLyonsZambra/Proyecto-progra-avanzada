@@ -1,38 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
 
-public class MenuPrincipal : MonoBehaviour
+public class MenuPrincipal : GenericSingleton<MenuPrincipal>
 {
-    //[SerializeField] private AudioClip buttonSound;
-    //[SerializeField] private AudioSource audiosource;
     [SerializeField] private GameObject menuPrincipal;
     [SerializeField] private GameObject sistemaCarriles;
     [SerializeField] private GameObject laseres;
-
-    public void ChangeScene(string nameScene)
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(nameScene);
-        //audiosource.clip = buttonSound;
-        //audiosource.Play();
-    }
+    [HideInInspector] public bool jugando = false ;
     void Start()
     {
         Application.targetFrameRate = 60;
     }
-
-    public void QuitApp()
+    public void ChangeScene(string nameScene)
     {
-        Application.Quit();
-        Debug.Log("Se ha cerrado la aplicacion.");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(nameScene);
 
     }
     public void Jugar()
     {
+        jugando = true ;
         menuPrincipal.SetActive(false);
         sistemaCarriles.SetActive(true);
         laseres.SetActive(true);
+        Gestor_audio.Instance.audioSourceMusica.mute = true;
+        Gestor_audio.Instance.audioSourceSFX.mute = false;
     }
 }

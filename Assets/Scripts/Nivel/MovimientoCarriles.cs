@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,7 +20,10 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
        
         if (transform.gameObject.CompareTag("Player"))
         {
-            MovimientoJugador("");
+            if (MenuPrincipal.Instance.jugando)
+            {
+                MovimientoJugador("");
+            }
         }
         
     }
@@ -29,6 +33,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
         {
             if (columnaActual > 0)
             {
+                Gestor_audio.Instance.ejecutarSFX(Gestor_audio.Instance.naveSFX);
                 transform.rotation = Quaternion.identity;
                 transform.Rotate(0f, 0f, fuerzaGiro);
                 columnaActual--;
@@ -40,6 +45,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
         {
             if (columnaActual < matriz.GetLength(0) - 1)
             {
+                Gestor_audio.Instance.ejecutarSFX(Gestor_audio.Instance.naveSFX);
                 transform.rotation = Quaternion.identity;
                 transform.Rotate(0f, 0f, -fuerzaGiro);
                 columnaActual++;
@@ -49,6 +55,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
         {
             if (filaActual > 0)
             {
+                Gestor_audio.Instance.ejecutarSFX(Gestor_audio.Instance.naveSFX);
                 transform.rotation = Quaternion.identity;
                 transform.Rotate(-fuerzaGiro, 0f, 0f);
                 filaActual--;
@@ -58,6 +65,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
         {
             if (filaActual < matriz.GetLength(0) - 1)
             {
+                Gestor_audio.Instance.ejecutarSFX(Gestor_audio.Instance.naveSFX);
                 transform.rotation = Quaternion.identity;
                 transform.Rotate(fuerzaGiro, 0f, 0f);
                 filaActual++;
