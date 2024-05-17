@@ -19,7 +19,11 @@ public class movimiento_obstaculos : MonoBehaviour
         float aumentoVelocidad = Mathf.Lerp(aumentoInicial, aumentoMaximo, tiempoPasado / tiempoMaximo);
 
         velocidad += aumentoVelocidad * Time.deltaTime;
-        Vector3 movimiento = new Vector3(0, 1, 0) * velocidad * Time.deltaTime;
-        transform.Translate(movimiento);
+        Vector3 movimiento = new Vector3(0, 0, -1) * velocidad * Time.deltaTime;
+        
+        transform.Translate(movimiento,Space.World);
+        Vector3 rotacion = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+        transform.Rotate(rotacion * Time.deltaTime, Space.Self);
+
     }
 }
