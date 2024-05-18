@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparo && MenuPrincipal.Instance.jugando)
         { 
-            Gestor_audio.Instance.ejecutarSFX(Gestor_audio.Instance.laserSFX);
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.laserSFX);
             temporizadorDisparoLaser = 0f;
             GameObject laser = laserPorDisparar.GetPooledGameObject();
             laser.transform.position = generadorLaserPos.transform.position;

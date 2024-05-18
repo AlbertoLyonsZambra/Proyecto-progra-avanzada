@@ -5,32 +5,26 @@ using UnityEngine.UI;
 
 public class Musica : MonoBehaviour
 {
-    private Sprite On;
+    [SerializeField] private Sprite On;
     [SerializeField] private Sprite Off;
     [SerializeField] private Button boton;
-    private bool isOn = true;
-
-
     void Start()
     {
-        On = boton.image.sprite;
-        Gestor_audio.Instance.audioSourceMusica.clip = Gestor_audio.Instance.musicaMenu;
-        
+        if(PlayerPrefs.GetInt("isMusicaMute") == 1){boton.image.sprite = Off;}
+        else{boton.image.sprite = On;}
     }
 
     public void cambioSilenciadoMusica()
     {
-        if(isOn)
+        if(PlayerPrefs.GetInt("isMusicaMute") == 1)
         {
-            boton.image.sprite = Off;
-            Gestor_audio.Instance.cambioSilenciadoMusica(isOn);
-            isOn = false;
+            boton.image.sprite = On;
+            Gestor_audio.Instance.cambioSilenciadoMusica(false); 
         }
         else
         {
-            boton.image.sprite = On;
-            Gestor_audio.Instance.cambioSilenciadoMusica(isOn);
-            isOn = true;
+            boton.image.sprite = Off;
+            Gestor_audio.Instance.cambioSilenciadoMusica(true); 
         }
     }
     

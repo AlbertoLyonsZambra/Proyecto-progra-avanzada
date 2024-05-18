@@ -5,29 +5,26 @@ using UnityEngine.UI;
 
 public class Sonido : MonoBehaviour
 {
-    private Sprite On;
+    [SerializeField] private Sprite On;
     [SerializeField] private Sprite Off;
     [SerializeField] private Button boton;
-    private bool isOn = true;
     void Start()
     {
-        On = boton.image.sprite;
-        Gestor_audio.Instance.audioSourceSFX.clip = Gestor_audio.Instance.musicaJuego;
+        if(PlayerPrefs.GetInt("isSFXMute") == 1){boton.image.sprite = Off;}
+        else{boton.image.sprite = On;}
     }
  
     public void cambioSilenciadoSonido()
     {
-        if(isOn)
+        if(PlayerPrefs.GetInt("isSFXMute") == 1)
         {
-            boton.image.sprite = Off;
-            Gestor_audio.Instance.cambioSilenciadoSonido(isOn);
-            isOn = false;
+            boton.image.sprite = On;
+            Gestor_audio.Instance.cambioSilenciadoSonido(false);
         }
         else
         {
-            boton.image.sprite = On;
-            Gestor_audio.Instance.cambioSilenciadoSonido(isOn);
-            isOn = true;
+            boton.image.sprite = Off;
+            Gestor_audio.Instance.cambioSilenciadoSonido(true);
         }
     }
 }
