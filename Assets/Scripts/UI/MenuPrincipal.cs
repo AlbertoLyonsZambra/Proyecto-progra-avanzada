@@ -34,7 +34,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         jugando = true ;
         sistemaCarriles.SetActive(true);
         laseres.SetActive(true);
-        StartCoroutine(EsperarAEventoCoroutine(Time.time, 600f, "finalNivel"));
+        StartCoroutine(EsperarAEventoCoroutine(Time.time, 420f, "finalNivel"));
         }
     }
     public void Taller()

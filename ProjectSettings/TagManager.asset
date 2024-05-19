@@ -12,6 +12,8 @@ TagManager:
   - Laser
   - Eliminar
   - Obs_Asteroide
+  - finalNivel
+  - Planeta
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Water
   - UI
   - Jugar
-  - 
+  - Skybox
   - 
   - 
   - 
