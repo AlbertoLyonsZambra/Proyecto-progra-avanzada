@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08097763b586ef247aed90a2c55675f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 20
+  lifeTime: 10
 --- !u!114 &4107284526334660863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,10 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 0
-  aumentoInicial: 1e-16
-  aumentoMaximo: 0.1
-  tiempoMaximo: 60
+  aceleracion: 0
 --- !u!1 &6993233122314748707
 GameObject:
   m_ObjectHideFlags: 0
