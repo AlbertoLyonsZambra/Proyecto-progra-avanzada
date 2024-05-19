@@ -711,6 +711,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2120499332}
   m_LocalEulerAnglesHint: {x: 24.286001, y: 25.655, z: 102.575005}
+--- !u!1 &170118358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 170118359}
+  - component: {fileID: 170118360}
+  m_Layer: 0
+  m_Name: Baterias OP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &170118359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170118358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1616354752}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &170118360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170118358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f9e0e060a9a7646ba70012d6a96eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectToPool: {fileID: 122154, guid: 74f81d38d0e25d34fbad2cce4bea67d7, type: 3}
+  poolSize: 0
+  poolCanExpand: 1
 --- !u!1 &193164426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,6 +2161,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7791629728530657270, guid: fed6d26dabc73ee419caebc7a5aa84fe, type: 3}
+      propertyPath: bateria.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7791629728530657270, guid: fed6d26dabc73ee419caebc7a5aa84fe, type: 3}
+      propertyPath: bateria.Array.data[0]
+      value: 
+      objectReference: {fileID: 170118360}
     - target: {fileID: 7791629728530657270, guid: fed6d26dabc73ee419caebc7a5aa84fe, type: 3}
       propertyPath: asteroides.Array.data[0]
       value: 
@@ -18968,6 +19023,7 @@ Transform:
   m_Children:
   - {fileID: 68761880}
   - {fileID: 1072467977}
+  - {fileID: 170118359}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1654083617 stripped
