@@ -8,14 +8,16 @@ public class InstanciadorObjetos : MonoBehaviour
     [SerializeField] GameObject carriles;
     public Vector2[,] matrizCarriles;
     [SerializeField] private SimpleObjectPool[] asteroides;
+    [SerializeField] private SimpleObjectPool[] bateria;
     [SerializeField] private Transform[] generadoresAsteroidesPos;
     
     [SerializeField] private float tiempoMin = 1f;
     [SerializeField] private float tiempoMax = 3f;
     void Start()
     {
-        matrizCarriles = MatrizCarriles.Instance.getMatriz();
-        StartCoroutine(AparecerAsteroideCoroutine(null));
+        matrizCarriles = MatrizCarriles.Instance.matrizCarriles;
+        StartCoroutine(AparecerObjetosCoroutine(null, asteroides , "Asteroide"));
+        StartCoroutine(AparecerObjetosCoroutine(null, bateria, "Bateria" ));
     }
 
     // Update is called once per frame
@@ -35,22 +37,25 @@ public class InstanciadorObjetos : MonoBehaviour
         pos.Add(columna);
         return pos;
     }
-    IEnumerator AparecerAsteroideCoroutine(List<int> posMatrizPrevia)
+
+    IEnumerator AparecerObjetosCoroutine(List<int> posMatrizPrevia, SimpleObjectPool[] objetos, string nombre)
     {
         yield return new WaitForSeconds(Random.Range(tiempoMin, tiempoMax));
         if (posMatrizPrevia==null){posMatrizPrevia = GenerarPos("FIRST IF");}
-        List<int> posMatriz = GenerarPos("Asteroide obstaculo");
+        List<int> posMatriz = GenerarPos(nombre);
         if (!posMatrizPrevia.SequenceEqual(posMatriz))
         {
-            GameObject asteroide = asteroides[Random.Range(0, 5)].GetPooledGameObject();
-            asteroide.transform.position = new Vector3(matrizCarriles[posMatriz[0], posMatriz[1]].x, matrizCarriles[posMatriz[0], posMatriz[1]].y, transform.position.z);
-            asteroide.SetActive(true);
-            StartCoroutine(AparecerAsteroideCoroutine(posMatriz));
+            GameObject objeto = objetos[Random.Range(0, objetos.Length-1)].GetPooledGameObject();
+            objeto.transform.position = new Vector3(matrizCarriles[posMatriz[0], posMatriz[1]].x, matrizCarriles[posMatriz[0], posMatriz[1]].y, transform.position.z);
+            objeto.SetActive(true);
+            StartCoroutine(AparecerObjetosCoroutine(posMatriz, objetos, nombre));
         } 
         else if (posMatrizPrevia.SequenceEqual(posMatriz))
         {
             while (posMatrizPrevia.SequenceEqual(posMatriz)){posMatriz = GenerarPos("WHILE");}
-            StartCoroutine(AparecerAsteroideCoroutine(posMatriz));
+            StartCoroutine(AparecerObjetosCoroutine(posMatriz, objetos, nombre));
         }
     }
+
+    
 }

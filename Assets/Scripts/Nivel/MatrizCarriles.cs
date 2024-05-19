@@ -5,7 +5,7 @@ using UnityEngine;
 public class MatrizCarriles : GenericSingleton<MatrizCarriles>
 {
     [SerializeField] private GameObject carriles;
-    [SerializeField] private Vector2[,] matrizCarriles;
+    [SerializeField] public Vector2[,] matrizCarriles;
 
     protected override void Initialization()
     {
@@ -23,9 +23,5 @@ public class MatrizCarriles : GenericSingleton<MatrizCarriles>
     public Vector2 getPosicion(int fila, int columna)
     {
         return (this.matrizCarriles[fila, columna]);
-    }
-    public Vector2[,] getMatriz()
-    {
-        return this.matrizCarriles;
     }
  }

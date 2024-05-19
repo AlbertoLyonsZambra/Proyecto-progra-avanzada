@@ -11,6 +11,7 @@ TagManager:
   - Collider_DP
   - Laser
   - Eliminar
+  - Obs_Asteroide
   layers:
   - Default
   - TransparentFX

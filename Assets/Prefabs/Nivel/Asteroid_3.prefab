@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 3227043935615972179}
   - component: {fileID: 6778775772668590801}
   - component: {fileID: 4564258666506977473}
-  - component: {fileID: 7191977933969985451}
   - component: {fileID: 864938556490509212}
   - component: {fileID: 233244723280239703}
   - component: {fileID: 1043774809829081490}
   - component: {fileID: -1588283520183334832}
+  - component: {fileID: -3699644283029805846}
   m_Layer: 0
   m_Name: Asteroid_3
-  m_TagString: Untagged
+  m_TagString: Obs_Asteroide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8003495884289897023}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.47189572, y: -0.17530832, z: 0.51921695, w: -0.69064844}
+  m_LocalPosition: {x: 0, y: 0, z: -355.07843}
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -89,22 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7191977933969985451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8003495884289897023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidad: 5
-  aumentoInicial: 1e-16
-  aumentoMaximo: 0.1
-  tiempoMaximo: 60
 --- !u!135 &864938556490509212
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -178,6 +162,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 20
+--- !u!114 &-3699644283029805846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8003495884289897023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 0
+  aumentoInicial: 1e-16
+  aumentoMaximo: 0.1
+  tiempoMaximo: 60
 --- !u!1 &8858913606143410990
 GameObject:
   m_ObjectHideFlags: 0

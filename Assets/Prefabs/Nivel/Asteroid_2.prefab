@@ -11,14 +11,14 @@ GameObject:
   - component: {fileID: 5599830857172574808}
   - component: {fileID: 1257665031541686844}
   - component: {fileID: 3671847967589808737}
-  - component: {fileID: 5974727484987785431}
   - component: {fileID: 6380357258280161100}
   - component: {fileID: -268071253763460273}
   - component: {fileID: 7676573129858710095}
   - component: {fileID: -4904605851792301102}
+  - component: {fileID: 8697520123000437733}
   m_Layer: 0
   m_Name: Asteroid_2
-  m_TagString: Untagged
+  m_TagString: Obs_Asteroide
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,22 +89,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5974727484987785431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3539412230784186596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidad: 5
-  aumentoInicial: 1e-16
-  aumentoMaximo: 0.1
-  tiempoMaximo: 60
 --- !u!135 &6380357258280161100
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -178,6 +162,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 20
+--- !u!114 &8697520123000437733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3539412230784186596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 0
+  aumentoInicial: 1e-16
+  aumentoMaximo: 0.1
+  tiempoMaximo: 60
 --- !u!1 &8710406255340724698
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
     private float fuerzaGiro = 13f;
     protected override void Initialization()
     {
-        matriz = MatrizCarriles.Instance.getMatriz();
+        matriz = MatrizCarriles.Instance.matrizCarriles;
     }
     void Update()
     {
@@ -34,9 +34,8 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
             if (columnaActual > 0)
             {
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.naveSFX);
-                transform.rotation = Quaternion.identity;
-                transform.Rotate(0f, 0f, fuerzaGiro);
                 columnaActual--;
+                InclinacionJugador(filaActual, columnaActual);
             }
         }
 
@@ -46,9 +45,8 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
             if (columnaActual < matriz.GetLength(0) - 1)
             {
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.naveSFX);
-                transform.rotation = Quaternion.identity;
-                transform.Rotate(0f, 0f, -fuerzaGiro);
                 columnaActual++;
+                InclinacionJugador(filaActual, columnaActual);
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) || sentido == "arr")
@@ -56,9 +54,8 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
             if (filaActual > 0)
             {
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.naveSFX);
-                transform.rotation = Quaternion.identity;
-                transform.Rotate(-fuerzaGiro, 0f, 0f);
                 filaActual--;
+                InclinacionJugador(filaActual, columnaActual);
             }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) || sentido == "aba")
@@ -66,9 +63,8 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
             if (filaActual < matriz.GetLength(0) - 1)
             {
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.naveSFX);
-                transform.rotation = Quaternion.identity;
-                transform.Rotate(fuerzaGiro, 0f, 0f);
                 filaActual++;
+                InclinacionJugador(filaActual, columnaActual);
             }
         }
         // Interpolar hacia la posicion del carril actual
@@ -76,6 +72,19 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
         Vector3 posicion = new Vector3(matriz[filaActual,columnaActual].x, matriz[filaActual, columnaActual].y, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, posicion, velocidad * Time.deltaTime);
     
+    }
+    public void InclinacionJugador(int fila, int columna)
+    {
+        transform.rotation = Quaternion.identity;
+        if(fila==0 && columna==0){transform.Rotate(-fuerzaGiro, 0f, fuerzaGiro);}
+        if(fila==0 && columna==1){transform.Rotate(-fuerzaGiro, 0f, 0f);}
+        if(fila==0 && columna==2){transform.Rotate(-fuerzaGiro, 0f, -fuerzaGiro);}
+        if(fila==1 && columna==0){transform.Rotate(0f, 0f, fuerzaGiro);}
+        if(fila==1 && columna==1){transform.Rotate(0f, 0f, 0f);}
+        if(fila==1 && columna==2){transform.Rotate(0f, 0f, -fuerzaGiro);}
+        if(fila==2 && columna==0){transform.Rotate(fuerzaGiro, 0f, fuerzaGiro);}
+        if(fila==2 && columna==1){transform.Rotate(fuerzaGiro, 0f, 0f);}
+        if(fila==2 && columna==2){transform.Rotate(fuerzaGiro, 0f, -fuerzaGiro);}
     }
 }
 
