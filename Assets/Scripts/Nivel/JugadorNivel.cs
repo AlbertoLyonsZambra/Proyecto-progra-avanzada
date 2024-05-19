@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class JugadorNivel : GenericSingleton<JugadorNivel>
 {
     [SerializeField] private float cadenciaDisparo = 0.2f;
     [SerializeField] private SimpleObjectPool laserPorDisparar;
     [SerializeField] private Transform generadorLaserPos;
     private float temporizadorDisparoLaser;
-    
-    void Awake()
-    {
+    private Rigidbody rb;
 
-    }
-    void Start()
+    protected override void Initialization()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody>();
     }
     void Update()
     {
@@ -33,5 +30,9 @@ public class Player : MonoBehaviour
             laser.SetActive(true);
         }
 
+    }
+    public Rigidbody GetRb()
+    {
+        return this.rb;
     }
 }
