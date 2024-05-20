@@ -9,10 +9,15 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     [SerializeField] private Transform generadorLaserPos;
     private float temporizadorDisparoLaser;
     private Rigidbody rb;
-
+    [HideInInspector] public int nivelActual;
+    [HideInInspector] public bool victoria = false;
     protected override void Initialization()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+    }
+    void Start()
+    {
+        nivelActual = PlayerPrefs.GetInt("nivelActual");
     }
     void Update()
     {
@@ -29,11 +34,14 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             laser.transform.position = generadorLaserPos.transform.position;
             laser.SetActive(true);
         }
-
     }
-    public Rigidbody GetRb()
+    public void Victoria()
     {
-        return this.rb;
+        victoria = true;
+        PlayerPrefs.SetInt("nivelActual", nivelActual + 1);
+        nivelActual = PlayerPrefs.GetInt("nivelActual");
+        // Hacer mas logica aqui despues :]
+        print(" ganaste el nivel congrats ");
     }
     private void OnTriggerEnter(Collider other)
     {
