@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03146235, g: 0.009871539, b: 0.013235097, a: 1}
+  m_IndirectSpecularColor: {r: 0.031459253, g: 0.009866884, b: 0.013233621, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6442,7 +6442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 523647891}
   m_Layer: 0
-  m_Name: Gestores
+  m_Name: Gestores (audio cambio nave)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8259,7 +8259,7 @@ MonoBehaviour:
   audioSourceSFX: {fileID: 1181401476}
   audioSourceJugador: {fileID: 0}
   laserSFX: {fileID: 8300000, guid: aff781075803b5c4ca59292f66bd3dfc, type: 3}
-  naveSFX: {fileID: 8300000, guid: 4b02502499319d8499a1a4e5fc554e30, type: 3}
+  naveSFX: {fileID: 8300000, guid: c60d4d29bc2f8694887146d5581b24e4, type: 3}
   musicaMenu: {fileID: 8300000, guid: 82893ecc57e8d8745934737452f5d379, type: 3}
   musicaTienda: {fileID: 8300000, guid: 8d7914a9da6566149ad40c98bfa36fda, type: 3}
   musicaJuego: {fileID: 8300000, guid: 6d056f5d626193c4c9d8129e0572152c, type: 3}

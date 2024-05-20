@@ -35,4 +35,11 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     {
         return this.rb;
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Consumible"))
+        {
+
+        }
+    }
 }
