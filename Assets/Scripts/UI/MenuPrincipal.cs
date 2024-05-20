@@ -26,26 +26,27 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
                         // y verificar en que nivel esta, para modificar cuanto deberia durar el nivel
                         // basado en cual nivel se encuentra el jugador
     {
+        enTaller = false;
         if(!GestorAnimaciones.Instance.enTransicion)
         {
-        GestorAnimaciones.Instance.TallerAJuego();
-        pantallaTaller.SetActive(false);
-        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
-        jugando = true ;
-        sistemaCarriles.SetActive(true);
-        laseres.SetActive(true);
-        StartCoroutine(EsperarAEventoCoroutine(Time.time, 420f, "finalNivel"));
+            GestorAnimaciones.Instance.TallerAJuego();
+            pantallaTaller.SetActive(false);
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
+            jugando = true ;
+            sistemaCarriles.SetActive(true);
+            laseres.SetActive(true);
+            StartCoroutine(EsperarAEventoCoroutine(Time.time, 420f, "finalNivel"));
         }
     }
     public void Taller()
     {
         if(!GestorAnimaciones.Instance.enTransicion)
         {
-        GestorAnimaciones.Instance.InicioATaller();
-        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaTienda);
-        pantallaInicial.SetActive(false);
-        pantallaTaller.SetActive(true);
-        enTaller = true;
+            GestorAnimaciones.Instance.InicioATaller();
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaTienda);
+            pantallaInicial.SetActive(false);
+            pantallaTaller.SetActive(true);
+            enTaller = true;
         }
     }
 

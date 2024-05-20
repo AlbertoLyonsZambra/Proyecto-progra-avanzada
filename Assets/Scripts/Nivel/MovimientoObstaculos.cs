@@ -49,7 +49,9 @@ public class MovimientoObstaculos : MonoBehaviour
                 velocidadInicial = nuevaVelocidad; // actualiza la velocidad inicial para el siguiente frame
                 nuevaPosicion = posicionInicial + new Vector3(0, 0, -desplazamiento); // nueva posicion
                 transform.position = nuevaPosicion; // actualiza la posicion anterior con la nueva posicion
-            }else{print(" llegamo companero ");}
+            }
+            else
+            {print(" llegamo companero ");}
         }
         if(tag == "Planeta")
         {

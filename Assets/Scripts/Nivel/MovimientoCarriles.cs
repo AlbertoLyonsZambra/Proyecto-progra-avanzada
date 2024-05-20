@@ -11,7 +11,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
     private int filaActual = 1;
     private Vector2[,] matriz;
     private float fuerzaGiro = 13f;
-    protected override void Initialization()
+    public void Start()
     {
         matriz = MatrizCarriles.Instance.matrizCarriles;
     }
@@ -75,16 +75,19 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
     }
     public void InclinacionJugador(int fila, int columna)
     {
-        transform.rotation = Quaternion.identity;
-        if(fila==0 && columna==0){transform.Rotate(-fuerzaGiro, 0f, fuerzaGiro);}
-        if(fila==0 && columna==1){transform.Rotate(-fuerzaGiro, 0f, 0f);}
-        if(fila==0 && columna==2){transform.Rotate(-fuerzaGiro, 0f, -fuerzaGiro);}
-        if(fila==1 && columna==0){transform.Rotate(0f, 0f, fuerzaGiro);}
-        if(fila==1 && columna==1){transform.Rotate(0f, 0f, 0f);}
-        if(fila==1 && columna==2){transform.Rotate(0f, 0f, -fuerzaGiro);}
-        if(fila==2 && columna==0){transform.Rotate(fuerzaGiro, 0f, fuerzaGiro);}
-        if(fila==2 && columna==1){transform.Rotate(fuerzaGiro, 0f, 0f);}
-        if(fila==2 && columna==2){transform.Rotate(fuerzaGiro, 0f, -fuerzaGiro);}
+        if(tag=="Player")
+        {
+            transform.rotation = Quaternion.identity;
+            if(fila==0 && columna==0){transform.Rotate(-fuerzaGiro, 0f, fuerzaGiro);}
+            if(fila==0 && columna==1){transform.Rotate(-fuerzaGiro, 0f, 0f);}
+            if(fila==0 && columna==2){transform.Rotate(-fuerzaGiro, 0f, -fuerzaGiro);}
+            if(fila==1 && columna==0){transform.Rotate(0f, 0f, fuerzaGiro);}
+            if(fila==1 && columna==1){transform.Rotate(0f, 0f, 0f);}
+            if(fila==1 && columna==2){transform.Rotate(0f, 0f, -fuerzaGiro);}
+            if(fila==2 && columna==0){transform.Rotate(fuerzaGiro, 0f, fuerzaGiro);}
+            if(fila==2 && columna==1){transform.Rotate(fuerzaGiro, 0f, 0f);}
+            if(fila==2 && columna==2){transform.Rotate(fuerzaGiro, 0f, -fuerzaGiro);}
+        }
     }
 }
 

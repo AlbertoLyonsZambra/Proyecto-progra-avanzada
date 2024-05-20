@@ -10,9 +10,7 @@ public class InstanciadorObjetos : MonoBehaviour
     [SerializeField] private SimpleObjectPool[] asteroides;
     [SerializeField] private SimpleObjectPool[] bateria;
     [SerializeField] private Transform[] generadoresAsteroidesPos;
-    
-    [SerializeField] private float tiempoMin = 1f;
-    [SerializeField] private float tiempoMax = 3f;
+    [SerializeField] private SimpleObjectPool[] finalNivel;
     void Start()
     {
         matrizCarriles = MatrizCarriles.Instance.matrizCarriles;

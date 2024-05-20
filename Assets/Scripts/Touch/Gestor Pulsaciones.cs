@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GestorPulsaciones : MonoBehaviour
+public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
 {
     private Touch pulsacion;
     private bool pulsando;
@@ -12,7 +12,7 @@ public class GestorPulsaciones : MonoBehaviour
     void Update()
     {
         fasesTouch();
-        entradaPulasciones();
+        entradaPulsaciones();
         touchJugador();
     }
     void fasesTouch()
@@ -42,36 +42,32 @@ public class GestorPulsaciones : MonoBehaviour
             }
         }
     }
-    public void entradaPulasciones()
+    public void entradaPulsaciones()
     {
+        Color color;
+        if(MenuPrincipal.Instance.enTaller){color=Color.red;}
+        else{color = Color.green;}
         Vector3 posicionPulsacion = pulsacion.position;
         if (Input.GetKey(KeyCode.Mouse0) || pulsando)
         {
             Ray rayo;
-            
-            if (!pulsando)
-            {
-                rayo = Camera.main.ScreenPointToRay(Input.mousePosition);
-            }
-            else
-            {
-                rayo = Camera.main.ScreenPointToRay(posicionPulsacion);
-            }
-            
-
+            if (!pulsando){rayo = Camera.main.ScreenPointToRay(Input.mousePosition);}
+            else{rayo = Camera.main.ScreenPointToRay(posicionPulsacion);}
             RaycastHit colision;
             float distanciaRayo = 100f;
-            Debug.DrawRay(rayo.origin, rayo.direction * distanciaRayo, Color.green);
+            Debug.DrawRay(rayo.origin, rayo.direction * distanciaRayo, color);
 
             if (Physics.Raycast(rayo, out colision, distanciaRayo))
             {
                 if (colision.collider != null)
                 {
-                    //print("Chocando con" + colision.collider.gameObject.name);
+                    if(MenuPrincipal.Instance.enTaller)
+                    {
+                        GestorTaller.Instance.navesJugador.transform.Find(colision.collider.gameObject.transform.parent.name).gameObject.SetActive(true);
+                    }// print("Chocando con " + colision.collider.gameObject.transform.parent.name);
                 }
             }
         }
-        
     }
     public void touchJugador()
     {
@@ -83,7 +79,7 @@ public class GestorPulsaciones : MonoBehaviour
             {
                 //print("DESLIZAMIENTO ARRIBA");
                 MovimientoCarriles.Instance.MovimientoJugador("arr");
-                // Restablecer las posiciones después de hacer el deslizamiento
+                // Restablecer las posiciones despuï¿½s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
                 return;
@@ -92,7 +88,7 @@ public class GestorPulsaciones : MonoBehaviour
             {
                 //print("DESLIZAMIENTO ABAJO");
                 MovimientoCarriles.Instance.MovimientoJugador("aba");
-                // Restablecer las posiciones después de hacer el deslizamiento
+                // Restablecer las posiciones despuï¿½s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
                 return;
@@ -102,7 +98,7 @@ public class GestorPulsaciones : MonoBehaviour
             {
                 //print("DESLIZAMIENTO DERECHA");
                 MovimientoCarriles.Instance.MovimientoJugador("der");
-                // Restablecer las posiciones después de hacer el deslizamiento
+                // Restablecer las posiciones despuï¿½s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
                 return;
@@ -111,7 +107,7 @@ public class GestorPulsaciones : MonoBehaviour
             {
                 //print("DESLIZAMIENTO IZQUIERDA");
                 MovimientoCarriles.Instance.MovimientoJugador("izq");
-                // Restablecer las posiciones después de procesar el deslizamiento
+                // Restablecer las posiciones despuï¿½s de procesar el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
                 return;
