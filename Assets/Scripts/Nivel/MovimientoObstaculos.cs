@@ -62,5 +62,16 @@ public class MovimientoObstaculos : MonoBehaviour
             // transform.Rotate(rotacion * Time.deltaTime, Space.Self);
             transform.Rotate(Vector3.up * Time.deltaTime * 3f, Space.Self);
         }
+        if(tag == "Consumible")
+        {
+            aceleracion = MenuPrincipal.Instance.aceleracionObstaculos;
+            float nuevaVelocidad = velocidadInicial + aceleracion * tiempoTranscurrido;
+            float desplazamiento = (velocidadInicial + nuevaVelocidad) / 2 * tiempoTranscurrido; 
+            velocidadInicial = nuevaVelocidad; 
+            nuevaPosicion = posicionInicial + new Vector3(0, 0, -desplazamiento);
+            transform.position = nuevaPosicion; 
+            Vector3 rotacion = new Vector3(0, Random.Range(0, 360), 0);
+            transform.Rotate(rotacion * Time.deltaTime, Space.Self);
+        }
     }
 }

@@ -14,6 +14,7 @@ TagManager:
   - Obs_Asteroide
   - finalNivel
   - Planeta
+  - Consumible
   layers:
   - Default
   - TransparentFX

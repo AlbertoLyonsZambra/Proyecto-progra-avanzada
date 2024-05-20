@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -4044557228646383299}
   m_Layer: 0
   m_Name: Industrial_Barrel
-  m_TagString: Untagged
+  m_TagString: Consumible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3363cb43756d71444b79c89586ff4ef7, type: 2}
+  - {fileID: 2100000, guid: d05e71b430b22dc4fac7398dc9516e8a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aceleracion: 0
 --- !u!136 &-4044557228646383299
 CapsuleCollider:
   m_ObjectHideFlags: 0
