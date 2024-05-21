@@ -26,15 +26,17 @@ public class GestorAnimaciones : GenericSingleton<GestorAnimaciones>
 
     void Update()
     {
-
     }
-    public void TallerAJuego()
+    public void TallerAJuego() 
     {
+        MenuPrincipal.Instance.enTaller = false;
         Transicion(anim3, anim4, anim5, 2.0f, 10.0f);
+        MenuPrincipal.Instance.jugando = true ;
     }
     public void InicioATaller()
     {
         Transicion(anim1, anim2, anim3, 2.0f, 10.0f);
+        MenuPrincipal.Instance.enTaller = true;
     }
     // Transicion de una animacion (incio), a otra (destino), usando una animacion entre medio (transicion)
     public void Transicion(CPC_CameraPath inicio, CPC_CameraPath transicion, CPC_CameraPath destino, float tiempoTransicion, float tiempoDestino)

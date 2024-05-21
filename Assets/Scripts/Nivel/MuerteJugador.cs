@@ -33,6 +33,7 @@ public class MuerteJugador : MonoBehaviour
         if (other.gameObject.CompareTag("Obs_Asteroide"))
         {
             estaMuerto = true;
+            MenuPrincipal.Instance.jugando = false;
             InstanciarMuerte();
         }
     }

@@ -53,20 +53,28 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
             Ray rayo;
             if (!pulsando){rayo = Camera.main.ScreenPointToRay(Input.mousePosition);}
             else{rayo = Camera.main.ScreenPointToRay(posicionPulsacion);}
-            RaycastHit colision;
             float distanciaRayo = 100f;
+            RaycastHit colision;
             Debug.DrawRay(rayo.origin, rayo.direction * distanciaRayo, color);
 
             if (Physics.Raycast(rayo, out colision, distanciaRayo))
             {
                 if (colision.collider != null)
                 {
-                    if(MenuPrincipal.Instance.enTaller)
-                    {
-                        GestorTaller.Instance.navesJugador.transform.Find(colision.collider.gameObject.transform.parent.name).gameObject.SetActive(true);
-                    }// print("Chocando con " + colision.collider.gameObject.transform.parent.name);
+                    GestorTaller.Instance.SeleccionNave(colision);
+                    // print("Chocando con " + colision.collider.gameObject.transform.parent.name);
                 }
             }
+            // RaycastHit[] colisiones = Physics.RaycastAll(rayo, distanciaRayo);
+            // if (colisiones.Length > 0)
+            // {
+            //     RaycastHit ultimoColision = colisiones[colisiones.Length - 1];
+            //     if (ultimoColision.collider != null)
+            //     {
+            //         SeleccionNave(ultimoColision);
+            //         // print("Chocando con " + ultimoColision.collider.gameObject.transform.parent.name);
+            //     }
+            // }else{print("No se ha seleccionado ninguna nave");}
         }
     }
     public void touchJugador()

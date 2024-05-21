@@ -12,44 +12,49 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     [SerializeField] private GameObject sistemaCarriles;
     [SerializeField] private GameObject laseres;
     [SerializeField] public float aceleracionObstaculos;
-    [HideInInspector] public bool jugando = false;
-    [HideInInspector] public bool enTaller = false;
+    [HideInInspector] public int nivelActual;
+    [HideInInspector] public bool victoria = false;
+      public bool jugando = false;
+     public bool enTaller = false;
     void Start()
     {
         Application.targetFrameRate = 60;
+        nivelActual = PlayerPrefs.GetInt("nivelActual");
     }
     void Update()
     {
 
     }
-    public void Jugar() // Cuando hayan mas niveles, obtener la variable que representa el nivel actual 
-                        // y verificar en que nivel esta, para modificar cuanto deberia durar el nivel
-                        // basado en cual nivel se encuentra el jugador
+    public void Jugar() 
     {
-        enTaller = false;
-        if(!GestorAnimaciones.Instance.enTransicion)
+        if(JugadorNivel.Instance.escogioNave)
         {
+            float duracionNivel = 420f + nivelActual * 30f; // +30s de duracion por nivel
             GestorAnimaciones.Instance.TallerAJuego();
             pantallaTaller.SetActive(false);
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
-            jugando = true ;
             sistemaCarriles.SetActive(true);
             laseres.SetActive(true);
-            StartCoroutine(EsperarAEventoCoroutine(Time.time, 420f, "finalNivel"));
-        }
+            GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);
+            StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
+        }else{print("No se ha seleccionado ninguna nave");}
+        
     }
     public void Taller()
     {
-        if(!GestorAnimaciones.Instance.enTransicion)
-        {
-            GestorAnimaciones.Instance.InicioATaller();
-            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaTienda);
-            pantallaInicial.SetActive(false);
-            pantallaTaller.SetActive(true);
-            enTaller = true;
-        }
+        GestorAnimaciones.Instance.InicioATaller();
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaTienda);
+        pantallaInicial.SetActive(false);
+        Invoke("PantallaTaller", 2);
     }
-
+    public void Victoria()
+    {
+        victoria = true;
+        PlayerPrefs.SetInt("nivelActual", nivelActual + 1);
+        nivelActual = PlayerPrefs.GetInt("nivelActual");
+        // Hacer mas logica aqui despues :]
+        print(" ganaste el nivel congrats ");
+    }
     IEnumerator EsperarAEventoCoroutine(float tiempoInicio, float tiempoFinal, string evento)
     {
         yield return new WaitForSeconds(tiempoFinal); // Espera (si usa WaitForSecondsRealtime puede funcionar distinto)
@@ -65,5 +70,5 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             print(" no paso na companero ");
         }
     }
-
+    private void PantallaTaller(){pantallaTaller.SetActive(true);}
 }
