@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03146235, g: 0.009871539, b: 0.013235097, a: 1}
+  m_IndirectSpecularColor: {r: 0.031427085, g: 0.009846414, b: 0.013195235, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21396,8 +21396,8 @@ MonoBehaviour:
   laserPorDisparar: {fileID: 1072467976}
   generadorLaserPos: {fileID: 259202340}
   escogioNave: 0
---- !u!64 &321472542
-MeshCollider:
+--- !u!65 &321472546
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21414,10 +21414,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 4.535164, y: 1.9, z: 3.7567444}
+  m_Center: {x: 0.049470425, y: 0.050000012, z: 0.18417358}
 --- !u!1 &329331281
 GameObject:
   m_ObjectHideFlags: 0
@@ -31849,8 +31848,21 @@ MonoBehaviour:
   laserPorDisparar: {fileID: 1072467976}
   generadorLaserPos: {fileID: 1614673681}
   escogioNave: 0
---- !u!64 &402490858
-MeshCollider:
+--- !u!114 &402490861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402490851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e856e2b08f91dfa4fbd33eb837c3c12a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 5
+--- !u!65 &402490864
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -31867,23 +31879,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: ee3099c102f98214eaf34051ed635066, type: 3}
---- !u!114 &402490861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402490851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e856e2b08f91dfa4fbd33eb837c3c12a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidad: 5
+  serializedVersion: 3
+  m_Size: {x: 3.8385096, y: 0.8999999, z: 2.8648987}
+  m_Center: {x: -0.017301584, y: 0.05000001, z: 0.14511108}
 --- !u!1 &409901512
 GameObject:
   m_ObjectHideFlags: 0
@@ -43765,8 +43763,8 @@ MonoBehaviour:
   laserPorDisparar: {fileID: 1072467976}
   generadorLaserPos: {fileID: 0}
   escogioNave: 0
---- !u!64 &770528170
-MeshCollider:
+--- !u!65 &770528173
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -43783,10 +43781,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 2.7580132, y: 2, z: 5.8414154}
+  m_Center: {x: -1.676429, y: 1, z: -3.760872}
 --- !u!4 &771831377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: cc4e28b8f8b405945a0f2a494d2177c4, type: 3}
@@ -54203,9 +54200,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1082239016}
-    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1082239015}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
       insertIndex: -1
@@ -54219,6 +54213,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1082239011}
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1082239019}
   m_SourcePrefab: {fileID: 100100000, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
 --- !u!1 &858378038
 GameObject:
@@ -59686,10 +59683,10 @@ MonoBehaviour:
   audioSourceSFX: {fileID: 1181401476}
   audioSourceJugador: {fileID: 0}
   laserSFX: {fileID: 8300000, guid: aff781075803b5c4ca59292f66bd3dfc, type: 3}
-  naveSFX: {fileID: 8300000, guid: 4b02502499319d8499a1a4e5fc554e30, type: 3}
+  naveSFX: {fileID: 8300000, guid: c60d4d29bc2f8694887146d5581b24e4, type: 3}
   musicaMenu: {fileID: 8300000, guid: 82893ecc57e8d8745934737452f5d379, type: 3}
   musicaTienda: {fileID: 8300000, guid: 8d7914a9da6566149ad40c98bfa36fda, type: 3}
-  musicaJuego: {fileID: 8300000, guid: 6d056f5d626193c4c9d8129e0572152c, type: 3}
+  musicaJuego: {fileID: 8300000, guid: cd5dc8524293e734abad50ce5aab9b19, type: 3}
 --- !u!4 &963616681
 Transform:
   m_ObjectHideFlags: 0
@@ -65331,8 +65328,8 @@ MonoBehaviour:
   laserPorDisparar: {fileID: 1072467976}
   generadorLaserPos: {fileID: 1905201604}
   escogioNave: 0
---- !u!64 &1082239016
-MeshCollider:
+--- !u!65 &1082239019
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -65349,10 +65346,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 6.2606444, y: 2.1999993, z: 5.109204}
+  m_Center: {x: -4.1913776, y: 4.0999994, z: -3.1905398}
 --- !u!1 &1089637334
 GameObject:
   m_ObjectHideFlags: 0
@@ -72165,9 +72161,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 770528170}
-    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 770528169}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
       insertIndex: -1
@@ -72181,6 +72174,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 770528165}
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 770528173}
   m_SourcePrefab: {fileID: 100100000, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
 --- !u!1 &1569118266
 GameObject:
@@ -72441,8 +72437,8 @@ MonoBehaviour:
   laserPorDisparar: {fileID: 1072467976}
   generadorLaserPos: {fileID: 1211761405}
   escogioNave: 0
---- !u!64 &1581802982
-MeshCollider:
+--- !u!65 &1581802985
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -72459,10 +72455,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: b463d441880b42246a366690d4226071, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 1.1841238, y: 5.392046, z: 3.0943317}
+  m_Center: {x: -0.041520253, y: -0.0009472553, z: 0.047546428}
 --- !u!1 &1611110881
 GameObject:
   m_ObjectHideFlags: 0
@@ -82813,9 +82808,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: b463d441880b42246a366690d4226071, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1581802982}
-    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: b463d441880b42246a366690d4226071, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1581802981}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: b463d441880b42246a366690d4226071, type: 3}
       insertIndex: -1
@@ -82829,6 +82821,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: b463d441880b42246a366690d4226071, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1581802977}
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: b463d441880b42246a366690d4226071, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1581802985}
   m_SourcePrefab: {fileID: 100100000, guid: b463d441880b42246a366690d4226071, type: 3}
 --- !u!1001 &1767877263
 PrefabInstance:
@@ -82959,9 +82954,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: ee3099c102f98214eaf34051ed635066, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 402490858}
-    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: ee3099c102f98214eaf34051ed635066, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 402490857}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: ee3099c102f98214eaf34051ed635066, type: 3}
       insertIndex: -1
@@ -82975,6 +82967,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: ee3099c102f98214eaf34051ed635066, type: 3}
       insertIndex: -1
       addedObject: {fileID: 402490853}
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: ee3099c102f98214eaf34051ed635066, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 402490864}
   m_SourcePrefab: {fileID: 100100000, guid: ee3099c102f98214eaf34051ed635066, type: 3}
 --- !u!1 &1775510435
 GameObject:
@@ -83616,9 +83611,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 321472542}
-    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 321472541}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
       insertIndex: -1
@@ -83632,6 +83624,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 321472537}
+    - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 321472546}
   m_SourcePrefab: {fileID: 100100000, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
 --- !u!1 &1905201603
 GameObject:
