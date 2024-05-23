@@ -43,10 +43,13 @@ public class GestorTaller : GenericSingleton<GestorTaller>
     {
         if(MenuPrincipal.Instance.enTaller)
         {
-            ultimaNaveJugador = navesJugador.transform.Find(colision.collider.gameObject.transform.parent.name);
             ultimaNaveTaller = navesTaller.transform.Find(colision.collider.gameObject.transform.parent.name);
             NaveSeleccionada();
-            JugadorNivel.Instance.escogioNave = true;
+            if(ultimaNaveTaller.Find("default").GetComponent<MeshRenderer>().material.color != materialBloqueado.color)
+            {
+                ultimaNaveJugador = navesJugador.transform.Find(colision.collider.gameObject.transform.parent.name);
+                JugadorNivel.Instance.escogioNave = true;
+            }
         }
     }
     public void NaveSeleccionada()
