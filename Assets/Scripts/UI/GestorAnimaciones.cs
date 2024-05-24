@@ -4,24 +4,15 @@ using UnityEngine;
 
 public class GestorAnimaciones : GenericSingleton<GestorAnimaciones>
 {
-    [SerializeField] public GameObject animacion1;
-    [SerializeField] public GameObject animacion2;
-    [SerializeField] public GameObject animacion3;
-    [SerializeField] public GameObject animacion4;
-    [SerializeField] public GameObject animacion5;
-    [HideInInspector] public CPC_CameraPath anim1;
-    [HideInInspector] public CPC_CameraPath anim2;
-    [HideInInspector] public CPC_CameraPath anim3;
-    [HideInInspector] public CPC_CameraPath anim4;
-    [HideInInspector] public CPC_CameraPath anim5;
+    [SerializeField] public List<GameObject> movsCamGO;
+    [HideInInspector] public List<CPC_CameraPath> movsCamCPC;
     public bool enTransicion = false;
     void Start()
     {
-        anim1 = animacion1.GetComponent<CPC_CameraPath>();
-        anim2 = animacion2.GetComponent<CPC_CameraPath>();
-        anim3 = animacion3.GetComponent<CPC_CameraPath>();
-        anim4 = animacion4.GetComponent<CPC_CameraPath>();
-        anim5 = animacion5.GetComponent<CPC_CameraPath>();
+        for(int i = 0; i < movsCamGO.Count; i++)
+        {
+            movsCamCPC.Add(movsCamGO[i].GetComponent<CPC_CameraPath>());
+        }
     }
 
     void Update()
@@ -30,12 +21,12 @@ public class GestorAnimaciones : GenericSingleton<GestorAnimaciones>
     public void TallerAJuego() 
     {
         MenuPrincipal.Instance.enTaller = false;
-        Transicion(anim3, anim4, anim5, 2.0f, 10.0f);
+        Transicion(movsCamCPC[2], movsCamCPC[3], movsCamCPC[4], 2.0f, 10.0f);
         MenuPrincipal.Instance.jugando = true ;
     }
     public void InicioATaller()
     {
-        Transicion(anim1, anim2, anim3, 2.0f, 10.0f);
+        Transicion(movsCamCPC[0], movsCamCPC[1], movsCamCPC[2], 2.0f, 10.0f);
         MenuPrincipal.Instance.enTaller = true;
     }
     // Transicion de una animacion (incio), a otra (destino), usando una animacion entre medio (transicion)
