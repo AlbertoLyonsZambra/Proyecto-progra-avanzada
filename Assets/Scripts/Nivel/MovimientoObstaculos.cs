@@ -10,6 +10,8 @@ public class MovimientoObstaculos : MonoBehaviour
     private Vector3 posicionFinal;
     private float velocidadInicial = 1f;
     Vector3 nuevaPosicion;
+    public bool laserPuedeMoverse;
+    private float velocidadLaser = 10.5f;
     void Start()
     {
         nuevaPosicion = new Vector3(0, 0, 0);
@@ -20,6 +22,15 @@ public class MovimientoObstaculos : MonoBehaviour
         tiempoInicio = Time.time;
         posicionInicial = transform.position;
         velocidadInicial = 1f;
+        laserPuedeMoverse = true;
+    }
+    void OnDisable()    
+    {
+        laserPuedeMoverse = false;
+        if(tag == "Laser")
+        {
+            this.transform.position = new Vector3(0,0,0);
+        }
     }
     void Update()
     {
@@ -74,6 +85,15 @@ public class MovimientoObstaculos : MonoBehaviour
             transform.position = nuevaPosicion; 
             Vector3 rotacion = new Vector3(0, Random.Range(0, 360), 0);
             transform.Rotate(rotacion * Time.deltaTime, Space.Self);
+        }
+        if(tag == "Laser")
+        {
+            if(laserPuedeMoverse)
+            {
+                Vector3 movimiento = new Vector3(0,0,velocidadLaser) * Time.deltaTime;
+                transform.Translate(movimiento);
+            }
+            
         }
     }
 }

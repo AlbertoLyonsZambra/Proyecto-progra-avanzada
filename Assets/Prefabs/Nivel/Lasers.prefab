@@ -9883,7 +9883,7 @@ GameObject:
   - component: {fileID: 2869998571743642958}
   m_Layer: 0
   m_Name: Lasers
-  m_TagString: Untagged
+  m_TagString: Laser
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9916,11 +9916,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8217019375501296818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49937a0868c938949875ab32b78d04b0, type: 3}
+  m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 6
-  canMove: 0
+  laserPuedeMoverse: 0
 --- !u!114 &2869998571743642958
 MonoBehaviour:
   m_ObjectHideFlags: 0

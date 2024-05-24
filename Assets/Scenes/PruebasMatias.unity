@@ -21136,6 +21136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserPuedeMoverse: 0
 --- !u!1 &293128166
 GameObject:
   m_ObjectHideFlags: 0
@@ -32056,8 +32057,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
---- !u!65 &402490864
-BoxCollider:
+--- !u!136 &402490867
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -32074,9 +32075,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.8385096, y: 0.8999999, z: 2.8648987}
-  m_Center: {x: -0.017301584, y: 0.05000001, z: 0.14511108}
+  serializedVersion: 2
+  m_Radius: 0.5565211
+  m_Height: 3.1408234
+  m_Direction: 2
+  m_Center: {x: 0.0391844, y: 0, z: -0.22975922}
 --- !u!1 &409901512
 GameObject:
   m_ObjectHideFlags: 0
@@ -32126,6 +32129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserPuedeMoverse: 0
 --- !u!4 &413595027 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3738151255870988183, guid: 58afa75ae89337944926dede78a0d651, type: 3}
@@ -48080,6 +48084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserPuedeMoverse: 0
 --- !u!1 &648922844
 GameObject:
   m_ObjectHideFlags: 0
@@ -86971,16 +86976,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8ba5bff9d0a244b8f0099a1cc9fceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animacion1: {fileID: 1917761245}
-  animacion2: {fileID: 2002878081}
-  animacion3: {fileID: 809922232}
-  animacion4: {fileID: 94925389}
-  animacion5: {fileID: 388572371}
-  anim1: {fileID: 0}
-  anim2: {fileID: 0}
-  anim3: {fileID: 0}
-  anim4: {fileID: 0}
-  anim5: {fileID: 0}
+  movsCamGO:
+  - {fileID: 1917761245}
+  - {fileID: 2002878081}
+  - {fileID: 809922232}
+  - {fileID: 94925389}
+  - {fileID: 388572371}
+  movsCamCPC: []
   enTransicion: 0
 --- !u!1 &1477714722
 GameObject:
@@ -98303,7 +98305,7 @@ PrefabInstance:
       addedObject: {fileID: 402490853}
     - targetCorrespondingSourceObject: {fileID: 8164078558771037576, guid: ee3099c102f98214eaf34051ed635066, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 402490864}
+      addedObject: {fileID: 402490867}
   m_SourcePrefab: {fileID: 100100000, guid: ee3099c102f98214eaf34051ed635066, type: 3}
 --- !u!1 &1775510435
 GameObject:
@@ -98618,6 +98620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e95a6ded23a4d7346bb01d3851d75f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laserPuedeMoverse: 0
 --- !u!1 &1811754541 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: ee3099c102f98214eaf34051ed635066, type: 3}
