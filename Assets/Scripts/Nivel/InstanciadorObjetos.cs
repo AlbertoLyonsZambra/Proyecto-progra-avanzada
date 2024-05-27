@@ -14,7 +14,7 @@ public class InstanciadorObjetos : MonoBehaviour
     void Start()
     {
         matrizCarriles = MatrizCarriles.Instance.matrizCarriles;
-        StartCoroutine(AparecerObjetosCoroutine(null, asteroides , "Asteroide", 1f, 3f));
+        StartCoroutine(AparecerObjetosCoroutine(null, asteroides , "Asteroide", 0.5f, 2f));
         StartCoroutine(AparecerObjetosCoroutine(null, bateria, "Bateria" , 3f, 7f ));
     }
 

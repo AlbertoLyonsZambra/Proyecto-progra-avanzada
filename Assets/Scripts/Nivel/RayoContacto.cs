@@ -4,10 +4,12 @@ public class RayoContacto : MonoBehaviour
 {
     private Color originalColor;
     private Renderer playerRenderer;
+    private Renderer asteroideRenderer;
     private GameObject playerObject;
     public GameObject spriteParticlePrefab;
     private bool isColliding = false;
     private GameObject lastSprite;
+    private Color asteroideColor;
 
     void Awake()
     {
@@ -16,6 +18,10 @@ public class RayoContacto : MonoBehaviour
         if (playerRenderer != null)
         {
             originalColor = playerRenderer.material.color;
+        }
+        if (!ColorUtility.TryParseHtmlString("#E89E9E", out asteroideColor))
+        {
+            Debug.LogError("Invalid color code");
         }
     }
 
@@ -35,7 +41,6 @@ public class RayoContacto : MonoBehaviour
             if (hitInfo.collider.CompareTag("Obs_Asteroide"))
             {
                 Debug.Log("Rayo en contacto con asteroide");
-
                 if (!isColliding)
                 {
                     Vector3 offsetFromPlayer = direccionFija * -3f;
@@ -47,6 +52,12 @@ public class RayoContacto : MonoBehaviour
                 if (playerRenderer != null)
                 {
                     playerRenderer.material.color = Color.red;
+                }
+
+                asteroideRenderer = hitInfo.collider.GetComponent<Renderer>();
+                if (asteroideRenderer != null)
+                {
+                    asteroideRenderer.material.color = asteroideColor;
                 }
             }
             else
@@ -64,6 +75,10 @@ public class RayoContacto : MonoBehaviour
                 {
                     playerRenderer.material.color = originalColor;
                 }
+                if (asteroideRenderer != null)
+                {
+                    asteroideRenderer.material.color = Color.white; // Or the original color of the asteroide
+                }
             }
         }
         else
@@ -80,6 +95,10 @@ public class RayoContacto : MonoBehaviour
             if (playerRenderer != null)
             {
                 playerRenderer.material.color = originalColor;
+            }
+            if (asteroideRenderer != null)
+            {
+                asteroideRenderer.material.color = Color.white; // Or the original color of the asteroide
             }
         }
 

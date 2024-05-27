@@ -15,6 +15,9 @@ TagManager:
   - finalNivel
   - Planeta
   - Consumible
+  - MatNormal
+  - MatRaro
+  - MatSuper
   layers:
   - Default
   - TransparentFX
