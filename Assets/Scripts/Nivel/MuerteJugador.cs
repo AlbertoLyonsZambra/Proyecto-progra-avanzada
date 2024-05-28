@@ -30,7 +30,7 @@ public class MuerteJugador : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Obs_Asteroide"))
+        if(other.gameObject.CompareTag("Obs_Asteroide") || other.gameObject.CompareTag("MatNormal") || other.gameObject.CompareTag("MatRaro") || other.gameObject.CompareTag("MatSuper"))
         {
             estaMuerto = true;
             MenuPrincipal.Instance.jugando = false;

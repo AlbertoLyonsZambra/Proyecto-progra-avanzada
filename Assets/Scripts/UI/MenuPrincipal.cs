@@ -14,8 +14,8 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     [SerializeField] public float aceleracionObstaculos;
     [HideInInspector] public int nivelActual;
     [HideInInspector] public bool victoria = false;
-      public bool jugando = false;
-     public bool enTaller = false;
+    public bool jugando = false;
+    public bool enTaller = false;
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -29,7 +29,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     {
         if(JugadorNivel.Instance.escogioNave)
         {
-            float duracionNivel = 420f + nivelActual * 30f; // +30s de duracion por nivel
+            float duracionNivel = 2.0f + nivelActual * 30f; // +30s de duracion por nivel
             GestorAnimaciones.Instance.TallerAJuego();
             pantallaTaller.SetActive(false);
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);

@@ -18,6 +18,9 @@ TagManager:
   - MatNormal
   - MatRaro
   - MatSuper
+  - ConsumibleV
+  - ConsumibleN
+  - ConsumibleR
   layers:
   - Default
   - TransparentFX

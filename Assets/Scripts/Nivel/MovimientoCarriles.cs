@@ -29,7 +29,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
     }
     public void MovimientoJugador(string sentido)
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || sentido == "izq")
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || sentido == "izq")
         {
             if (columnaActual > 0)
             {
@@ -40,7 +40,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
         }
 
         // Cambiar de carril hacia la derecha (por ejemplo)
-        if (Input.GetKeyDown(KeyCode.RightArrow) || sentido == "der")
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || sentido == "der")
         {
             if (columnaActual < matriz.GetLength(0) - 1)
             {
@@ -49,7 +49,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
                 InclinacionJugador(filaActual, columnaActual);
             }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || sentido == "arr")
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || sentido == "arr")
         {
             if (filaActual > 0)
             {
@@ -58,7 +58,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
                 InclinacionJugador(filaActual, columnaActual);
             }
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) || sentido == "aba")
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) || sentido == "aba")
         {
             if (filaActual < matriz.GetLength(0) - 1)
             {

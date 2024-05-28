@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class ColisionLaser : MonoBehaviour
 {
-    // Start is called before the first frame update
-
-    // Update is called once per frame
+    [SerializeField] private GameObject MatRecogible;
     void Update()
     {
         
@@ -15,8 +13,14 @@ public class ColisionLaser : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Laser"))
         {
-            other.transform.parent.gameObject.SetActive(false); //"Destruye" obstaculo
-            // gameObject.SetActive(false); //"Destruye" laser
+            other.transform.parent.gameObject.SetActive(false); //"Destruye" laser
+            // gameObject.SetActive(false); //Desactiva la visibilidad del obstaculo
+        }
+        if (other.gameObject.CompareTag("Laser") && (tag == "MatNormal" || tag == "MatRaro" || tag == "MatSuper"))
+        {
+            other.transform.parent.gameObject.SetActive(false);
+            Instantiate(MatRecogible, transform.position, transform.rotation);
+            gameObject.SetActive(false);
         }
     }
 }

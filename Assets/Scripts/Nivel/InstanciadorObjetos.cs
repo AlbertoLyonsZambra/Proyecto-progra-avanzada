@@ -8,14 +8,20 @@ public class InstanciadorObjetos : MonoBehaviour
     [SerializeField] GameObject carriles;
     public Vector2[,] matrizCarriles;
     [SerializeField] private SimpleObjectPool[] asteroides;
+    [SerializeField] private SimpleObjectPool[] verdes;
+    [SerializeField] private SimpleObjectPool[] naranjas;
+    [SerializeField] private SimpleObjectPool[] rosas;
     [SerializeField] private SimpleObjectPool[] bateria;
     [SerializeField] private Transform[] generadoresAsteroidesPos;
     [SerializeField] private SimpleObjectPool[] finalNivel;
     void Start()
     {
         matrizCarriles = MatrizCarriles.Instance.matrizCarriles;
-        StartCoroutine(AparecerObjetosCoroutine(null, asteroides , "Asteroide", 0.5f, 2f));
-        StartCoroutine(AparecerObjetosCoroutine(null, bateria, "Bateria" , 3f, 7f ));
+        StartCoroutine(AparecerObjetosCoroutine(null, asteroides, "Asteroide", 0.5f, 2f));
+        StartCoroutine(AparecerObjetosCoroutine(null, verdes, "Verde", 5f, 7f));
+        if(MenuPrincipal.Instance.nivelActual >= 1){StartCoroutine(AparecerObjetosCoroutine(null, naranjas, "Naranja", 5f, 7f));}
+        if(MenuPrincipal.Instance.nivelActual >= 3){StartCoroutine(AparecerObjetosCoroutine(null, rosas, "Rosa", 5f, 7f));}
+        StartCoroutine(AparecerObjetosCoroutine(null, bateria, "Bateria" , 10f, 20f ));
     }
 
     // Update is called once per frame
@@ -44,6 +50,7 @@ public class InstanciadorObjetos : MonoBehaviour
         if (!posMatrizPrevia.SequenceEqual(posMatriz))
         {
             GameObject objeto = objetos[Random.Range(0, objetos.Length-1)].GetPooledGameObject();
+            if(!objeto.GetComponent<MeshRenderer>().enabled){objeto.GetComponent<MeshRenderer>().enabled = true;}
             objeto.transform.position = new Vector3(matrizCarriles[posMatriz[0], posMatriz[1]].x, matrizCarriles[posMatriz[0], posMatriz[1]].y, transform.position.z);
             objeto.SetActive(true);
             StartCoroutine(AparecerObjetosCoroutine(posMatriz, objetos, nombre, tiempoMin, tiempoMax));

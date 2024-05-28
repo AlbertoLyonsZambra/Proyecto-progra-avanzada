@@ -10,7 +10,7 @@ public class MovimientoObstaculos : MonoBehaviour
     private Vector3 posicionFinal;
     private float velocidadInicial = 1f;
     Vector3 nuevaPosicion;
-    public bool laserPuedeMoverse;
+    private bool laserPuedeMoverse;
     private float velocidadLaser = 10.5f;
     void Start()
     {
@@ -39,7 +39,7 @@ public class MovimientoObstaculos : MonoBehaviour
     void movLineal()
     {
         float tiempoTranscurrido = Time.time - tiempoInicio;
-        if(tag == "Obs_Asteroide")
+        if(tag == "Obs_Asteroide" || tag == "MatNormal" || tag == "MatRaro" || tag == "MatSuper" )
         {
             aceleracion = MenuPrincipal.Instance.aceleracionObstaculos;
             float nuevaVelocidad = velocidadInicial + aceleracion * tiempoTranscurrido; // aceleracion
