@@ -6,6 +6,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
 {
     [SerializeField] public GameObject navesTaller;
     [SerializeField] public GameObject navesJugador;
+    [SerializeField] public GameObject seleccionarNave;
     [SerializeField] private Material materialBloqueado;
     [HideInInspector] public List<GameObject> nave;
     [HideInInspector] public Transform ultimaNaveJugador;
@@ -54,6 +55,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
     }
     public void NaveSeleccionada()
     {
+        seleccionarNave.SetActive(false);
         if(!elevados[int.Parse(ultimaNaveTaller.name)] && ultimaNaveTaller.Find("default").GetComponent<MeshRenderer>().material.color != materialBloqueado.color)
         {
             StartCoroutine(Elevar(ultimaNaveTaller, elevados[int.Parse(ultimaNaveTaller.name)]));

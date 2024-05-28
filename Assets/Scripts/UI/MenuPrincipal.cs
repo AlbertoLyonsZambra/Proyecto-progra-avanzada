@@ -70,5 +70,13 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             print(" no paso na companero ");
         }
     }
-    private void PantallaTaller(){pantallaTaller.SetActive(true);}
+    private void PantallaTaller(){
+        pantallaTaller.SetActive(true);
+        StartCoroutine(SeleccionarNave());
+    }
+    IEnumerator SeleccionarNave()
+    {
+        yield return new WaitForSeconds(3);
+        pantallaTaller.transform.Find("Seleccionar nave").gameObject.SetActive(true);
+    }
 }
