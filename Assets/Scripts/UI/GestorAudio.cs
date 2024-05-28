@@ -27,6 +27,10 @@ public class Gestor_audio : GenericSingleton<Gestor_audio>
         if(isOn){audioSourceMusica.mute = true; PlayerPrefs.SetInt("isMusicaMute", 1);}
         else{audioSourceMusica.mute = false; PlayerPrefs.SetInt("isMusicaMute", 0);}
     }
+    public void silenciadoMuerte()
+    {
+        audioSourceMusica.mute = true;
+    }
     public void cambioSilenciadoSonido(bool isOn)
     {
         if(isOn){audioSourceSFX.mute = true; PlayerPrefs.SetInt("isSFXMute", 1);}

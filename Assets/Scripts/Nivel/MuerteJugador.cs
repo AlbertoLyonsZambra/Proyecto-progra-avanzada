@@ -52,9 +52,10 @@ public class MuerteJugador : MonoBehaviour
         GameObject.Find("Sistema carriles").transform.Find("Instanciador_objetos").gameObject.SetActive(false);
         JugadorNivel.Instance.enabled = false;
         MovimientoCarriles.Instance.enabled = false;
+        // A partir de aqui se puede separar en distintos tipos de muerte
         Quaternion rotacionExplosion = Quaternion.identity;
         Instantiate(explosion, gameObject.transform.position, rotacionExplosion);
-        Gestor_audio.Instance.cambioSilenciadoMusica(true);
+        Gestor_audio.Instance.silenciadoMuerte();
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, sonidoMuerte);
         StartCoroutine(tiempoEspera());
 

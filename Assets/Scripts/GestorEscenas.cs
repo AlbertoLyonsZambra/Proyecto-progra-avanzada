@@ -21,5 +21,7 @@ public class GestorEscenas : MonoBehaviour
     {
         SceneManager.LoadScene(escena);
         Time.timeScale = 1f;
+        //Gestor_audio.Instance.cambioSilenciadoMusica(false);
+        //Gestor_audio.Instance.cambioSilenciadoSonido(true);
     }
 }
