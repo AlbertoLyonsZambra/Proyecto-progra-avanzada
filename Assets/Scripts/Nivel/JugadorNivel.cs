@@ -9,6 +9,8 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     [SerializeField] private Transform generadorLaserPos;
     [SerializeField] private float multiplicadorMaterial = 1f;
     [HideInInspector] public bool escogioNave;
+    
+    public float bateria = 100;
     private float temporizadorDisparoLaser;
     private Rigidbody rb;
     public Transform transformJug;
@@ -18,15 +20,18 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         transformJug = transform;
         rb = gameObject.GetComponent<Rigidbody>();
         mats = new int[8];
+        
     }
     void Start()
     {
-
+        
     }
     void Update()
     {
         temporizadorDisparoLaser += Time.deltaTime;
         disparoLaser();
+
+        
     }
     private void disparoLaser()
     {
@@ -64,6 +69,20 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             contTrigger++;
             if(contTrigger == 8){print(Mathf.RoundToInt(Promediar(mats))); contTrigger = 0;}
         }
+        if (other.gameObject.CompareTag("Consumible"))
+        {
+            other.gameObject.SetActive(false);
+            Debug.Log("Colision ");
+            bateria += 20;
+
+            if (bateria >= 100)
+            {
+                bateria = 100;
+            }
+
+        }
+
+
     }
     private float Promediar(int[] valores)
     {

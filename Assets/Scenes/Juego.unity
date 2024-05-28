@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.031459253, g: 0.009866884, b: 0.013233621, a: 1}
+  m_IndirectSpecularColor: {r: 0.03146235, g: 0.009871539, b: 0.013235097, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15891,6 +15891,7 @@ GameObject:
   - component: {fileID: 199097623}
   - component: {fileID: 199097625}
   - component: {fileID: 199097624}
+  - component: {fileID: 199097626}
   m_Layer: 0
   m_Name: Indicador bateria
   m_TagString: Untagged
@@ -15970,6 +15971,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199097622}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &199097626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199097622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4377e71ca4e64ff41acf51940f1f4b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubos:
+  - {fileID: 760677929}
+  - {fileID: 25717773}
+  - {fileID: 1036296798}
+  - {fileID: 187627422}
+  - {fileID: 1472162204}
 --- !u!1 &200831976
 GameObject:
   m_ObjectHideFlags: 0
@@ -21618,6 +21637,7 @@ MonoBehaviour:
   generadorLaserPos: {fileID: 259202340}
   multiplicadorMaterial: 1
   escogioNave: 0
+  bateria: 100
   transformJug: {fileID: 0}
 --- !u!65 &321472546
 BoxCollider:
@@ -32072,6 +32092,7 @@ MonoBehaviour:
   generadorLaserPos: {fileID: 1614673681}
   multiplicadorMaterial: 1
   escogioNave: 0
+  bateria: 100
   transformJug: {fileID: 0}
 --- !u!114 &402490861
 MonoBehaviour:
@@ -42319,6 +42340,7 @@ GameObject:
   - component: {fileID: 516394170}
   - component: {fileID: 516394172}
   - component: {fileID: 516394171}
+  - component: {fileID: 516394173}
   m_Layer: 0
   m_Name: Indicador bateria
   m_TagString: Untagged
@@ -42398,6 +42420,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516394169}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &516394173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516394169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4377e71ca4e64ff41acf51940f1f4b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubos:
+  - {fileID: 1539221172}
+  - {fileID: 892750180}
+  - {fileID: 2105306787}
+  - {fileID: 1611110881}
+  - {fileID: 551147497}
 --- !u!1 &522858670
 GameObject:
   m_ObjectHideFlags: 0
@@ -42516,6 +42556,7 @@ Transform:
   - {fileID: 1477383235}
   - {fileID: 294604638}
   - {fileID: 790744094}
+  - {fileID: 1257394084}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &551147497
@@ -43110,6 +43151,7 @@ GameObject:
   - component: {fileID: 636066314}
   - component: {fileID: 636066316}
   - component: {fileID: 636066315}
+  - component: {fileID: 636066317}
   m_Layer: 0
   m_Name: Indicador bateria
   m_TagString: Untagged
@@ -43189,6 +43231,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 636066313}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &636066317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636066313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4377e71ca4e64ff41acf51940f1f4b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubos:
+  - {fileID: 841606443}
+  - {fileID: 1017376962}
+  - {fileID: 817770412}
+  - {fileID: 985260303}
+  - {fileID: 343105275}
 --- !u!4 &637500381 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6953088627069951163, guid: 58afa75ae89337944926dede78a0d651, type: 3}
@@ -44064,6 +44124,7 @@ MonoBehaviour:
   generadorLaserPos: {fileID: 0}
   multiplicadorMaterial: 1
   escogioNave: 0
+  bateria: 100
   transformJug: {fileID: 0}
 --- !u!65 &770528173
 BoxCollider:
@@ -65108,6 +65169,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1257394085}
+        m_TargetAssemblyTypeName: GestorBateria, Assembly-CSharp
+        m_MethodName: comenzarCoroutine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1004945283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65632,6 +65705,7 @@ MonoBehaviour:
   generadorLaserPos: {fileID: 1905201604}
   multiplicadorMaterial: 1
   escogioNave: 0
+  bateria: 100
   transformJug: {fileID: 0}
 --- !u!65 &1082239019
 BoxCollider:
@@ -71247,6 +71321,51 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
+--- !u!1 &1257394083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1257394084}
+  - component: {fileID: 1257394085}
+  m_Layer: 0
+  m_Name: GestorBateria
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1257394084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257394083}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 523647891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1257394085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257394083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4377e71ca4e64ff41acf51940f1f4b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubos: []
 --- !u!1 &1292144195
 GameObject:
   m_ObjectHideFlags: 0
@@ -72994,6 +73113,7 @@ MonoBehaviour:
   generadorLaserPos: {fileID: 1211761405}
   multiplicadorMaterial: 1
   escogioNave: 0
+  bateria: 100
   transformJug: {fileID: 0}
 --- !u!65 &1581802985
 BoxCollider:
@@ -73175,6 +73295,7 @@ GameObject:
   - component: {fileID: 1634531705}
   - component: {fileID: 1634531707}
   - component: {fileID: 1634531706}
+  - component: {fileID: 1634531708}
   m_Layer: 0
   m_Name: Indicador bateria
   m_TagString: Untagged
@@ -73254,6 +73375,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634531704}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1634531708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634531704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4377e71ca4e64ff41acf51940f1f4b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubos:
+  - {fileID: 522858670}
+  - {fileID: 2068985226}
+  - {fileID: 1826600759}
+  - {fileID: 301107776}
+  - {fileID: 372131400}
 --- !u!1001 &1658869594
 PrefabInstance:
   m_ObjectHideFlags: 0
