@@ -16,7 +16,7 @@ public class GestorBateria : MonoBehaviour
     void Start()
     {
         jugador = JugadorNivel.Instance;
-        
+        comenzarCoroutine();
     }
 
     // Update is called once per frame
@@ -57,7 +57,7 @@ public class GestorBateria : MonoBehaviour
 
     IEnumerator decrementarBateria()
     {
-        while (true) // La coroutine nunca se detendrá
+        while (true) // La coroutine nunca se detendrï¿½
         {
             if (jugador.bateria > 0)
             {
@@ -66,10 +66,10 @@ public class GestorBateria : MonoBehaviour
             }
             else
             {
-                //Debug.Log("Batería agotada");
+                //Debug.Log("Baterï¿½a agotada");
             }
 
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 

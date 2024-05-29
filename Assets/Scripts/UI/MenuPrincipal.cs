@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : GenericSingleton<MenuPrincipal>
 {
+    [SerializeField] private GameObject GestorBateria;  
     [SerializeField] private GameObject finalNivel;    
     [SerializeField] private GameObject pantallaInicial;
     [SerializeField] private GameObject pantallaTaller;
@@ -19,7 +20,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     void Start()
     {
         Application.targetFrameRate = 60;
-        nivelActual = PlayerPrefs.GetInt("nivelActual");
+        nivelActual = 3;
     }
     void Update()
     {
@@ -29,6 +30,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     {
         if(JugadorNivel.Instance.escogioNave)
         {
+            GestorBateria.SetActive(true);
             float duracionNivel = 2.0f + nivelActual * 30f; // +30s de duracion por nivel
             GestorAnimaciones.Instance.TallerAJuego();
             pantallaTaller.SetActive(false);

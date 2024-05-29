@@ -15,12 +15,13 @@ TagManager:
   - finalNivel
   - Planeta
   - Consumible
-  - MatNormal
   - MatRaro
   - MatSuper
   - ConsumibleV
   - ConsumibleN
+  - MatNormal
   - ConsumibleR
+  - numero
   layers:
   - Default
   - TransparentFX

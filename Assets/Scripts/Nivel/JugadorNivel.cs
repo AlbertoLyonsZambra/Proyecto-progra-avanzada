@@ -9,11 +9,16 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     [SerializeField] private Transform generadorLaserPos;
     [SerializeField] private float multiplicadorMaterial = 1f;
     [HideInInspector] public bool escogioNave;
-    
+    [HideInInspector] public int contTriggerV = 0;
+    [HideInInspector] public int contTriggerN = 0;
+    [HideInInspector] public int contTriggerR = 0;
+    [HideInInspector] public bool mostrandoV = false;
+    [HideInInspector] public bool mostrandoN = false;
+    [HideInInspector] public bool mostrandoR = false;
     public float bateria = 100;
     private float temporizadorDisparoLaser;
     private Rigidbody rb;
-    public Transform transformJug;
+    [HideInInspector] public Transform transformJug;
     private int[] mats;
     protected override void Initialization()
     {
@@ -30,8 +35,6 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     {
         temporizadorDisparoLaser += Time.deltaTime;
         disparoLaser();
-
-        
     }
     private void disparoLaser()
     {
@@ -48,42 +51,36 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             }
         }
     }
-    private int contTrigger = 0;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("ConsumibleV"))
+        if(other.gameObject.CompareTag("ConsumibleV"))
         {
-            mats[contTrigger] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
-            contTrigger++;
-            if(contTrigger == 8){print(Mathf.RoundToInt(Promediar(mats))); contTrigger = 0;}
+            mostrandoV = true;
+            mats[contTriggerV] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
+            contTriggerV++;
+            if(contTriggerV == 8){print(Mathf.RoundToInt(Promediar(mats))); contTriggerV = 0;}
         }
-        if (other.gameObject.CompareTag("ConsumibleN"))
+        if(other.gameObject.CompareTag("ConsumibleN"))
         {
-            mats[contTrigger] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
-            contTrigger++;
-            if(contTrigger == 8){print(Mathf.RoundToInt(Promediar(mats))); contTrigger = 0;}
+            mostrandoN = true;
+            mats[contTriggerN] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
+            contTriggerN++;
+            if(contTriggerN == 8){print(Mathf.RoundToInt(Promediar(mats))); contTriggerN = 0;}
         }
-        if (other.gameObject.CompareTag("ConsumibleR"))
+        if(other.gameObject.CompareTag("ConsumibleR"))
         {
-            mats[contTrigger] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
-            contTrigger++;
-            if(contTrigger == 8){print(Mathf.RoundToInt(Promediar(mats))); contTrigger = 0;}
+            mostrandoR = true;
+            mats[contTriggerR] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
+            contTriggerN++;
+            if(contTriggerR == 8){print(Mathf.RoundToInt(Promediar(mats))); contTriggerR = 0;}
         }
-        if (other.gameObject.CompareTag("Consumible"))
+        if(other.gameObject.CompareTag("Consumible"))
         {
             other.gameObject.SetActive(false);
             //Debug.Log("Colision ");
-
             bateria += 20;
-
-            if (bateria >= 100)
-            {
-                bateria = 100;
-            }
-
+            if(bateria >= 100){bateria = 100;}
         }
-
-
     }
     private float Promediar(int[] valores)
     {
