@@ -57,11 +57,19 @@ public class GestorBateria : MonoBehaviour
 
     IEnumerator decrementarBateria()
     {
-        while (jugador.bateria > 0)
+        while (true) // La coroutine nunca se detendrá
         {
-            jugador.bateria--;
-            Debug.Log("Valor de la bateria: " + jugador.bateria);
-            yield return new WaitForSeconds(1);
+            if (jugador.bateria > 0)
+            {
+                jugador.bateria--;
+                Debug.Log("Valor de la bateria: " + jugador.bateria);
+            }
+            else
+            {
+                //Debug.Log("Batería agotada");
+            }
+
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

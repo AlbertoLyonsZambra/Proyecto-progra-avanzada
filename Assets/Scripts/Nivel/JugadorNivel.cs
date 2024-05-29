@@ -72,7 +72,8 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         if (other.gameObject.CompareTag("Consumible"))
         {
             other.gameObject.SetActive(false);
-            Debug.Log("Colision ");
+            //Debug.Log("Colision ");
+
             bateria += 20;
 
             if (bateria >= 100)

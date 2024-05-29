@@ -17,7 +17,7 @@ public class InstanciadorObjetos : MonoBehaviour
     void Start()
     {
         matrizCarriles = MatrizCarriles.Instance.matrizCarriles;
-        StartCoroutine(AparecerObjetosCoroutine(null, asteroides, "Asteroide", 0.5f, 2f));
+        StartCoroutine(AparecerObjetosCoroutine(null, asteroides, "Asteroide", 0, 1.5f));
         StartCoroutine(AparecerObjetosCoroutine(null, verdes, "Verde", 5f, 7f));
         if(MenuPrincipal.Instance.nivelActual >= 1){StartCoroutine(AparecerObjetosCoroutine(null, naranjas, "Naranja", 5f, 7f));}
         if(MenuPrincipal.Instance.nivelActual >= 3){StartCoroutine(AparecerObjetosCoroutine(null, rosas, "Rosa", 5f, 7f));}

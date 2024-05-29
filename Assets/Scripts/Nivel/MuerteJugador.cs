@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MuerteJugador : MonoBehaviour
+public class MuerteJugador : GenericSingleton<MuerteJugador>
 {
     [SerializeField] private GameObject explosion;
     [SerializeField] private float fuerzaX;
     [SerializeField] private float fuerzaY;
     [SerializeField] private AudioClip sonidoMuerte;
     [SerializeField] private GameObject pantallaMuerte;
-    private bool estaMuerto;
+    public bool estaMuerto;
     private int sentidoX;
     private int sentidoY;
+    
     // Update is called once per frame
+    void Start()
+    {
+        
+    }
     void Update()
     {
         if (estaMuerto)
@@ -33,6 +38,7 @@ public class MuerteJugador : MonoBehaviour
         if(other.gameObject.CompareTag("Obs_Asteroide") || other.gameObject.CompareTag("MatNormal") || other.gameObject.CompareTag("MatRaro") || other.gameObject.CompareTag("MatSuper"))
         {
             estaMuerto = true;
+            Advertencia.Instance.bateriaBaja.SetActive(false);
             MenuPrincipal.Instance.jugando = false;
             InstanciarMuerte();
         }
