@@ -5,21 +5,18 @@ using UnityEngine;
 
 public class ContadorMaterial : MonoBehaviour
 {
-    // [HideInInspector] public int contTriggerV = 0;
-    // [HideInInspector] public int contTriggerN = 0;
-    // [HideInInspector] public int contTriggerR = 0;
-    // [HideInInspector] public bool mostrandoV = false;
-    // [HideInInspector] public bool mostrandoN = false;
-    // [HideInInspector] public bool mostrandoR = false;
     private Vector3 rotacionRandom;
     [SerializeField] private Transform transformPantalla;
     private Vector3 posPantalla;
     private Vector3 posOriginal;
+    [SerializeField] private GameObject[] numeros;
+    private Quaternion originalRotation;
     void Start()
     {
         rotacionRandom = new Vector3(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
         posPantalla = transformPantalla.position;
         posOriginal = transform.position;
+        originalRotation = transform.rotation;
     }
 
     void Update()
@@ -30,30 +27,63 @@ public class ContadorMaterial : MonoBehaviour
     }
     void Rotar()
     {
-        if(tag != "numero"){transform.Rotate(rotacionRandom * 40f * Time.deltaTime, Space.Self);}
+        if(!tag.Contains("numero")){transform.Rotate(rotacionRandom * 40f * Time.deltaTime, Space.Self);} // Rotacion de los cubos
+        else
+        {// Movimiento del numero
+            float angleX = Mathf.Sin(Time.time * 2f) * 5f;
+            float angleY = Mathf.Sin(Time.time * 2f * 2.5f) * 10f;
+            float angleZ = Mathf.Sin(Time.time * 2f * 1.2f) * 4f;
+            Quaternion slightRotationX = Quaternion.AngleAxis(angleX, Vector3.right);
+            Quaternion slightRotationY = Quaternion.AngleAxis(angleY, Vector3.up);
+            Quaternion slightRotationZ = Quaternion.AngleAxis(angleZ, Vector3.forward);
+            transform.rotation = originalRotation * slightRotationX * slightRotationY * slightRotationZ;
+        }
     }
     public void mostrarPantalla()
     {
-        if(tag == "MatNormal" && JugadorNivel.Instance.mostrandoV)
+        if(tag == "MatNormal" || tag == "numeroV")
         {
-            transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);
-            StartCoroutine(Ocultar("V"));
+            if(JugadorNivel.Instance.mostrandoV)
+            {
+                // if(tag=="numeroV"){transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);}
+                transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);
+                StartCoroutine(Ocultar("V"));
+            }
+            else
+            {
+                // if(tag=="numeroV"){transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);}
+                transform.position = Vector3.MoveTowards(transform.position, posOriginal, 4f * Time.deltaTime);
+            }
         }
-        else if(tag == "MatNormal" && !JugadorNivel.Instance.mostrandoV){transform.position = Vector3.MoveTowards(transform.position, posOriginal, 4f * Time.deltaTime);}
+        else if(tag == "MatRaro" || tag == "numeroN")
+        {
+            if(JugadorNivel.Instance.mostrandoN)
+            {
+                // if(tag=="numeroN"){transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);}
+                transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);
+                StartCoroutine(Ocultar("N"));
+            }
+            else
+            {
+                // if(tag=="numeroN"){transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);}
+                transform.position = Vector3.MoveTowards(transform.position, posOriginal, 4f * Time.deltaTime);
+            }
+        }
+        else if(tag == "MatSuper" || tag == "numeroR")
+        {
+            if(JugadorNivel.Instance.mostrandoR)
+            {
+                // if(tag=="numeroR"){transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);}
+                transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);
+                StartCoroutine(Ocultar("R"));
+            }
+            else
+            {
+                // if(tag=="numeroR"){transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);}
+                transform.position = Vector3.MoveTowards(transform.position, posOriginal, 4f * Time.deltaTime);
+            }
+        }
         
-        if(tag == "MatRaro" && JugadorNivel.Instance.mostrandoN)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);
-            StartCoroutine(Ocultar("N"));
-        }
-        else if(tag == "MatRaro" && !JugadorNivel.Instance.mostrandoN){transform.position = Vector3.MoveTowards(transform.position, posOriginal, 4f * Time.deltaTime);}
-        
-        if(tag == "MatSuper" && JugadorNivel.Instance.mostrandoR)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, posPantalla, 4f * Time.deltaTime);
-            StartCoroutine(Ocultar("R"));
-        }
-        else if(tag == "MatSuper" && !JugadorNivel.Instance.mostrandoR){transform.position = Vector3.MoveTowards(transform.position, posOriginal, 4f * Time.deltaTime);}
     }
     IEnumerator Ocultar(string tipoMat)
     {

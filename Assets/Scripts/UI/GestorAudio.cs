@@ -8,9 +8,11 @@ public class Gestor_audio : GenericSingleton<Gestor_audio>
 {
     [SerializeField] public AudioSource audioSourceMusica;
     [SerializeField] public AudioSource audioSourceSFX;
-    [SerializeField] public AudioSource audioSourceJugador;
     [SerializeField] public AudioClip laserSFX;
     [SerializeField] public AudioClip naveSFX;
+    [SerializeField] public AudioClip bateriaSFX;
+    [SerializeField] public AudioClip asteroideRomperSFX;
+    [SerializeField] public AudioClip recogerMaterialSFX;
     [SerializeField] public AudioClip musicaMenu;
     [SerializeField] public AudioClip musicaTienda;
     [SerializeField] public AudioClip musicaJuego;

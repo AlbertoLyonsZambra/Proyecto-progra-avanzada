@@ -20,7 +20,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     void Start()
     {
         Application.targetFrameRate = 60;
-        nivelActual = 3;
+        nivelActual = PlayerPrefs.GetInt("nivelActual");
     }
     void Update()
     {

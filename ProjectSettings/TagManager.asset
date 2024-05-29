@@ -21,7 +21,9 @@ TagManager:
   - ConsumibleN
   - MatNormal
   - ConsumibleR
-  - numero
+  - numeroV
+  - numeroN
+  - numeroR
   layers:
   - Default
   - TransparentFX

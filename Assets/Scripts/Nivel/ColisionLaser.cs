@@ -18,6 +18,7 @@ public class ColisionLaser : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Laser") && (tag == "MatNormal" || tag == "MatRaro" || tag == "MatSuper"))
         {
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.asteroideRomperSFX);
             other.transform.parent.gameObject.SetActive(false);
             Instantiate(MatRecogible, transform.position, transform.rotation);
             gameObject.SetActive(false);

@@ -10,16 +10,12 @@ public class GestorBateria : MonoBehaviour
     private JugadorNivel jugador;
     public List<GameObject> cubos;
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         jugador = JugadorNivel.Instance;
         comenzarCoroutine();
     }
 
-    // Update is called once per frame
     void Update()
     {
         jugador = JugadorNivel.Instance;
@@ -77,30 +73,20 @@ public class GestorBateria : MonoBehaviour
     {
         StartCoroutine(decrementarBateria());
     }
-
-
-
     public void CambiarColor(Color nuevoColor)
     {
         foreach (GameObject cubo in cubos)
         {
             Renderer renderer = cubo.GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.material.color = nuevoColor;
-            }
+            if (renderer != null){renderer.material.color = nuevoColor;}
         }
     }
-
     public void SetVisibilidadCubo(int numeroVisible)
     {
         for (int i = 0; i < cubos.Count; i++)
         {
             Renderer renderer = cubos[i].GetComponent<Renderer>();
-            if (renderer != null)
-            {
-                renderer.enabled = (i < numeroVisible);
-            }
+            if (renderer != null){renderer.enabled = (i < numeroVisible);}
         }
     }
 

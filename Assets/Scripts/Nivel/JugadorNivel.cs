@@ -20,6 +20,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     private Rigidbody rb;
     [HideInInspector] public Transform transformJug;
     private int[] mats;
+    [SerializeField] private List<ParticleSystem> motores;
     protected override void Initialization()
     {
         transformJug = transform;
@@ -35,6 +36,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     {
         temporizadorDisparoLaser += Time.deltaTime;
         disparoLaser();
+        ControlarMotores();
     }
     private void disparoLaser()
     {
@@ -58,26 +60,42 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             mostrandoV = true;
             mats[contTriggerV] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
             contTriggerV++;
-            if(contTriggerV == 8){print(Mathf.RoundToInt(Promediar(mats))); contTriggerV = 0;}
+            if(contTriggerV == 8)
+            {
+                print(Mathf.RoundToInt(Promediar(mats)));
+                contTriggerV = 0;
+                Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
+            }
         }
         if(other.gameObject.CompareTag("ConsumibleN"))
         {
             mostrandoN = true;
             mats[contTriggerN] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
             contTriggerN++;
-            if(contTriggerN == 8){print(Mathf.RoundToInt(Promediar(mats))); contTriggerN = 0;}
+            if(contTriggerN == 8)
+            {
+                print(Mathf.RoundToInt(Promediar(mats))); 
+                contTriggerN = 0;
+                Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
+            }
         }
         if(other.gameObject.CompareTag("ConsumibleR"))
         {
             mostrandoR = true;
             mats[contTriggerR] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
             contTriggerN++;
-            if(contTriggerR == 8){print(Mathf.RoundToInt(Promediar(mats))); contTriggerR = 0;}
+            if(contTriggerR == 8)
+            {
+                print(Mathf.RoundToInt(Promediar(mats))); 
+                contTriggerR = 0;
+                Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
+            }
         }
         if(other.gameObject.CompareTag("Consumible"))
         {
             other.gameObject.SetActive(false);
             //Debug.Log("Colision ");
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.bateriaSFX);
             bateria += 20;
             if(bateria >= 100){bateria = 100;}
         }
@@ -87,5 +105,26 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         int suma = 0;
         for (int i = 0; i < valores.Length; i++){suma += valores[i];}
         return (float) suma / valores.Length;
+    }
+    public void ControlarMotores()
+    {
+        if(motores != null)
+        {
+            if(bateria <= 0)
+            {
+                for (int i = 0; i < motores.Count; i++)
+                {
+                    if (motores[i] != null){motores[i].Stop();}
+                }
+            }
+            else if(bateria > 0 && !motores[0].isPlaying)
+            {
+                for (int i = 0; i < motores.Count; i++)
+                {
+                    if (motores[i] != null){motores[i].Play();}
+                }
+            }
+        }
+        
     }
 }
