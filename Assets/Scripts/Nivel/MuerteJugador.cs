@@ -45,7 +45,6 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
     }
     private void Muerte()
     {
-        
         transform.Translate(Vector3.right * fuerzaX * sentidoX * Time.deltaTime, Space.World);
         transform.Translate(Vector3.up * fuerzaY * sentidoY * Time.deltaTime, Space.World);
         Vector3 rotacion = new Vector3(Random.Range(20, 50), Random.Range(20, 50), Random.Range(20, 50));
@@ -56,9 +55,13 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
         print("X: "+sentidoX);
         print("Y: "+sentidoY);
         GameObject.Find("Sistema carriles").transform.Find("Instanciador_objetos").gameObject.SetActive(false);
+        GameObject.Find("Animaciones").gameObject.SetActive(false);
         JugadorNivel.Instance.enabled = false;
         MovimientoCarriles.Instance.enabled = false;
         // A partir de aqui se puede separar en distintos tipos de muerte
+        pantallaMuerte.SetActive(true);
+        pantallaMuerte.transform.Find("Vidrios").gameObject.SetActive(true);
+        
         Quaternion rotacionExplosion = Quaternion.identity;
         Instantiate(explosion, gameObject.transform.position, rotacionExplosion);
         Gestor_audio.Instance.silenciadoMuerte();
@@ -70,6 +73,6 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
     {
         yield return new WaitForSeconds(2.5f);
         Time.timeScale = 0;
-        pantallaMuerte.SetActive(true);
+        pantallaMuerte.transform.Find("Texto y boton").gameObject.SetActive(true);
     }
 }
