@@ -37,10 +37,13 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
     {
         if(other.gameObject.CompareTag("Obs_Asteroide") || other.gameObject.CompareTag("MatNormal") || other.gameObject.CompareTag("MatRaro") || other.gameObject.CompareTag("MatSuper"))
         {
+            if (!estaMuerto)
+            {
             estaMuerto = true;
             Advertencia.Instance.bateriaBaja.SetActive(false);
             MenuPrincipal.Instance.jugando = false;
             InstanciarMuerte();
+            }
         }
     }
     private void Muerte()
