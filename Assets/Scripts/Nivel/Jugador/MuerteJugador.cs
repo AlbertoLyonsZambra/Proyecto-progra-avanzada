@@ -25,7 +25,8 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
             Muerte();
         }
     }
-    private void Awake()
+    
+    protected override void Initialization()
     {
         while (sentidoX == 0 || sentidoY == 0)
         {

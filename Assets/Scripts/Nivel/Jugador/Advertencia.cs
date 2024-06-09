@@ -20,7 +20,7 @@ public class Advertencia : GenericSingleton<Advertencia>
         
 
         // Instanciar advertencia cerca del jugador
-        offsetFromPlayer = new Vector3(0, -2f, 0); // Puedes ajustar esto según necesites
+        offsetFromPlayer = new Vector3(0, -2f, 0); // Puedes ajustar esto segï¿½n necesites
         bateriaBaja = Instantiate(advertenciaPrefab, playerTransform.position + offsetFromPlayer, Quaternion.identity);
         bateriaBaja.SetActive(false); // Inicialmente desactivada
         advertenciaRotation = Quaternion.Euler(0, -180, 0);
@@ -28,22 +28,18 @@ public class Advertencia : GenericSingleton<Advertencia>
 
     void Update()
     {
-        // Actualizar la posición de la advertencia para que siga al jugador
+        // Actualizar la posiciï¿½n de la advertencia para que siga al jugador
         bateriaBaja.transform.position = playerTransform.position + offsetFromPlayer;
-        bateriaBaja.transform.rotation = advertenciaRotation;
+        bateriaBaja.transform.rotation = advertenciaRotation;    
 
-        
-
-        GestionarAdvertencia();
-
-        
+        GestionarAdvertencia();        
     }
 
     void GestionarAdvertencia()
     {
         if (jugador.bateria == 0 && !MuerteJugador.Instance.estaMuerto)
         {
-            // Si la batería está en cero, mantener la advertencia visible
+            // Si la baterï¿½a estï¿½ en cero, mantener la advertencia visible
             if (advertenciaCoroutine != null)
             {
                 StopCoroutine(advertenciaCoroutine);
@@ -53,7 +49,7 @@ public class Advertencia : GenericSingleton<Advertencia>
         }
         else if (jugador.bateria < 20)
         {
-            // Si la batería es menor que 20 pero mayor que 0, empezar la advertencia si no está corriendo
+            // Si la baterï¿½a es menor que 20 pero mayor que 0, empezar la advertencia si no estï¿½ corriendo
             if (advertenciaCoroutine == null)
             {
                 advertenciaCoroutine = StartCoroutine(AlternarAdvertencia());
@@ -61,15 +57,14 @@ public class Advertencia : GenericSingleton<Advertencia>
         }
         else
         {
-            // Si la batería es 20 o mayor y la coroutine está corriendo, la detenemos
+            // Si la baterï¿½a es 20 o mayor y la coroutine estï¿½ corriendo, la detenemos
             if (advertenciaCoroutine != null)
             {
                 StopCoroutine(advertenciaCoroutine);
                 advertenciaCoroutine = null;
-                bateriaBaja.SetActive(false); // Asegúrate de que el objeto esté desactivado
+                bateriaBaja.SetActive(false); // Asegï¿½rate de que el objeto estï¿½ desactivado
             }
         }
-        
     }
     IEnumerator AlternarAdvertencia()
     {

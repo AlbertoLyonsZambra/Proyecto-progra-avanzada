@@ -58,7 +58,7 @@ public class GestorBateria : MonoBehaviour
             if (jugador.bateria > 0)
             {
                 jugador.bateria--;
-                Debug.Log("Valor de la bateria: " + jugador.bateria);
+                // Debug.Log("Valor de la bateria: " + jugador.bateria);
             }
             else
             {
