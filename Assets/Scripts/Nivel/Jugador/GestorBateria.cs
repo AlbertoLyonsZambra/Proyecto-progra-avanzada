@@ -65,7 +65,7 @@ public class GestorBateria : MonoBehaviour
                 //Debug.Log("Bater�a agotada");
             }
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.0f);
         }
     }
 
