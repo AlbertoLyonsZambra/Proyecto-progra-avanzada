@@ -17,6 +17,14 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
     {
         matriz = MatrizCarriles.Instance.matrizCarriles;
         jugador = JugadorNivel.Instance;
+        if(gameObject.transform.parent != null)
+        {
+            // if(gameObject.transform.parent.name == "0"){velocidad = 5f;}
+            // else if(gameObject.transform.parent.name == "1"){velocidad = 9f;}
+            // else if(gameObject.transform.parent.name == "2"){velocidad = 6f;}
+            // else if(gameObject.transform.parent.name == "3"){velocidad = 6f;}
+            // else if(gameObject.transform.parent.name == "4"){velocidad = 8f;}
+        }
     }
     void Update()
     {
@@ -25,13 +33,8 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
         {
             if (MenuPrincipal.Instance.jugando)
             {
-                if(jugador.bateria == 0)
-                {
-                    mover = false;
-                } else
-                {
-                    mover = true;
-                }
+                if(jugador.bateria == 0){ mover = false; }
+                else{ mover = true;}
                 MovimientoJugador("");
             }
         }

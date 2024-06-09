@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class JugadorNivel : GenericSingleton<JugadorNivel>
 {
-    [SerializeField] private float cadenciaDisparo = 0.2f;
-    [SerializeField] private SimpleObjectPool laserPorDisparar;
-    [SerializeField] private Transform generadorLaserPos;
+    [HideInInspector] private float cadenciaLaser = 6000f;
+    [SerializeField] private SimpleObjectPool laserSolo;
+    private int posActualLaser = 0;
+    [SerializeField] private Transform[] generadoresLaser;
     [SerializeField] private float multiplicadorMaterial = 1f;
     [HideInInspector] public bool escogioNave;
     [HideInInspector] public int contTriggerV = 0;
@@ -30,7 +31,16 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     }
     void Start()
     {
-        
+        if(gameObject.transform.parent != null)
+        {
+            temporizadorDisparoLaser = 0f;
+            if(gameObject.transform.parent.name == "0"){cadenciaLaser = 0.4f;}
+            else if(gameObject.transform.parent.name == "1"){cadenciaLaser = 0.2f;}
+            else if(gameObject.transform.parent.name == "2"){cadenciaLaser = 0.2f;}
+            else if(gameObject.transform.parent.name == "3"){cadenciaLaser = 0.2f;}
+            else if(gameObject.transform.parent.name == "4"){cadenciaLaser = 0.2f;}
+        }
+
     }
     void Update()
     {
@@ -40,16 +50,17 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     }
     private void disparoLaser()
     {
-        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaDisparo && MenuPrincipal.Instance.jugando)
+        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaLaser && MenuPrincipal.Instance.jugando)
         { 
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.laserSFX);
             temporizadorDisparoLaser = 0f;
             GameObject laser;
-            if(laserPorDisparar != null)
+            if(laserSolo != null)
             {
-                laser = laserPorDisparar.GetPooledGameObject();
-                laser.transform.position = generadorLaserPos.transform.position;
+                laser = laserSolo.GetPooledGameObject();
+                laser.transform.position = generadoresLaser[posActualLaser].transform.position;
                 laser.SetActive(true);
+                posActualLaser = (posActualLaser + 1) % generadoresLaser.Length;
             }
         }
     }
