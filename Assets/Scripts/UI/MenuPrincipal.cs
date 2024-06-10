@@ -6,21 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : GenericSingleton<MenuPrincipal>
 {
-    [SerializeField] private GameObject GestorBateria;  
+    [SerializeField] private GameObject gestorBateria;  
     [SerializeField] private GameObject finalNivel;    
     [SerializeField] private GameObject pantallaInicial;
     [SerializeField] private GameObject pantallaTaller;
     [SerializeField] private GameObject sistemaCarriles;
     [SerializeField] private GameObject laseres;
+    [SerializeField] private GameObject pantallaTutorial;
     [SerializeField] public float aceleracionObstaculos;
     [HideInInspector] public int nivelActual;
     [HideInInspector] public bool victoria = false;
     public bool jugando = false;
     public bool enTaller = false;
+    private int pasoTutorial = 0;
     void Start()
     {
         Application.targetFrameRate = 60;
         nivelActual = PlayerPrefs.GetInt("nivelActual");
+        pasoTutorial = PlayerPrefs.GetInt("pasoTutorial");
     }
     void Update()
     {
@@ -30,15 +33,26 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     {
         if(JugadorNivel.Instance.escogioNave)
         {
-            GestorBateria.SetActive(true);
-            float duracionNivel = 2.0f + nivelActual * 30f; // +30s de duracion por nivel
+            
             GestorAnimaciones.Instance.TallerAJuego();
             pantallaTaller.SetActive(false);
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
+            float duracionNivel = 2.0f + nivelActual * 30f; // +30s de duracion por nivel
             sistemaCarriles.SetActive(true);
             laseres.SetActive(true);
             GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);
-            StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
+            if (pasoTutorial == 1)
+            {
+               
+                gestorBateria.SetActive(true); // Antes este gestor se activaba fuera del if
+                print("EmpezoJuego");
+                StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
+            }
+            else
+            {
+                pantallaTutorial.SetActive(true);
+                InstanciadorObjetos.Instance.enabled = false;
+            }
         }else{print("No se ha seleccionado ninguna nave");}
         
     }
@@ -57,7 +71,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         // Hacer mas logica aqui despues :]
         print(" ganaste el nivel congrats ");
     }
-    IEnumerator EsperarAEventoCoroutine(float tiempoInicio, float tiempoFinal, string evento)
+    public IEnumerator EsperarAEventoCoroutine(float tiempoInicio, float tiempoFinal, string evento)
     {
         yield return new WaitForSeconds(tiempoFinal); // Espera (si usa WaitForSecondsRealtime puede funcionar distinto)
         float tiempoTranscurrido = Time.time - tiempoInicio; // Obtiene el tiempo transcurrido

@@ -6,22 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class GestorEscenas : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void CambiarEscena(string escena)
     {
         SceneManager.LoadScene(escena);
         Time.timeScale = 1f;
         //Gestor_audio.Instance.cambioSilenciadoMusica(false);
         //Gestor_audio.Instance.cambioSilenciadoSonido(true);
+    }
+    public void ReiniciarTutorial()
+    {
+        PlayerPrefs.SetInt("pasoTutorial", 0);
     }
 }

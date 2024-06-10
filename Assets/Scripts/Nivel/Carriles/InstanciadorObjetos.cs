@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class InstanciadorObjetos : MonoBehaviour
+public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
 {
     [SerializeField] GameObject carriles;
     public Vector2[,] matrizCarriles;

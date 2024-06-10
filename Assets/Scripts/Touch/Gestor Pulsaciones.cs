@@ -87,6 +87,7 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
             {
                 //print("DESLIZAMIENTO ARRIBA");
                 MovimientoCarriles.Instance.MovimientoJugador("arr");
+                Tutorial.Instance.yaArriba = true;
                 // Restablecer las posiciones despu�s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
@@ -96,6 +97,7 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
             {
                 //print("DESLIZAMIENTO ABAJO");
                 MovimientoCarriles.Instance.MovimientoJugador("aba");
+                Tutorial.Instance.yaAbajo = true;
                 // Restablecer las posiciones despu�s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
@@ -106,6 +108,7 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
             {
                 //print("DESLIZAMIENTO DERECHA");
                 MovimientoCarriles.Instance.MovimientoJugador("der");
+                Tutorial.Instance.yaDerecha = true;
                 // Restablecer las posiciones despu�s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
@@ -115,6 +118,7 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
             {
                 //print("DESLIZAMIENTO IZQUIERDA");
                 MovimientoCarriles.Instance.MovimientoJugador("izq");
+                Tutorial.Instance.yaIzquierda = true;
                 // Restablecer las posiciones despu�s de procesar el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
