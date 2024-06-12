@@ -13,7 +13,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
     [HideInInspector] public Transform ultimaNaveTaller;
     private bool[] elevados;
     
-    void Start()
+    void Start() 
     {
         nave = new List<GameObject>();
         foreach (Transform hijo in navesTaller.transform){nave.Add(hijo.gameObject);}
@@ -40,9 +40,10 @@ public class GestorTaller : GenericSingleton<GestorTaller>
         }
         else{print(" Falta validar esto por ahora (GestorTaller.cs) ");}
     }
+
     public void SeleccionNave(RaycastHit colision)
     {
-        if(MenuPrincipal.Instance.enTaller)
+        if(MenuPrincipal.Instance.enTaller && !MenuPrincipal.Instance.enTerminal)
         {
             ultimaNaveTaller = navesTaller.transform.Find(colision.collider.gameObject.transform.parent.name);
             NaveSeleccionada();
@@ -53,19 +54,36 @@ public class GestorTaller : GenericSingleton<GestorTaller>
             }
         }
     }
+
     public void NaveSeleccionada()
     {
-        seleccionarNave.SetActive(false);
-        if(!elevados[int.Parse(ultimaNaveTaller.name)] && ultimaNaveTaller.Find("default").GetComponent<MeshRenderer>().material.color != materialBloqueado.color)
+        if(MenuPrincipal.Instance.enTerminal)
         {
-            StartCoroutine(Elevar(ultimaNaveTaller, elevados[int.Parse(ultimaNaveTaller.name)]));
-            for(int i = 0; i <= MenuPrincipal.Instance.nivelActual; i++)
+            // if(!elevados[int.Parse(ultimaNaveTaller.name)] && ultimaNaveTaller.Find("default").GetComponent<MeshRenderer>().material.color != materialBloqueado.color)
             {
-                if(nave[i].transform.name == ultimaNaveTaller.name){continue;}
-                if(elevados[int.Parse(nave[i].transform.name)]){StartCoroutine(Elevar(nave[i].transform, elevados[int.Parse(ultimaNaveTaller.name)]));}
+                // StartCoroutine(Elevar(ultimaNaveTaller, true));
+                for(int i = 0; i <= MenuPrincipal.Instance.nivelActual; i++)
+                {
+                    // if(nave[i].transform.name == ultimaNaveTaller.name){continue;}
+                    if(elevados[int.Parse(nave[i].transform.name)]){StartCoroutine(Elevar(nave[i].transform, elevados[int.Parse(ultimaNaveTaller.name)]));}
+                }
+            }
+        }
+        else if(MenuPrincipal.Instance.enTaller) 
+        {
+            seleccionarNave.SetActive(false);
+            if(!elevados[int.Parse(ultimaNaveTaller.name)] && ultimaNaveTaller.Find("default").GetComponent<MeshRenderer>().material.color != materialBloqueado.color)
+            {
+                StartCoroutine(Elevar(ultimaNaveTaller, elevados[int.Parse(ultimaNaveTaller.name)]));
+                for(int i = 0; i <= MenuPrincipal.Instance.nivelActual; i++)
+                {
+                    if(nave[i].transform.name == ultimaNaveTaller.name){continue;}
+                    if(elevados[int.Parse(nave[i].transform.name)]){StartCoroutine(Elevar(nave[i].transform, elevados[int.Parse(ultimaNaveTaller.name)]));}
+                }
             }
         }
     }
+
     IEnumerator Elevar(Transform objeto, bool elevado)
     {
         Vector3 elevacion = Vector3.up * 0.15f;

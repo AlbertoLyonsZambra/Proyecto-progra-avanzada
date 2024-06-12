@@ -34,10 +34,10 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         if(gameObject.transform.parent != null)
         {
             temporizadorDisparoLaser = 0f;
-            if(gameObject.transform.parent.name == "0"){cadenciaLaser = 0.4f;}
+            if(gameObject.transform.parent.name == "0"){cadenciaLaser = 0.35f;}
             else if(gameObject.transform.parent.name == "1"){cadenciaLaser = 0.2f;}
             else if(gameObject.transform.parent.name == "2"){cadenciaLaser = 0.2f;}
-            else if(gameObject.transform.parent.name == "3"){cadenciaLaser = 0.2f;}
+            else if(gameObject.transform.parent.name == "3"){cadenciaLaser = 0.15f;}
             else if(gameObject.transform.parent.name == "4"){cadenciaLaser = 0.2f;}
         }
 

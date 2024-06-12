@@ -73,7 +73,8 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
             {
                 if (colision.collider != null)
                 {
-                    GestorTaller.Instance.SeleccionNave(colision);
+                    if(colision.collider.gameObject.name == "Screen") {GestorAnimaciones.Instance.TallerATerminal(false);}
+                    else if (colision.collider.gameObject.name == "default"){GestorTaller.Instance.SeleccionNave(colision);}
                 }
             }
         }

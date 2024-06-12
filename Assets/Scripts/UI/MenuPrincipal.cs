@@ -9,7 +9,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     [SerializeField] private GameObject gestorBateria;  
     [SerializeField] private GameObject finalNivel;    
     [SerializeField] private GameObject pantallaInicial;
-    [SerializeField] private GameObject pantallaTaller;
+    [SerializeField] public GameObject pantallaTaller;
     [SerializeField] private GameObject sistemaCarriles;
     [SerializeField] private GameObject laseres;
     [SerializeField] private GameObject pantallaTutorial;
@@ -18,6 +18,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     [HideInInspector] public bool victoria = false;
     public bool jugando = false;
     public bool enTaller = false;
+    public bool enTerminal = false;
     private int pasoTutorial = 0;
     void Start()
     {
@@ -27,7 +28,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     }
     void Update()
     {
-
+        
     }
     public void Jugar() 
     {
@@ -43,7 +44,6 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);
             if (pasoTutorial == 1)
             {
-               
                 gestorBateria.SetActive(true); // Antes este gestor se activaba fuera del if
                 print("EmpezoJuego");
                 StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
@@ -87,12 +87,14 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         }
     }
     private void PantallaTaller(){
-        pantallaTaller.SetActive(true);
-        StartCoroutine(SeleccionarNave());
+            pantallaTaller.SetActive(true);
+            StartCoroutine(SeleccionarNave());
     }
     IEnumerator SeleccionarNave()
     {
         yield return new WaitForSeconds(3);
-        pantallaTaller.transform.Find("Seleccionar nave").gameObject.SetActive(true);
+        if(!JugadorNivel.Instance.escogioNave){
+            pantallaTaller.transform.Find("Seleccionar nave").gameObject.SetActive(true);
+        }
     }
 }
