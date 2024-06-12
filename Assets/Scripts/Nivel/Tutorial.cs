@@ -10,6 +10,9 @@ public class Tutorial : GenericSingleton<Tutorial>
     [SerializeField] private RectTransform vertical;
     [SerializeField] private GameObject gestorBateria;
     [SerializeField] private GameObject indicadorBateria;
+    [SerializeField] private GameObject AsteroideParaDisparar;
+    private GameObject textoDisparar;
+    private GameObject asteroideDisparar;
     private Vector3 posicionInicial;
     private Vector3 posicionVertical; 
     private Vector3 posicionHorizontal;
@@ -20,24 +23,34 @@ public class Tutorial : GenericSingleton<Tutorial>
     [HideInInspector] public bool yaDerecha = false;
     [HideInInspector] public bool yaArriba = false;
     [HideInInspector] public bool yaAbajo = false;
+    [HideInInspector] public int disparoLaser = 0;
+    private bool turnoDisparo = false;
+    private bool aparecioAsteroide = false;
     
-    protected override void Awake()
+    void OnEnable()
     {
+        asteroideDisparar = gameObject.transform.Find("Dispare asteroide color").gameObject;
+        textoDisparar = gameObject.transform.Find("Presiona disparar").gameObject;
         iconoTouch = gameObject.transform.Find("Icono touch");
         posicionVertical = vertical.transform.localPosition;
         posicionHorizontal = horizontal.transform.localPosition;
         posicionInicial = Vector3.zero;
         indicadorBateria.SetActive(false);
-        StartCoroutine(EsperarMostrarIcono(3));
+        StartCoroutine(EsperarEvento(3));
     }
     private void Update()
     {
+        if (yaAbajo && yaArriba && yaDerecha && yaDerecha)
+        {
+            turnoDisparo = true;
+        }
         MoverHorizontal(sentidoHorizontal);
         MoverVertical(sentidoVertical);
         if (centrar)
         {
             iconoTouch.localPosition = Vector3.zero;
         }
+        DispararLaser();
     }
     public void cambiarHorizontal(string sentido)
     {
@@ -83,6 +96,8 @@ public class Tutorial : GenericSingleton<Tutorial>
     }
     public void IniciarJuego()
     {
+        MovimientoCarriles.Instance.enabled = true;
+        Time.timeScale = 1;
         PlayerPrefs.SetInt("pasoTutorial", 1);
         gestorBateria.SetActive(true);
         //GestorBateria.Instance.enabled = true;
@@ -169,15 +184,53 @@ public class Tutorial : GenericSingleton<Tutorial>
         else
         {
             iconoTouch.gameObject.SetActive(false);
-            IniciarJuego();
-
             yield break;
         }
     }
-    IEnumerator EsperarMostrarIcono(float segundos)
+    IEnumerator EsperarEvento(float segundos)
     {
-        yield return new WaitForSeconds(segundos);
-        iconoTouch.gameObject.SetActive(true);
-        StartCoroutine(MoverIconoIzquierda(1));
+        // Empezar con tutorial de deslizar
+        if (segundos == 3)
+        {
+            yield return new WaitForSeconds(segundos);
+            iconoTouch.gameObject.SetActive(true);
+            StartCoroutine(MoverIconoIzquierda(1));
+        }
+        // Tutorial para dispararle a asteroide
+        if (segundos == 0.5f)
+        {
+            textoDisparar.SetActive(false);
+            yield return new WaitForSeconds(segundos);
+            asteroideDisparar.SetActive(true);
+            if (!aparecioAsteroide)
+            {
+                MovimientoCarriles.Instance.enabled = false;
+                GameObject poolLaser = GameObject.Find("[SimpleObjectPool] - LaserRojo OP");
+                poolLaser.SetActive(false);
+                poolLaser.SetActive(true);
+                //GameObject.Find("[SimpleObjectPool] - LaserRojo OP").SetActive(true);
+                Vector2 posicionJugador = MatrizCarriles.Instance.getPosicion(MovimientoCarriles.Instance.filaActual, MovimientoCarriles.Instance.columnaActual);
+                Vector3 posicionAsteroide = new Vector3(posicionJugador.x, posicionJugador.y, -150);
+                Time.timeScale = 0.5f;
+                Instantiate(AsteroideParaDisparar, posicionAsteroide, Quaternion.identity);
+                aparecioAsteroide = true;
+            }
+        }
+       
+    }
+    void DispararLaser()
+    {
+        if (turnoDisparo)
+        {
+            if (disparoLaser == 0)
+            {
+                textoDisparar.SetActive(true);
+            }
+            else if (disparoLaser >= 3)
+            {
+                StartCoroutine(EsperarEvento(0.5f));
+                //IniciarJuego();
+            }
+        }
     }
 }

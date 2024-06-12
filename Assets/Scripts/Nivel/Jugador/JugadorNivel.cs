@@ -45,14 +45,15 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
     void Update()
     {
         temporizadorDisparoLaser += Time.deltaTime;
-        disparoLaser();
+        //disparoLaser();
         ControlarMotores();
     }
-    private void disparoLaser()
+    public void disparoLaser()
     {
-        if (Input.GetButtonDown("Fire1") && temporizadorDisparoLaser > cadenciaLaser && MenuPrincipal.Instance.jugando)
+        if (temporizadorDisparoLaser > cadenciaLaser && MenuPrincipal.Instance.jugando)
         { 
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.laserSFX);
+            if (PlayerPrefs.GetInt("pasoTutorial") == 0) { Tutorial.Instance.disparoLaser = Tutorial.Instance.disparoLaser + 1; }
             temporizadorDisparoLaser = 0f;
             GameObject laser;
             if(laserSolo != null)

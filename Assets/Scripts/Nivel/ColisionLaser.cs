@@ -29,7 +29,10 @@ public class ColisionLaser : MonoBehaviour
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.asteroideRomperSFX);
         Instantiate(MatRecogible, transform.position, transform.rotation);
         gameObject.SetActive(false);
-        
+        if (PlayerPrefs.GetInt("pasoTutorial") == 0) 
+        {
+            Tutorial.Instance.IniciarJuego();
+        }
     }
     
 }

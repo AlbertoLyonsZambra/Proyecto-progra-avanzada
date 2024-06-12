@@ -7,8 +7,8 @@ using UnityEngine.UIElements;
 public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
 {
     [SerializeField] private float velocidad = 5f;
-    private int columnaActual = 1;
-    private int filaActual = 1;
+    [HideInInspector]public int columnaActual = 1;
+    [HideInInspector] public int filaActual = 1;
     private Vector2[,] matriz;
     private float fuerzaGiro = 13f;
     private bool mover = true;

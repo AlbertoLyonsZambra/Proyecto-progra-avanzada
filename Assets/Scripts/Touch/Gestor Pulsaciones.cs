@@ -9,6 +9,8 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
     private Vector2 inicioPulsacion;
     private Vector2 finPulsacion;
     [SerializeField] private float sensibilidadDeslizamiento = 200f;
+    [SerializeField] private float capacidadDistanciaToque = 50f;
+
     void Update()
     {
         fasesTouch();
@@ -32,6 +34,7 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
                 case TouchPhase.Ended:
                     finPulsacion = pulsacion.position;
                     pulsando = false;
+                    DetectarToque();
                     break;
                 case TouchPhase.Stationary:
                     pulsando = true;
@@ -40,6 +43,15 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
                     pulsando = false;
                     break;
             }
+        }
+    }
+    void DetectarToque()
+    {
+        float distanciaPulsacion = Vector2.Distance(inicioPulsacion, finPulsacion);
+
+        if (distanciaPulsacion <= capacidadDistanciaToque && MenuPrincipal.Instance.jugando)
+        {
+            JugadorNivel.Instance.disparoLaser();
         }
     }
     public void entradaPulsaciones()
@@ -62,19 +74,8 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
                 if (colision.collider != null)
                 {
                     GestorTaller.Instance.SeleccionNave(colision);
-                    // print("Chocando con " + colision.collider.gameObject.transform.parent.name);
                 }
             }
-            // RaycastHit[] colisiones = Physics.RaycastAll(rayo, distanciaRayo);
-            // if (colisiones.Length > 0)
-            // {
-            //     RaycastHit ultimoColision = colisiones[colisiones.Length - 1];
-            //     if (ultimoColision.collider != null)
-            //     {
-            //         SeleccionNave(ultimoColision);
-            //         // print("Chocando con " + ultimoColision.collider.gameObject.transform.parent.name);
-            //     }
-            // }else{print("No se ha seleccionado ninguna nave");}
         }
     }
     public void touchJugador()
@@ -85,20 +86,16 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
 
             if (diferencia.y > sensibilidadDeslizamiento)
             {
-                //print("DESLIZAMIENTO ARRIBA");
                 MovimientoCarriles.Instance.MovimientoJugador("arr");
                 Tutorial.Instance.yaArriba = true;
-                // Restablecer las posiciones despu�s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
                 return;
             }
             else if (diferencia.y < -sensibilidadDeslizamiento)
             {
-                //print("DESLIZAMIENTO ABAJO");
                 MovimientoCarriles.Instance.MovimientoJugador("aba");
                 Tutorial.Instance.yaAbajo = true;
-                // Restablecer las posiciones despu�s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
                 return;
@@ -106,20 +103,16 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
 
             if (diferencia.x > sensibilidadDeslizamiento)
             {
-                //print("DESLIZAMIENTO DERECHA");
                 MovimientoCarriles.Instance.MovimientoJugador("der");
                 Tutorial.Instance.yaDerecha = true;
-                // Restablecer las posiciones despu�s de hacer el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
                 return;
             }
             else if (diferencia.x < -sensibilidadDeslizamiento)
             {
-                //print("DESLIZAMIENTO IZQUIERDA");
                 MovimientoCarriles.Instance.MovimientoJugador("izq");
                 Tutorial.Instance.yaIzquierda = true;
-                // Restablecer las posiciones despu�s de procesar el deslizamiento
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
                 return;

@@ -60,6 +60,8 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
         print("Y: "+sentidoY);
         GameObject.Find("Sistema carriles").transform.Find("Instanciador_objetos").gameObject.SetActive(false);
         GameObject.Find("Animaciones").gameObject.SetActive(false);
+        Tutorial.Instance.enabled = false;
+        GameObject.Find("UI").transform.Find("Pantalla tutorial").gameObject.SetActive(false);
         JugadorNivel.Instance.enabled = false;
         MovimientoCarriles.Instance.enabled = false;
         // A partir de aqui se puede separar en distintos tipos de muerte
