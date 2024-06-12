@@ -20,6 +20,7 @@ public class ColisionLaser : MonoBehaviour
             if (tag == "MatNormal" && cantLasers % 3 == 0) { RomperMaterial(other); }
             else if (tag == "MatRaro" && cantLasers % 6 == 0) { RomperMaterial(other); }
             else if (tag == "MatSuper" && cantLasers % 9 == 0) { RomperMaterial(other); }
+            else if (tag == "MatTutorial" && cantLasers == 1) { RomperMaterial(other); }
         }
     }
     private void RomperMaterial(Collider other)

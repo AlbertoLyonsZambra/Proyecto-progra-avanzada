@@ -98,6 +98,21 @@ public class RayoContacto : MonoBehaviour
                 matRosaRenderer = hitInfo.collider.GetComponent<Renderer>();
                 if (matRosaRenderer != null){matRosaRenderer.material.color = asteroideColor;}
             }
+
+            else if(hitInfo.collider.CompareTag("MatTutorial"))
+            {
+                // Debug.Log("Rayo en contacto con material verde");
+                if (!isColliding)
+                {
+                    Vector3 offsetFromPlayer = direccionFija * -3f;
+                    offsetFromPlayer.y = 1.5f;
+                    lastSprite = Instantiate(spriteParticlePrefab, playerObject.transform.position + offsetFromPlayer, Quaternion.identity);
+                    isColliding = true;
+                }
+                if (playerRenderer != null){playerRenderer.material.color = Color.red;}
+                matVerdeRenderer = hitInfo.collider.GetComponent<Renderer>();
+                if (matVerdeRenderer != null){matVerdeRenderer.material.color = asteroideColor;}
+            }
         }
         else
         {

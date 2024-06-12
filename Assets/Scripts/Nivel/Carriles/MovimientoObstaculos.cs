@@ -39,7 +39,7 @@ public class MovimientoObstaculos : MonoBehaviour
     void movLineal()
     {
         float tiempoTranscurrido = Time.time - tiempoInicio;
-        if(tag == "Obs_Asteroide" || tag == "MatNormal" || tag == "MatRaro" || tag == "MatSuper" )
+        if(tag == "Obs_Asteroide" || tag == "MatNormal" || tag == "MatRaro" || tag == "MatSuper" || tag == "MatTutorial" )
         {
             aceleracion = MenuPrincipal.Instance.aceleracionObstaculos;
             float nuevaVelocidad = velocidadInicial + aceleracion * tiempoTranscurrido; // aceleracion

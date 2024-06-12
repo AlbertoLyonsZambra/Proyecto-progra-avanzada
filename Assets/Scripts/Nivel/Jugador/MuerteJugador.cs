@@ -36,7 +36,7 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Obs_Asteroide") || other.gameObject.CompareTag("MatNormal") || other.gameObject.CompareTag("MatRaro") || other.gameObject.CompareTag("MatSuper"))
+        if(other.gameObject.CompareTag("Obs_Asteroide") || other.gameObject.CompareTag("MatNormal") || other.gameObject.CompareTag("MatRaro") || other.gameObject.CompareTag("MatSuper") || other.gameObject.CompareTag("MatTutorial"))
         {
             if (!estaMuerto)
             {

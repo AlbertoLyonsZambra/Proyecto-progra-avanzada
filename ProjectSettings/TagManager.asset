@@ -24,6 +24,8 @@ TagManager:
   - numeroV
   - numeroN
   - numeroR
+  - numero
+  - MatTutorial
   layers:
   - Default
   - TransparentFX
