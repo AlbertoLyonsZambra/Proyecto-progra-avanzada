@@ -25,7 +25,7 @@ public class Tutorial : GenericSingleton<Tutorial>
     [HideInInspector] public bool yaAbajo = false;
     [HideInInspector] public int disparoLaser = 0;
     private bool turnoDisparo = false;
-    private bool aparecioAsteroide = false;
+    [HideInInspector] public bool aparecioAsteroide = false;
     
     void OnEnable()
     {
@@ -96,7 +96,7 @@ public class Tutorial : GenericSingleton<Tutorial>
     }
     public void IniciarJuego()
     {
-        MovimientoCarriles.Instance.enabled = true;
+        aparecioAsteroide = false;
         Time.timeScale = 1;
         PlayerPrefs.SetInt("pasoTutorial", 1);
         gestorBateria.SetActive(true);
@@ -204,12 +204,10 @@ public class Tutorial : GenericSingleton<Tutorial>
             asteroideDisparar.SetActive(true);
             if (!aparecioAsteroide)
             {
-                MovimientoCarriles.Instance.enabled = false;
+                Vector2 posicionJugador = MatrizCarriles.Instance.getPosicion(MovimientoCarriles.Instance.filaActual, MovimientoCarriles.Instance.columnaActual);
                 GameObject poolLaser = GameObject.Find("[SimpleObjectPool] - LaserRojo OP");
                 poolLaser.SetActive(false);
                 poolLaser.SetActive(true);
-                //GameObject.Find("[SimpleObjectPool] - LaserRojo OP").SetActive(true);
-                Vector2 posicionJugador = MatrizCarriles.Instance.getPosicion(MovimientoCarriles.Instance.filaActual, MovimientoCarriles.Instance.columnaActual);
                 Vector3 posicionAsteroide = new Vector3(posicionJugador.x, posicionJugador.y, -150);
                 Time.timeScale = 0.5f;
                 Instantiate(AsteroideParaDisparar, posicionAsteroide, Quaternion.identity);

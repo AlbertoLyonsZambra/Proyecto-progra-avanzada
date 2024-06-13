@@ -87,7 +87,11 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
 
             if (diferencia.y > sensibilidadDeslizamiento)
             {
-                MovimientoCarriles.Instance.MovimientoJugador("arr");
+                if (!Tutorial.Instance.aparecioAsteroide)
+                {
+                    MovimientoCarriles.Instance.MovimientoJugador("arr");
+                }
+                
                 Tutorial.Instance.yaArriba = true;
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
@@ -95,7 +99,10 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
             }
             else if (diferencia.y < -sensibilidadDeslizamiento)
             {
-                MovimientoCarriles.Instance.MovimientoJugador("aba");
+                if (!Tutorial.Instance.aparecioAsteroide)
+                {
+                    MovimientoCarriles.Instance.MovimientoJugador("aba");
+                }
                 Tutorial.Instance.yaAbajo = true;
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
@@ -104,7 +111,10 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
 
             if (diferencia.x > sensibilidadDeslizamiento)
             {
-                MovimientoCarriles.Instance.MovimientoJugador("der");
+                if (!Tutorial.Instance.aparecioAsteroide)
+                {
+                    MovimientoCarriles.Instance.MovimientoJugador("der");
+                }
                 Tutorial.Instance.yaDerecha = true;
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
@@ -112,7 +122,10 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
             }
             else if (diferencia.x < -sensibilidadDeslizamiento)
             {
-                MovimientoCarriles.Instance.MovimientoJugador("izq");
+                if (!Tutorial.Instance.aparecioAsteroide)
+                {
+                    MovimientoCarriles.Instance.MovimientoJugador("izq");
+                }
                 Tutorial.Instance.yaIzquierda = true;
                 inicioPulsacion = Vector2.zero;
                 finPulsacion = Vector2.zero;
