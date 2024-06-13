@@ -6,16 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : GenericSingleton<MenuPrincipal>
 {
-    [SerializeField] private GameObject gestorBateria;  
-    [SerializeField] private GameObject finalNivel;    
-    [SerializeField] private GameObject pantallaInicial;
+    [SerializeField] private GameObject gestorBateria;
+    [SerializeField] private GameObject finalNivel;
+    [SerializeField] public GameObject pantallaInicial;
     [SerializeField] public GameObject pantallaTaller;
     [SerializeField] private GameObject sistemaCarriles;
     [SerializeField] private GameObject laseres;
-    [SerializeField] private GameObject pantallaTutorial;
+    [SerializeField] public GameObject pantallaTutorial;
     [SerializeField] public float aceleracionObstaculos;
     [HideInInspector] public int nivelActual;
     [HideInInspector] public bool victoria = false;
+    [SerializeField] private Ayuda ayudaScript;
     public bool jugando = false;
     public bool enTaller = false;
     public bool enTerminal = false;
@@ -25,6 +26,10 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         Application.targetFrameRate = 60;
         nivelActual = PlayerPrefs.GetInt("nivelActual");
         pasoTutorial = PlayerPrefs.GetInt("pasoTutorial");
+
+        
+        // Establece la pantalla de ayuda inicial como la pantalla inicial
+        ayudaScript.CambiarPantallaActual("juego");
     }
     void Update()
     {
@@ -47,13 +52,17 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
                 gestorBateria.SetActive(true); // Antes este gestor se activaba fuera del if
                 print("EmpezoJuego");
                 StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
+                ayudaScript.CambiarPantallaActual("juego");
             }
             else
             {
                 pantallaTutorial.SetActive(true);
                 InstanciadorObjetos.Instance.enabled = false;
+                ayudaScript.CambiarPantallaActual("juego");
             }
         }else{print("No se ha seleccionado ninguna nave");}
+
+        //ayudaScript.CambiarPantallaActual("juego");
         
     }
     public void Taller()
@@ -62,6 +71,8 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaTienda);
         pantallaInicial.SetActive(false);
         Invoke("PantallaTaller", 2);
+        // Establece la pantalla de ayuda actual como la pantalla de taller
+        ayudaScript.CambiarPantallaActual("taller");
     }
     public void Victoria()
     {
