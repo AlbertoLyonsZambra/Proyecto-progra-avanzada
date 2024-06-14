@@ -26,6 +26,7 @@ TagManager:
   - numeroR
   - numero
   - MatTutorial
+  - FlechaTutorial
   layers:
   - Default
   - TransparentFX

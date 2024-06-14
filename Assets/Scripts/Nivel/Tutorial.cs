@@ -11,6 +11,7 @@ public class Tutorial : GenericSingleton<Tutorial>
     [SerializeField] private GameObject gestorBateria;
     [SerializeField] private GameObject indicadorBateria;
     [SerializeField] private GameObject AsteroideParaDisparar;
+    [SerializeField] private GameObject FlechaAsteroide;
     private GameObject textoDisparar;
     private GameObject asteroideDisparar;
     private Vector3 posicionInicial;
@@ -36,7 +37,7 @@ public class Tutorial : GenericSingleton<Tutorial>
         posicionHorizontal = horizontal.transform.localPosition;
         posicionInicial = Vector3.zero;
         indicadorBateria.SetActive(false);
-        StartCoroutine(EsperarEvento(3));
+        StartCoroutine(EsperarEvento(2));
     }
     private void Update()
     {
@@ -96,6 +97,7 @@ public class Tutorial : GenericSingleton<Tutorial>
     }
     public void IniciarJuego()
     {
+        Destroy(GameObject.Find("Flecha Roja(Clone)").gameObject);
         aparecioAsteroide = false;
         Time.timeScale = 1;
         PlayerPrefs.SetInt("pasoTutorial", 1);
@@ -110,87 +112,69 @@ public class Tutorial : GenericSingleton<Tutorial>
     }
     IEnumerator MoverIconoIzquierda(float segundos)
     {
-        if (!yaIzquierda)
+        if (yaAbajo && yaArriba && yaDerecha && yaDerecha)
         {
-            cambiarCentrar(false);
-            iconoTouch.gameObject.SetActive(true);
-            cambiarHorizontal("izquierda");
-            yield return new WaitForSeconds(segundos);
-            iconoTouch.gameObject.SetActive(false);
-            cambiarCentrar(true);
-            yield return new WaitForSeconds(segundos);
-            StartCoroutine(MoverIconoIzquierda(segundos));
-        }
-        else 
-        {
-            iconoTouch.gameObject.SetActive(false);
-            StartCoroutine(MoverIconoArriba(segundos));
             yield break;
         }
+        cambiarCentrar(false);
+        iconoTouch.gameObject.SetActive(true);
+        cambiarHorizontal("izquierda");
+        yield return new WaitForSeconds(segundos);
+        iconoTouch.gameObject.SetActive(false);
+        cambiarCentrar(true);
+        yield return new WaitForSeconds(segundos);
+        StartCoroutine(MoverIconoArriba(segundos));
+        
     }
     IEnumerator MoverIconoArriba(float segundos)
     {
-        if (!yaArriba)
+        if (yaAbajo && yaArriba && yaDerecha && yaDerecha)
         {
-            cambiarCentrar(false);
-            iconoTouch.gameObject.SetActive(true);
-            cambiarVertical("arriba");
-            yield return new WaitForSeconds(segundos);
-            iconoTouch.gameObject.SetActive(false);
-            cambiarCentrar(true);
-            yield return new WaitForSeconds(segundos);
-            StartCoroutine(MoverIconoArriba(segundos));
-        }
-        else 
-        {
-            iconoTouch.gameObject.SetActive(false);
-            StartCoroutine(MoverIconoDerecha(segundos));
             yield break;
         }
+        cambiarCentrar(false);
+        iconoTouch.gameObject.SetActive(true);
+        cambiarVertical("arriba");
+        yield return new WaitForSeconds(segundos);
+        iconoTouch.gameObject.SetActive(false);
+        cambiarCentrar(true);
+        yield return new WaitForSeconds(segundos);
+        StartCoroutine(MoverIconoDerecha(segundos));
     }
     IEnumerator MoverIconoDerecha(float segundos)
     {
-        if (!yaDerecha)
+        if (yaAbajo && yaArriba && yaDerecha && yaDerecha)
         {
-            cambiarCentrar(false);
-            iconoTouch.gameObject.SetActive(true);
-            cambiarHorizontal("derecha");
-            yield return new WaitForSeconds(segundos);
-            iconoTouch.gameObject.SetActive(false);
-            cambiarCentrar(true);
-            yield return new WaitForSeconds(segundos);
-            StartCoroutine(MoverIconoDerecha(segundos));
-        }
-        else
-        {
-            iconoTouch.gameObject.SetActive(false);
-            StartCoroutine(MoverIconoAbajo(segundos));
             yield break;
         }
+        cambiarCentrar(false);
+        iconoTouch.gameObject.SetActive(true);
+        cambiarHorizontal("derecha");
+        yield return new WaitForSeconds(segundos);
+        iconoTouch.gameObject.SetActive(false);
+        cambiarCentrar(true);
+        yield return new WaitForSeconds(segundos);
+        StartCoroutine(MoverIconoAbajo(segundos));
     }
     IEnumerator MoverIconoAbajo(float segundos)
     {
-        if (!yaAbajo)
+        if (yaAbajo && yaArriba && yaDerecha && yaDerecha)
         {
-            cambiarCentrar(false);
-            iconoTouch.gameObject.SetActive(true);
-            cambiarVertical("abajo");
-            yield return new WaitForSeconds(segundos);
-            iconoTouch.gameObject.SetActive(false);
-            cambiarCentrar(true);
-            yield return new WaitForSeconds(segundos);
-            StartCoroutine(MoverIconoAbajo(segundos));
-        }
-        else
-        {
-            iconoTouch.gameObject.SetActive(false);
             yield break;
         }
+        cambiarCentrar(false);
+        iconoTouch.gameObject.SetActive(true);
+        cambiarVertical("abajo");
+        yield return new WaitForSeconds(segundos);
+        iconoTouch.gameObject.SetActive(false);
+        cambiarCentrar(true);
+        yield return new WaitForSeconds(segundos);
+        StartCoroutine(MoverIconoIzquierda(segundos));
     }
     IEnumerator EsperarEvento(float segundos)
     {
         // Empezar con tutorial de deslizar
-        if (segundos == 3)
+        if (segundos == 2)
         {
             yield return new WaitForSeconds(segundos);
             iconoTouch.gameObject.SetActive(true);
@@ -209,8 +193,10 @@ public class Tutorial : GenericSingleton<Tutorial>
                 poolLaser.SetActive(false);
                 poolLaser.SetActive(true);
                 Vector3 posicionAsteroide = new Vector3(posicionJugador.x, posicionJugador.y, -150);
+                Vector3 posicionFlecha = new Vector3(posicionJugador.x, posicionJugador.y+2, -150);
                 Time.timeScale = 0.5f;
                 Instantiate(AsteroideParaDisparar, posicionAsteroide, Quaternion.identity);
+                Instantiate(FlechaAsteroide, posicionFlecha, Quaternion.Euler(0,0,-90));
                 aparecioAsteroide = true;
             }
         }

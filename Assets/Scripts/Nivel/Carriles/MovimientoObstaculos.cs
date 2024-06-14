@@ -51,7 +51,16 @@ public class MovimientoObstaculos : MonoBehaviour
             Vector3 rotacion = new Vector3(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             transform.Rotate(rotacion * Time.deltaTime, Space.Self);
         }
-        if(tag == "finalNivel")
+        if (tag == "FlechaTutorial")
+        {
+            aceleracion = MenuPrincipal.Instance.aceleracionObstaculos;
+            float nuevaVelocidad = velocidadInicial + aceleracion * tiempoTranscurrido; // aceleracion
+            float desplazamiento = (velocidadInicial + nuevaVelocidad) / 2 * tiempoTranscurrido; // calcula desplazamiento usando la velocidad promedio (v = (v0 + v1) / 2)
+            velocidadInicial = nuevaVelocidad; // actualiza la velocidad inicial para el siguiente frame
+            nuevaPosicion = posicionInicial + new Vector3(0, 0, -desplazamiento); // nueva posicion
+            transform.position = nuevaPosicion; // actualiza la posicion anterior con la nueva posicion
+        }
+        if (tag == "finalNivel")
         {
             if(nuevaPosicion.z >= posicionFinal.z)
             {   //print(nuevaPosicion.z + " || " + posicionFinal.z);
