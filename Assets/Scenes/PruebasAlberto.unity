@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.031427085, g: 0.009846414, b: 0.013195235, a: 1}
+  m_IndirectSpecularColor: {r: 0.03146235, g: 0.009871539, b: 0.013235097, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -47492,6 +47492,7 @@ MonoBehaviour:
   gestorBateria: {fileID: 1576548129}
   indicadorBateria: {fileID: 343277258}
   AsteroideParaDisparar: {fileID: 2942051580892192243, guid: 3e0ada7e383bbd440b807b70c26a254d, type: 3}
+  FlechaAsteroide: {fileID: 1146216604468657608, guid: 6048429746b7d2640861f283c0b88de5, type: 3}
   yaIzquierda: 0
   yaDerecha: 0
   yaArriba: 0

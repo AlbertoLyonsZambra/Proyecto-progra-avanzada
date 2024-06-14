@@ -57,6 +57,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
 
     public void NaveSeleccionada()
     {
+        if(ultimaNaveTaller == null) {return;}
         if(MenuPrincipal.Instance.enTerminal)
         {
             // if(!elevados[int.Parse(ultimaNaveTaller.name)] && ultimaNaveTaller.Find("default").GetComponent<MeshRenderer>().material.color != materialBloqueado.color)

@@ -30,14 +30,18 @@ public class Tutorial : GenericSingleton<Tutorial>
     
     void OnEnable()
     {
-        asteroideDisparar = gameObject.transform.Find("Dispare asteroide color").gameObject;
-        textoDisparar = gameObject.transform.Find("Presiona disparar").gameObject;
-        iconoTouch = gameObject.transform.Find("Icono touch");
-        posicionVertical = vertical.transform.localPosition;
-        posicionHorizontal = horizontal.transform.localPosition;
-        posicionInicial = Vector3.zero;
-        indicadorBateria.SetActive(false);
-        StartCoroutine(EsperarEvento(2));
+        if(PlayerPrefs.GetInt("pasoTutorial") == 0)
+        {
+            asteroideDisparar = gameObject.transform.Find("Dispare asteroide color").gameObject;
+            textoDisparar = gameObject.transform.Find("Presiona disparar").gameObject;
+            iconoTouch = gameObject.transform.Find("Icono touch");
+            posicionVertical = vertical.transform.localPosition;
+            posicionHorizontal = horizontal.transform.localPosition;
+            posicionInicial = Vector3.zero;
+            indicadorBateria.SetActive(false);
+            StartCoroutine(EsperarEvento(2));
+        }
+
     }
     private void Update()
     {
@@ -208,7 +212,8 @@ public class Tutorial : GenericSingleton<Tutorial>
         {
             if (disparoLaser == 0)
             {
-                textoDisparar.SetActive(true);
+                if(textoDisparar != null){textoDisparar.SetActive(true);}
+                
             }
             else if (disparoLaser >= 3)
             {
