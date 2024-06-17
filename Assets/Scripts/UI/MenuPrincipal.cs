@@ -15,7 +15,6 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     [SerializeField] public GameObject pantallaTutorial;
     [SerializeField] public float aceleracionObstaculos;
     [HideInInspector] public int nivelActual;
-    [HideInInspector] public bool victoria = false;
     [SerializeField] private Ayuda ayudaScript;
     public bool jugando = false;
     public bool enTaller = false;
@@ -39,11 +38,11 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     {
         if(JugadorNivel.Instance.escogioNave)
         {
-            
             GestorAnimaciones.Instance.TallerAJuego();
             pantallaTaller.SetActive(false);
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
-            float duracionNivel = 2.0f + nivelActual * 30f; // +30s de duracion por nivel
+            // Formula = 2 segundos de transicion del taller a juego, mas 5 minutos de base (300s), mas el nivel en el que esté
+            float duracionNivel = 2.0f + 300 + nivelActual * 30f; // +30s de duracion por nivel
             sistemaCarriles.SetActive(true);
             laseres.SetActive(true);
             GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);
@@ -73,14 +72,6 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         Invoke("PantallaTaller", 2);
         // Establece la pantalla de ayuda actual como la pantalla de taller
         ayudaScript.CambiarPantallaActual("taller");
-    }
-    public void Victoria()
-    {
-        victoria = true;
-        PlayerPrefs.SetInt("nivelActual", nivelActual + 1);
-        nivelActual = PlayerPrefs.GetInt("nivelActual");
-        // Hacer mas logica aqui despues :]
-        print(" ganaste el nivel congrats ");
     }
     public IEnumerator EsperarAEventoCoroutine(float tiempoInicio, float tiempoFinal, string evento)
     {

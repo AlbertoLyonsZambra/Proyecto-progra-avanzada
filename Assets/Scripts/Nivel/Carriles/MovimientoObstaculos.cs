@@ -12,13 +12,19 @@ public class MovimientoObstaculos : MonoBehaviour
     Vector3 nuevaPosicion;
     private bool laserPuedeMoverse;
     private float velocidadLaser = 10.5f;
+    private float posicionDesacelerar;
     void Start()
     {
         nuevaPosicion = new Vector3(0, 0, 0);
     }
     void OnEnable()
     {
-        if(tag=="finalNivel"){posicionFinal = transform.parent.Find("posFinal").position; print(posicionFinal);}
+        if(tag=="finalNivel")
+        {
+            posicionFinal = transform.parent.Find("posFinal").position;
+            posicionDesacelerar = transform.parent.Find("posDesaceleracion").position.z;
+            print(posicionFinal);
+        }
         tiempoInicio = Time.time;
         posicionInicial = transform.position;
         velocidadInicial = 1f;
@@ -63,15 +69,35 @@ public class MovimientoObstaculos : MonoBehaviour
         if (tag == "finalNivel")
         {
             if(nuevaPosicion.z >= posicionFinal.z)
-            {   //print(nuevaPosicion.z + " || " + posicionFinal.z);
+            {
+                // Se demora 1 minuto desde que aparece hasta que llega al jugador
+                Vector3 velocidadPlataforma;
+                if (nuevaPosicion.z >= posicionDesacelerar)
+                {
+                    velocidadPlataforma = Vector3.back * velocidadInicial*12 * Time.deltaTime;
+                }
+                else
+                {
+                    velocidadPlataforma = Vector3.back * velocidadInicial*6 * Time.deltaTime;
+                }
+                transform.Translate(velocidadPlataforma);
+                nuevaPosicion = transform.position;
+                /*
+                //print(nuevaPosicion.z + " || " + posicionFinal.z);
                 float nuevaVelocidad = velocidadInicial + tiempoTranscurrido; // aceleracion
                 float desplazamiento = (velocidadInicial + nuevaVelocidad) / 2 * 0.001f; // calcula desplazamiento usando la velocidad promedio (v = (v0 + v1) / 2)
                 velocidadInicial = nuevaVelocidad; // actualiza la velocidad inicial para el siguiente frame
                 nuevaPosicion = posicionInicial + new Vector3(0, 0, -desplazamiento); // nueva posicion
                 transform.position = nuevaPosicion; // actualiza la posicion anterior con la nueva posicion
+                */
             }
             else
-            {print(" llegamo companero ");}
+            {
+                if (!FinalNivel.Instance.victoria)
+                {
+                    FinalNivel.Instance.Victoria();
+                }
+            }
         }
         if(tag == "Planeta")
         {

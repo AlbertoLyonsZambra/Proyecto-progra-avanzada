@@ -38,7 +38,6 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
                 MovimientoJugador("");
             }
         }
-        
     }
     public void MovimientoJugador(string sentido)
     {
@@ -81,10 +80,16 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
             }
         }
         // Interpolar hacia la posicion del carril actual
-        
-        Vector3 posicion = new Vector3(matriz[filaActual,columnaActual].x, matriz[filaActual, columnaActual].y, transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, posicion, velocidad * Time.deltaTime);
-    
+        if (!FinalNivel.Instance.victoria)
+        { 
+            Vector3 posicion = new Vector3(matriz[filaActual,columnaActual].x, matriz[filaActual, columnaActual].y, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, posicion, velocidad * Time.deltaTime);
+        }
+
+    }
+    public void MoverPlataformaFinal(Vector3 plataforma)
+    {
+        transform.position = Vector3.Slerp(transform.position, plataforma, velocidad * Time.deltaTime);
     }
     public void InclinacionJugador(int fila, int columna)
     {

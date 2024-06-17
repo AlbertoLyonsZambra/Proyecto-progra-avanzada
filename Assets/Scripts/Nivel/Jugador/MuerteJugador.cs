@@ -56,8 +56,6 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
     }
     private void InstanciarMuerte()
     {
-        print("X: "+sentidoX);
-        print("Y: "+sentidoY);
         GameObject.Find("Sistema carriles").transform.Find("Instanciador_objetos").gameObject.SetActive(false);
         GameObject.Find("Animaciones").gameObject.SetActive(false);
         GameObject.Find("UI").transform.Find("Pantalla tutorial").gameObject.SetActive(false);
