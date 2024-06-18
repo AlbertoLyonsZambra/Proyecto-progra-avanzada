@@ -41,7 +41,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             GestorAnimaciones.Instance.TallerAJuego();
             pantallaTaller.SetActive(false);
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
-            // Formula = 2 segundos de transicion del taller a juego, mas 5 minutos de base (300s), mas el nivel en el que esté
+            // Formula = 2 segundos de transicion del taller a juego, mas 5 minutos de base (300s), mas el nivel en el que estï¿½
             float duracionNivel = 2.0f + 300 + nivelActual * 30f; // +30s de duracion por nivel
             sistemaCarriles.SetActive(true);
             laseres.SetActive(true);
@@ -50,7 +50,8 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             {
                 gestorBateria.SetActive(true); // Antes este gestor se activaba fuera del if
                 print("EmpezoJuego");
-                StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
+                if(nivelActual <= 3) { StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel")); }
+                
                 ayudaScript.CambiarPantallaActual("juego");
             }
             else
