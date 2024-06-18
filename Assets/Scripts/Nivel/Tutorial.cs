@@ -110,7 +110,7 @@ public class Tutorial : GenericSingleton<Tutorial>
         InstanciadorObjetos.Instance.enabled = true;
         int nivelActual = PlayerPrefs.GetInt("nivelActual");
         indicadorBateria.SetActive(true);
-        float duracionNivel = 2.0f + nivelActual * 30f; // +30s de duracion por nivel
+        float duracionNivel = 300 + nivelActual * 30f; // +30s de duracion por nivel
         StartCoroutine(MenuPrincipal.Instance.EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
         gameObject.SetActive(false);
     }

@@ -21,7 +21,7 @@ public class Gestor_audio : GenericSingleton<Gestor_audio>
     {
         audioSourceMusica.mute = (PlayerPrefs.GetInt("isMusicaMute") == 1);
         audioSourceSFX.mute = (PlayerPrefs.GetInt("isSFXMute") == 1);
-        EjecutarAudio(audioSourceMusica, musicaMenu);
+        //EjecutarAudio(audioSourceMusica, musicaMenu);
         // if(audioSourceMusica.mute){audioSourceMusica.clip = musicaMenu; audioSourceMusica.Play();}
     }
     public void cambioSilenciadoMusica(bool isOn)

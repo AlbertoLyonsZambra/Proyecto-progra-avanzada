@@ -5,6 +5,8 @@ using UnityEngine;
 public class FinalNivel : GenericSingleton<FinalNivel>
 {
     [SerializeField] private GameObject pantallaFinal;
+    [SerializeField] private AudioClip clipVictoria;
+    [SerializeField] private AudioClip clipTransicion;
     [HideInInspector] public bool victoria = false;
     private Vector3 plataforma;
 
@@ -14,6 +16,8 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         plataforma = transform.Find("Destino").position - diferencia;
         int nivelActual = PlayerPrefs.GetInt("nivelActual");
         victoria = true;
+        Tutorial.Instance.aparecioAsteroide = true;
+        MovimientoCarriles.Instance.InclinacionJugador(1, 1);
         if (nivelActual < 4)
         {
             PlayerPrefs.SetInt("nivelActual", nivelActual + 1);
@@ -25,11 +29,15 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         MovimientoCarriles.Instance.enabled = false;
         InstanciadorObjetos.Instance.enabled = false;
         MatrizCarriles.Instance.enabled = false;
-        StartCoroutine(MostrarPantallaFinal(1));
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, clipTransicion);
+        StartCoroutine(MostrarPantallaFinal(2));
     }
     IEnumerator MostrarPantallaFinal(int segundos)
     {
         yield return new WaitForSeconds(segundos);
+        
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, clipVictoria);
+        Gestor_audio.Instance.audioSourceMusica.loop = false;
         pantallaFinal.SetActive(true);
         Time.timeScale = 0;
     }
