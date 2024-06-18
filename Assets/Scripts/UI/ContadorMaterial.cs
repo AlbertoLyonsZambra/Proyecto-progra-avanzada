@@ -30,18 +30,18 @@ public class ContadorMaterial : MonoBehaviour
         if(!tag.Contains("numero")){transform.Rotate(rotacionRandom * 40f * Time.deltaTime, Space.Self);} // Rotacion de los cubos
         else
         {// Movimiento del numero
-            float angleX = Mathf.Sin(Time.time * 2f) * 5f;
-            float angleY = Mathf.Sin(Time.time * 2f * 2.5f) * 10f;
-            float angleZ = Mathf.Sin(Time.time * 2f * 1.2f) * 4f;
-            Quaternion slightRotationX = Quaternion.AngleAxis(angleX, Vector3.right);
-            Quaternion slightRotationY = Quaternion.AngleAxis(angleY, Vector3.up);
-            Quaternion slightRotationZ = Quaternion.AngleAxis(angleZ, Vector3.forward);
-            transform.rotation = originalRotation * slightRotationX * slightRotationY * slightRotationZ;
+            // float angleX = Mathf.Sin(Time.time * 2f) * 5f;
+            // float angleY = Mathf.Sin(Time.time * 2f * 2.5f) * 10f;
+            // float angleZ = Mathf.Sin(Time.time * 2f * 1.2f) * 4f;
+            // Quaternion slightRotationX = Quaternion.AngleAxis(angleX, Vector3.right);
+            // Quaternion slightRotationY = Quaternion.AngleAxis(angleY, Vector3.up);
+            // Quaternion slightRotationZ = Quaternion.AngleAxis(angleZ, Vector3.forward);
+            // transform.rotation = originalRotation * slightRotationX * slightRotationY * slightRotationZ;
         }
     }
     public void mostrarPantalla()
     {
-        if(tag == "MatNormal" || tag == "numeroV")
+        if( tag == "numeroV")
         {
             if(JugadorNivel.Instance.mostrandoV)
             {
@@ -55,7 +55,7 @@ public class ContadorMaterial : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, posOriginal, 4f * Time.deltaTime);
             }
         }
-        else if(tag == "MatRaro" || tag == "numeroN")
+        else if( tag == "numeroN")
         {
             if(JugadorNivel.Instance.mostrandoN)
             {
@@ -69,7 +69,7 @@ public class ContadorMaterial : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position, posOriginal, 4f * Time.deltaTime);
             }
         }
-        else if(tag == "MatSuper" || tag == "numeroR")
+        else if( tag == "numeroR")
         {
             if(JugadorNivel.Instance.mostrandoR)
             {

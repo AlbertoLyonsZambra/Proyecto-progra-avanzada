@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class JugadorNivel : GenericSingleton<JugadorNivel>
 {
@@ -74,7 +75,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             contTriggerV++;
             if(contTriggerV == 8)
             {
-                print(Mathf.RoundToInt(Promediar(mats)));
+                PlayerPrefs.SetInt("MatsV", Mathf.RoundToInt(Promediar(mats)));
                 contTriggerV = 0;
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
             }
@@ -86,7 +87,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             contTriggerN++;
             if(contTriggerN == 8)
             {
-                print(Mathf.RoundToInt(Promediar(mats))); 
+                PlayerPrefs.SetInt("MatsN", Mathf.RoundToInt(Promediar(mats))); 
                 contTriggerN = 0;
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
             }
@@ -98,7 +99,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             contTriggerN++;
             if(contTriggerR == 8)
             {
-                print(Mathf.RoundToInt(Promediar(mats))); 
+                PlayerPrefs.SetInt("MatsR", Mathf.RoundToInt(Promediar(mats))); 
                 contTriggerR = 0;
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
             }
