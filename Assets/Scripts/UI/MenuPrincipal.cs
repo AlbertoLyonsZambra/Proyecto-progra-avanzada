@@ -23,7 +23,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     void Start()
     {
         Application.targetFrameRate = 60;
-        nivelActual = PlayerPrefs.GetInt("nivelActual");
+        nivelActual = 4;//PlayerPrefs.GetInt("nivelActual");
         pasoTutorial = PlayerPrefs.GetInt("pasoTutorial");
 
         
@@ -38,6 +38,9 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     {
         if(JugadorNivel.Instance.escogioNave)
         {
+            PlayerPrefs.SetInt("MatsV", 0);
+            PlayerPrefs.SetInt("MatsN", 0);
+            PlayerPrefs.SetInt("MatsR", 0);
             GestorAnimaciones.Instance.TallerAJuego();
             pantallaTaller.SetActive(false);
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);

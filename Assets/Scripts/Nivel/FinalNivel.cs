@@ -12,6 +12,7 @@ public class FinalNivel : GenericSingleton<FinalNivel>
 
     public void Victoria()
     {
+        GestorTaller.Instance.guardarMats();
         Vector3 diferencia = new Vector3(-1.89f, -1.22f, 3.56f);
         plataforma = transform.Find("Destino").position - diferencia;
         int nivelActual = PlayerPrefs.GetInt("nivelActual");

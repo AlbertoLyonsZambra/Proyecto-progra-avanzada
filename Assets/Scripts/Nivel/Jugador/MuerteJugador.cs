@@ -40,10 +40,11 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
         {
             if (!estaMuerto)
             {
-            estaMuerto = true;
-            Advertencia.Instance.bateriaBaja.SetActive(false);
-            MenuPrincipal.Instance.jugando = false;
-            InstanciarMuerte();
+                estaMuerto = true;
+                Advertencia.Instance.bateriaBaja.SetActive(false);
+                MenuPrincipal.Instance.jugando = false;
+                GestorTaller.Instance.guardarMats();
+                InstanciarMuerte();
             }
         }
     }

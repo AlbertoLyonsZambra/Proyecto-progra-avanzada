@@ -11,7 +11,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
     [HideInInspector] public List<GameObject> nave;
     [HideInInspector] public Transform ultimaNaveJugador;
     [HideInInspector] public Transform ultimaNaveTaller;
-    private bool[] elevados;
+    private bool[] elevados; 
     
     void Start() 
     {
@@ -98,5 +98,11 @@ public class GestorTaller : GenericSingleton<GestorTaller>
             tiempoTranscurrido += Time.deltaTime;
             yield return null;
         }
+    }
+    public void guardarMats()
+    {
+        PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsV"));
+        PlayerPrefs.SetInt("MatsTallerN", PlayerPrefs.GetInt("MatsN"));
+        PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsR"));
     }
 }

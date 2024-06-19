@@ -75,7 +75,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             contTriggerV++;
             if(contTriggerV == 8)
             {
-                PlayerPrefs.SetInt("MatsV", Mathf.RoundToInt(Promediar(mats)));
+                PlayerPrefs.SetInt("MatsV", PlayerPrefs.GetInt("MatsV") + Mathf.RoundToInt(Promediar(mats)));
                 contTriggerV = 0;
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
             }

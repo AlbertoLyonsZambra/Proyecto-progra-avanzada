@@ -41,7 +41,7 @@ public class ContadorMaterial : MonoBehaviour
     }
     public void mostrarPantalla()
     {
-        if( tag == "numeroV")
+        if(tag == "numeroV")
         {
             if(JugadorNivel.Instance.mostrandoV)
             {
