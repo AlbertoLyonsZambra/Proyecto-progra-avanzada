@@ -6,6 +6,8 @@ public class Ayuda : MonoBehaviour
     [SerializeField] private GameObject pantallaAyudaJuego;
     [SerializeField] private GameObject pantallaAyudaTaller;
     [SerializeField] private Button botonAyuda;
+    [SerializeField] private Button botonCerrarAyuda; // Nuevo botón para cerrar la pantalla de ayuda
+    [SerializeField] private Button botonCerrarAyudaT;
 
     private enum PantallaActual
     {
@@ -22,13 +24,15 @@ public class Ayuda : MonoBehaviour
         pantallaAyudaJuego.SetActive(false);
         pantallaAyudaTaller.SetActive(false);
 
-        // Asigna el método MostrarAyuda al evento OnClick del botón
+        // Asigna los métodos a los eventos OnClick de los botones
         botonAyuda.onClick.AddListener(MostrarAyuda);
+        botonCerrarAyuda.onClick.AddListener(CerrarAyuda); // Asigna el método CerrarAyuda al botón de cerrar
+        botonCerrarAyudaT.onClick.AddListener(CerrarAyuda); // Asigna el método CerrarAyuda al botón de cerrar
     }
 
     public void MostrarAyuda()
     {
-        // Alternar el estado de activación del GameObject pantallaAyudaJuego
+        // Alternar el estado de activación del GameObject pantallaAyudaJuego o pantallaAyudaTaller
         bool nuevaVisibilidad = !ObtenerVisibilidadActual();
 
         // Desactiva todas las pantallas de ayuda primero
@@ -75,4 +79,13 @@ public class Ayuda : MonoBehaviour
             // Añade más casos aquí si es necesario
         }
     }
+
+    // Nuevo método para cerrar la pantalla de ayuda
+    public void CerrarAyuda()
+    {
+        Debug.Log("CerrarAyuda llamado");
+        pantallaAyudaJuego.SetActive(false);
+        pantallaAyudaTaller.SetActive(false);
+    }
+
 }
