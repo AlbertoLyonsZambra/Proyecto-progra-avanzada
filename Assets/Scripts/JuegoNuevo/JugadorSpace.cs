@@ -12,9 +12,10 @@ public class JugadorSpace : MonoBehaviour
     void Update()
     {
         movePlayer();
+        UpdateAnimator();
 
         // Actualizar los parámetros del Animator
-       
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -26,8 +27,16 @@ public class JugadorSpace : MonoBehaviour
     {
         Vector3 movement = new Vector3(mov.x, 0f, mov.y);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 015f);
+        if (movement != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
+            transform.Translate(movement * velocidadMovimiento * Time.deltaTime, Space.World);
+        }
+    }
 
-        transform.Translate(movement * velocidadMovimiento * Time.deltaTime, Space.World);
+    private void UpdateAnimator()
+    {
+        bool isMoving = mov != Vector2.zero;
+        animator.SetBool("isCorrer", isMoving);
     }
 }
