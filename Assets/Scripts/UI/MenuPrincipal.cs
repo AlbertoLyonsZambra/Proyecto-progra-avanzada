@@ -6,24 +6,35 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : GenericSingleton<MenuPrincipal>
 {
-    [SerializeField] private GameObject gestorBateria;
-    [SerializeField] private GameObject finalNivel;
+    [Header("Pantallas")]
     [SerializeField] public GameObject pantallaInicial;
     [SerializeField] public GameObject pantallaTaller;
-    [SerializeField] private GameObject sistemaCarriles;
-    [SerializeField] private GameObject laseres;
     [SerializeField] public GameObject pantallaTutorial;
+    [SerializeField] private Ayuda ayudaScript;
+    [SerializeField] public GameObject barraProgreso;
+
+    [Header("Del jugador")]
+    [SerializeField] private GameObject laseres;
+    [SerializeField] private GameObject gestorBateria;
+
+    [Header("De la escena")]
+    [SerializeField] private GameObject finalNivel;
+    [SerializeField] private GameObject sistemaCarriles;
     [SerializeField] public float aceleracionObstaculos;
     [HideInInspector] public int nivelActual;
-    [SerializeField] private Ayuda ayudaScript;
     public bool jugando = false;
     public bool enTaller = false;
     public bool enTerminal = false;
     private int pasoTutorial = 0;
+    
+    // Estas dos de abajo son para medir el final del nivel
+    [HideInInspector] public float duracionNivel;
+    [HideInInspector] public float tiempoTranscurrido;
+
     void Start()
     {
         Application.targetFrameRate = 60;
-        nivelActual = 4;//PlayerPrefs.GetInt("nivelActual");
+        nivelActual = PlayerPrefs.GetInt("nivelActual");
         pasoTutorial = PlayerPrefs.GetInt("pasoTutorial");
 
         
@@ -45,7 +56,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             pantallaTaller.SetActive(false);
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
             // Formula = 2 segundos de transicion del taller a juego, mas 5 minutos de base (300s), mas el nivel en el que est�
-            float duracionNivel = 2.0f + 300 + nivelActual * 30f; // +30s de duracion por nivel
+            duracionNivel = 2.0f + 300 + nivelActual * 30f; // +30s de duracion por nivel
             sistemaCarriles.SetActive(true);
             laseres.SetActive(true);
             GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);
@@ -53,7 +64,11 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             {
                 gestorBateria.SetActive(true); // Antes este gestor se activaba fuera del if
                 print("EmpezoJuego");
-                if(nivelActual <= 3) { StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel")); }
+                if(nivelActual <= 3) 
+                { 
+                    StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
+                    barraProgreso.SetActive(true);
+                }
                 
                 ayudaScript.CambiarPantallaActual("juego");
             }
@@ -80,7 +95,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     public IEnumerator EsperarAEventoCoroutine(float tiempoInicio, float tiempoFinal, string evento)
     {
         yield return new WaitForSeconds(tiempoFinal); // Espera (si usa WaitForSecondsRealtime puede funcionar distinto)
-        float tiempoTranscurrido = Time.time - tiempoInicio; // Obtiene el tiempo transcurrido
+        tiempoTranscurrido = Time.time - tiempoInicio; // Obtiene el tiempo transcurrido
         if(tiempoTranscurrido >= tiempoFinal) // Verifica si ya paso el tiempo necesitado
         {
             if(evento == "finalNivel"){finalNivel.SetActive(true);}
