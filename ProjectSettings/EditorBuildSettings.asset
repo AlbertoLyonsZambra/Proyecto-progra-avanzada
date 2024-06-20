@@ -7,14 +7,14 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Juego.unity
-    guid: 44f68527c472a0c499536ca2c77f0218
-  - enabled: 0
+    guid: ef71a97a92d47064483f982043d0e89d
+  - enabled: 1
     path: Assets/Scenes/PruebasMatias.unity
-    guid: d1c600b9a27274945a72826b80274ea8
+    guid: 632af6eaa8d26fc498a56bc23ee6f453
   - enabled: 0
     path: Assets/Scenes/PruebasAlberto.unity
-    guid: 0f624777a484f954989072aa7c8a7cd5
+    guid: 08c29a1099d901549a0b6b982a667522
   - enabled: 0
     path: Assets/Scenes/PruebasAdan.unity
-    guid: 27bf79d648d2d8a40b4929a65e241b1a
+    guid: 54d3ed2e9e9b13747b94b405d1ab5b35
   m_configObjects: {}

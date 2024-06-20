@@ -22,11 +22,13 @@ public class GestorBateria : MonoBehaviour
         if (jugador.bateria == 0)
         {
             SetVisibilidadCubo(0);
+            
         }
         else if (jugador.bateria > 0 && jugador.bateria <= 20f)
         {
             CambiarColor(Color.grey);
             SetVisibilidadCubo(1);
+            if(jugador.bateria == 5){ InstanciadorObjetos.Instance.GenerarUnObjeto(InstanciadorObjetos.Instance.bateria, "Bateria"); }
         }
         else if (jugador.bateria > 20f && jugador.bateria <= 40f)
         {
@@ -47,7 +49,6 @@ public class GestorBateria : MonoBehaviour
         {
             SetVisibilidadCubo(5);
             CambiarColor(Color.green);
-            
         }
     }
 

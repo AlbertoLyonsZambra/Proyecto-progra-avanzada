@@ -11,7 +11,7 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
     [SerializeField] private SimpleObjectPool[] verdes;
     [SerializeField] private SimpleObjectPool[] naranjas;
     [SerializeField] private SimpleObjectPool[] rosas;
-    [SerializeField] private SimpleObjectPool[] bateria;
+    [SerializeField] public SimpleObjectPool[] bateria;
     [SerializeField] private Transform[] generadoresAsteroidesPos;
     [SerializeField] private SimpleObjectPool[] finalNivel;
     void Start()
@@ -62,5 +62,14 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         }
     }
 
+    public void GenerarUnObjeto(SimpleObjectPool[] objetos, string nombre)
+    {
+        List<int> posMatriz = GenerarPos(nombre);
+        GameObject objeto = objetos[Random.Range(0, objetos.Length-1)].GetPooledGameObject();
+        if(!objeto.GetComponent<MeshRenderer>().enabled){objeto.GetComponent<MeshRenderer>().enabled = true;}
+        objeto.transform.position = new Vector3(matrizCarriles[posMatriz[0], posMatriz[1]].x, matrizCarriles[posMatriz[0], posMatriz[1]].y, transform.position.z);
+        objeto.SetActive(true);
+        
+    }
     
 }
