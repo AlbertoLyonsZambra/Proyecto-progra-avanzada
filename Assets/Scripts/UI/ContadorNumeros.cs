@@ -19,4 +19,5 @@ public class ContadorNumeros : MonoBehaviour
         if(gameObject.transform.parent.tag == "numeroR"){tmpro.text = "+" + PlayerPrefs.GetInt("MatsR").ToString();}
         
     }
+    
 }

@@ -35,9 +35,9 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         if(gameObject.transform.parent != null)
         {
             temporizadorDisparoLaser = 0f;
-            if(gameObject.transform.parent.name == "0"){cadenciaLaser = 0.35f;}
-            else if(gameObject.transform.parent.name == "1"){cadenciaLaser = 0.2f;}
-            else if(gameObject.transform.parent.name == "2"){cadenciaLaser = 0.2f;}
+            if(gameObject.transform.parent.name == "0"){cadenciaLaser = 0.25f;}
+            else if(gameObject.transform.parent.name == "1"){cadenciaLaser = 0.15f;}
+            else if(gameObject.transform.parent.name == "2"){cadenciaLaser = 0.15f;}
             else if(gameObject.transform.parent.name == "3"){cadenciaLaser = 0.15f;}
             else if(gameObject.transform.parent.name == "4"){cadenciaLaser = 0.2f;}
         }
@@ -71,11 +71,11 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         if(other.gameObject.CompareTag("ConsumibleV"))
         {
             mostrandoV = true;
-            mats[contTriggerV] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
+            mats[contTriggerV] = Mathf.RoundToInt(Random.Range(2, 8) * multiplicadorMaterial);
             contTriggerV++;
             if(contTriggerV == 8)
             {
-                PlayerPrefs.SetInt("MatsV", PlayerPrefs.GetInt("MatsV") + Mathf.RoundToInt(Promediar(mats)));
+                PlayerPrefs.SetInt("MatsV", PlayerPrefs.GetInt("MatsV") + Mathf.RoundToInt(Promediar(mats)) + Random.Range(-1, 2));
                 contTriggerV = 0;
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
             }
@@ -83,11 +83,11 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         if(other.gameObject.CompareTag("ConsumibleN"))
         {
             mostrandoN = true;
-            mats[contTriggerN] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
+            mats[contTriggerN] = Mathf.RoundToInt(Random.Range(2, 7) * multiplicadorMaterial);
             contTriggerN++;
             if(contTriggerN == 8)
             {
-                PlayerPrefs.SetInt("MatsN", Mathf.RoundToInt(Promediar(mats))); 
+                PlayerPrefs.SetInt("MatsN", PlayerPrefs.GetInt("MatsN") + Mathf.RoundToInt(Promediar(mats)) + Random.Range(-2, 2));
                 contTriggerN = 0;
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
             }
@@ -95,11 +95,11 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         if(other.gameObject.CompareTag("ConsumibleR"))
         {
             mostrandoR = true;
-            mats[contTriggerR] = Mathf.RoundToInt(Random.Range(2, 9) * multiplicadorMaterial);
-            contTriggerN++;
+            mats[contTriggerR] = Mathf.RoundToInt(Random.Range(2, 5) * multiplicadorMaterial);
+            contTriggerR++;
             if(contTriggerR == 8)
             {
-                PlayerPrefs.SetInt("MatsR", Mathf.RoundToInt(Promediar(mats))); 
+                PlayerPrefs.SetInt("MatsR", PlayerPrefs.GetInt("MatsR") + Mathf.RoundToInt(Promediar(mats)) + Random.Range(-2, 1));
                 contTriggerR = 0;
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
             }
@@ -109,7 +109,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             other.gameObject.SetActive(false);
             //Debug.Log("Colision ");
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.bateriaSFX);
-            bateria += 20;
+            bateria += 30;
             if(bateria >= 100){bateria = 100;}
         }
     }

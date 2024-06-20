@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ProgresoNivel : MonoBehaviour {
+public class ProgresoNivel : GenericSingleton<ProgresoNivel> {
 
     [Header("UI references:")]
     [SerializeField] private Image uiFillImage;
     [SerializeField] private GameObject porcentajeTexto;
-    private TextMeshProUGUI porcentaje;
+    [HideInInspector] public TextMeshProUGUI porcentaje;
     private float total;
     private float tiempoInicial;
 
@@ -17,7 +17,7 @@ public class ProgresoNivel : MonoBehaviour {
         porcentaje = porcentajeTexto.GetComponent<TextMeshProUGUI>();
         tiempoInicial = Time.time;
         // Calculate total time
-        total = MenuPrincipal.Instance.duracionNivel;
+        total = MenuPrincipal.Instance.duracionNivel + 60f;
     }
 
     private void Update()

@@ -28,7 +28,7 @@ public class GestorBateria : MonoBehaviour
         {
             CambiarColor(Color.grey);
             SetVisibilidadCubo(1);
-            if(jugador.bateria == 20){ InstanciadorObjetos.Instance.GenerarUnObjeto(InstanciadorObjetos.Instance.bateria, "Bateria"); }
+            if(jugador.bateria == 19){ InstanciadorObjetos.Instance.GenerarUnObjeto(InstanciadorObjetos.Instance.bateria, "Bateria"); }
         }
         else if (jugador.bateria > 20f && jugador.bateria <= 40f)
         {
@@ -66,7 +66,7 @@ public class GestorBateria : MonoBehaviour
                 //Debug.Log("Bater�a agotada");
             }
 
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(0.8f);
         }
     }
 
