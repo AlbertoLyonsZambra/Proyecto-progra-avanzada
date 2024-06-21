@@ -87,10 +87,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
         }
 
     }
-    public void MoverPlataformaFinal(Vector3 plataforma)
-    {
-        transform.position = Vector3.Slerp(transform.position, plataforma, velocidad * Time.deltaTime);
-    }
+    
     public void InclinacionJugador(int fila, int columna)
     {
         if(tag=="Player")

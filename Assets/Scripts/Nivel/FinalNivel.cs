@@ -46,7 +46,7 @@ public class FinalNivel : GenericSingleton<FinalNivel>
     {
         if (victoria) 
         {
-            MovimientoCarriles.Instance.MoverPlataformaFinal(plataforma);
+            GestorAnimaciones.Instance.MoverPlataformaFinal();
         }
     }
 }

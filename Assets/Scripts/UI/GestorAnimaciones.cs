@@ -6,6 +6,8 @@ public class GestorAnimaciones : GenericSingleton<GestorAnimaciones>
 {
     [SerializeField] public List<GameObject> movsCamGO;
     [HideInInspector] public List<CPC_CameraPath> movsCamCPC;
+    [SerializeField] private GameObject estacionamientoNaveGO;
+    [HideInInspector] private Animator estacionamientoNaveAnim;
     public bool enTransicion = false;
     void Start()
     {
@@ -13,6 +15,8 @@ public class GestorAnimaciones : GenericSingleton<GestorAnimaciones>
         {
             movsCamCPC.Add(movsCamGO[i].GetComponent<CPC_CameraPath>());
         }
+
+        estacionamientoNaveAnim = estacionamientoNaveGO.GetComponent<Animator>();
     }
 
     void Update()
@@ -79,5 +83,10 @@ public class GestorAnimaciones : GenericSingleton<GestorAnimaciones>
         if(nombreDestino == "taller"){MenuPrincipal.Instance.enTaller=true; MenuPrincipal.Instance.pantallaTaller.SetActive(true); GestorTaller.Instance.NaveSeleccionada();}
         else if(nombreDestino == "terminal"){MenuPrincipal.Instance.enTerminal=true; MenuPrincipal.Instance.pantallaTaller.SetActive(false); GestorTaller.Instance.NaveSeleccionada();}
         else if(nombreDestino == "juego"){MenuPrincipal.Instance.jugando=true;}
+    }
+
+    public void MoverPlataformaFinal()
+    {
+        // estacionamientoNaveAnim.enable = true;
     }
 }

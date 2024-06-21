@@ -140,4 +140,5 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         }
         
     }
+    
 }

@@ -28597,7 +28597,7 @@ MeshRenderer:
   m_GameObject: {fileID: 260200390}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
@@ -30252,6 +30252,7 @@ MonoBehaviour:
   - {fileID: 1534239646}
   - {fileID: 826101129}
   movsCamCPC: []
+  estacionamientoNaveGO: {fileID: 0}
   enTransicion: 0
 --- !u!4 &334241706
 Transform:
@@ -75090,6 +75091,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: ee3099c102f98214eaf34051ed635066, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: ee3099c102f98214eaf34051ed635066, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8071156209face440927a521e459c5c4, type: 2}
@@ -76933,6 +76938,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: 06a6dd0cd85f5c647b9f4b5857646d61, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -79200,6 +79209,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b463d441880b42246a366690d4226071, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: b463d441880b42246a366690d4226071, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: b463d441880b42246a366690d4226071, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -81713,6 +81726,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: cfe9d0dae88655b4099d3a18ce7b0c4d, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -96574,6 +96591,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: 01219542f5d2b82408e2f92fa568547c, type: 3}
       propertyPath: m_Materials.Array.data[0]
