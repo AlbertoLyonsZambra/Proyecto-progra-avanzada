@@ -70,13 +70,13 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
                     barraProgreso.SetActive(true);
                 }
                 
-                ayudaScript.CambiarPantallaActual("juego");
+                ayudaScript.CambiarPantallaActual("juego1");
             }
             else
             {
                 pantallaTutorial.SetActive(true);
                 InstanciadorObjetos.Instance.enabled = false;
-                ayudaScript.CambiarPantallaActual("juego");
+                ayudaScript.CambiarPantallaActual("juego1");
             }
         }else{print("No se ha seleccionado ninguna nave");}
 
