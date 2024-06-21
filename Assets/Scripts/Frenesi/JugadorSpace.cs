@@ -8,11 +8,20 @@ public class JugadorSpace : MonoBehaviour
     public float velocidadMovimiento;
     private Vector2 mov;
     public Animator animator;
+    public float fireRate = 0.5f;
+    private float fireNext = 0.0f;
+    public Rigidbody bulletPrefab;
+    public Transform[] shotPos;
+    public float fireForce = 500f;
+    public float fireSpread = 0.1f;
+    public GameObject muzFlashPrefab;
+    public float detectionRadius = 10f;
 
     void Update()
     {
         movePlayer();
         UpdateAnimator();
+        
 
         // Actualizar los parámetros del Animator
 
@@ -39,4 +48,6 @@ public class JugadorSpace : MonoBehaviour
         bool isMoving = mov != Vector2.zero;
         animator.SetBool("isCorrer", isMoving);
     }
+
+    
 }

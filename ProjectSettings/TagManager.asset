@@ -27,6 +27,10 @@ TagManager:
   - numero
   - MatTutorial
   - FlechaTutorial
+  - Destructible
+  - Enemy
+  - Waypoint
+  - Breadcrumb
   layers:
   - Default
   - TransparentFX
@@ -37,8 +41,8 @@ TagManager:
   - Jugar
   - Skybox
   - Post Procesado
-  - 
-  - 
+  - Enemy
+  - Breadcrumb
   - 
   - 
   - 
