@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemigo : MonoBehaviour
+public class EnemigoLobo : MonoBehaviour
 {
     public int rutina;
     public float cronometro;
@@ -49,14 +49,14 @@ public class Enemigo : MonoBehaviour
                     break;
                 case 2:
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, angulo, 0.5f);
-                    transform.Translate(Vector3.forward * 2 * Time.deltaTime); // Aumenta la velocidad de caminar
+                    transform.Translate(Vector3.forward * 3 * Time.deltaTime); // Aumenta la velocidad de caminar
                     ani.SetBool("walk", true);
                     break;
             }
         }
         else
         {
-            if (Vector3.Distance(transform.position, target.transform.position) > 1 && !atacando)
+            if (Vector3.Distance(transform.position, target.transform.position) > 4 && !atacando)
             {
                 var lookPos = target.transform.position - transform.position;
                 lookPos.y = 0;
@@ -65,7 +65,7 @@ public class Enemigo : MonoBehaviour
                 ani.SetBool("walk", false);
 
                 ani.SetBool("run", true);
-                transform.Translate(Vector3.forward * 4 * Time.deltaTime); // Aumenta la velocidad de correr
+                transform.Translate(Vector3.forward * 5 * Time.deltaTime); // Aumenta la velocidad de correr
 
                 ani.SetBool("attack", false);
             }
