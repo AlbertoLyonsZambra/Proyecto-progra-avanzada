@@ -93,10 +93,7 @@ public class MovimientoObstaculos : MonoBehaviour
             }
             else
             {
-                if (!FinalNivel.Instance.victoria)
-                {
-                    FinalNivel.Instance.Victoria();
-                }
+                FinalNivel.Instance.Victoria();
             }
         }
         if(tag == "Planeta")
