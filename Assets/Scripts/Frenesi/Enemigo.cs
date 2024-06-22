@@ -56,7 +56,7 @@ public class Enemigo : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(transform.position, target.transform.position) > 1 && !atacando)
+            if (Vector3.Distance(transform.position, target.transform.position) > 2 && !atacando)
             {
                 var lookPos = target.transform.position - transform.position;
                 lookPos.y = 0;
