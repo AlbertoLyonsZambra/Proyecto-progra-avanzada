@@ -100,6 +100,7 @@ namespace BreadcrumbAi{
 		void Start(){
 			StartCoroutine(this.Ai_Lists());
 			StartCoroutine(this.Ai_Layers());
+			_CanFollowPlayer = true;
 		}
 	
 		void Update(){
