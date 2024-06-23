@@ -12,7 +12,9 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
     public bool estaMuerto;
     private int sentidoX;
     private int sentidoY;
-    
+
+    [SerializeField] private ParticleSystem humoNaveDaniada;
+
     // Update is called once per frame
     void Start()
     {
@@ -22,7 +24,7 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
     {
         if (estaMuerto)
         {
-            Muerte();
+            AnimacionMuerte();
         }
     }
     
@@ -34,10 +36,18 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
             sentidoY = Random.Range(-1, 2);
         }
     }
+    private int vecesQueHaChocado = 0;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Obs_Asteroide") || other.gameObject.CompareTag("MatNormal") || other.gameObject.CompareTag("MatRaro") || other.gameObject.CompareTag("MatSuper") || other.gameObject.CompareTag("MatTutorial"))
         {
+            vecesQueHaChocado++;
+            if (!GestorHabilidades.Instance.ChoqueAsteroide(vecesQueHaChocado))
+            {
+                Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.impactoAsteroideSFX);
+                humoNaveDaniada.Play();
+                return;
+            }
             if (!estaMuerto)
             {
                 estaMuerto = true;
@@ -48,7 +58,7 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
             }
         }
     }
-    private void Muerte()
+    private void AnimacionMuerte()
     {
         transform.Translate(Vector3.right * fuerzaX * sentidoX * Time.deltaTime, Space.World);
         transform.Translate(Vector3.up * fuerzaY * sentidoY * Time.deltaTime, Space.World);

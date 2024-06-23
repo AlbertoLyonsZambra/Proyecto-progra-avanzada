@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class GestorTaller : GenericSingleton<GestorTaller>
 {
+    [Header("Taller")]
     [SerializeField] public GameObject navesTaller;
     [SerializeField] public GameObject navesJugador;
     [SerializeField] public GameObject seleccionarNave;
@@ -12,14 +15,29 @@ public class GestorTaller : GenericSingleton<GestorTaller>
     [HideInInspector] public Transform ultimaNaveJugador;
     [HideInInspector] public Transform ultimaNaveTaller;
     private bool[] elevados; 
+
+    [Header("Terminal")]
+    [SerializeField] private GameObject Materiales;
+    private TextMeshProUGUI textoVerde; 
+    private TextMeshProUGUI textoNaranja; 
+    private TextMeshProUGUI textoRosa; 
     
     void Start() 
     {
+        if (Materiales != null)
+        {
+            textoVerde = Materiales.transform.Find("Verde").Find("Cantidad").GetComponent<TextMeshProUGUI>();
+            textoNaranja = Materiales.transform.Find("Naranja").Find("Cantidad").GetComponent<TextMeshProUGUI>();
+            textoRosa = Materiales.transform.Find("Rosa").Find("Cantidad").GetComponent<TextMeshProUGUI>();
+        }
         nave = new List<GameObject>();
         foreach (Transform hijo in navesTaller.transform){nave.Add(hijo.gameObject);}
         elevados = new bool[nave.Count];
         for (int i = 0; i < elevados.Length; i++){elevados[i] = false;}
+
         ActualizarNavesTaller();
+        ActualizarMatsTerminal();
+        
     }
 
     void Update()
@@ -60,13 +78,13 @@ public class GestorTaller : GenericSingleton<GestorTaller>
         if(ultimaNaveTaller == null) {return;}
         if(MenuPrincipal.Instance.enTerminal)
         {
-            // if(!elevados[int.Parse(ultimaNaveTaller.name)] && ultimaNaveTaller.Find("default").GetComponent<MeshRenderer>().material.color != materialBloqueado.color)
+            // if(ultimaNaveTaller.Find("default").GetComponent<MeshRenderer>().material.color != materialBloqueado.color)
             {
                 // StartCoroutine(Elevar(ultimaNaveTaller, true));
                 for(int i = 0; i <= MenuPrincipal.Instance.nivelActual; i++)
                 {
                     // if(nave[i].transform.name == ultimaNaveTaller.name){continue;}
-                    if(elevados[int.Parse(nave[i].transform.name)]){StartCoroutine(Elevar(nave[i].transform, elevados[int.Parse(ultimaNaveTaller.name)]));}
+                    if(elevados[int.Parse(nave[i].transform.name)]){StartCoroutine(Elevar(nave[i].transform, true));}
                 }
             }
         }
@@ -101,8 +119,15 @@ public class GestorTaller : GenericSingleton<GestorTaller>
     }
     public void guardarMats()
     {
-        PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsV"));
-        PlayerPrefs.SetInt("MatsTallerN", PlayerPrefs.GetInt("MatsN"));
-        PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsR"));
+        PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsTallerV") + PlayerPrefs.GetInt("MatsV"));
+        PlayerPrefs.SetInt("MatsTallerN", PlayerPrefs.GetInt("MatsTallerN") + PlayerPrefs.GetInt("MatsN"));
+        PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsTallerR") + PlayerPrefs.GetInt("MatsR"));
+    }
+
+    private void ActualizarMatsTerminal()
+    {
+        textoVerde.text = PlayerPrefs.GetInt("MatsTallerV").ToString();
+        textoNaranja.text = PlayerPrefs.GetInt("MatsTallerN").ToString();
+        textoRosa.text = PlayerPrefs.GetInt("MatsTallerR").ToString();
     }
 }

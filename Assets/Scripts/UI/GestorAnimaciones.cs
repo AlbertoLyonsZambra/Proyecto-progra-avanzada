@@ -14,9 +14,9 @@ public class GestorAnimaciones : GenericSingleton<GestorAnimaciones>
         for(int i = 0; i < movsCamGO.Count; i++)
         {
             movsCamCPC.Add(movsCamGO[i].GetComponent<CPC_CameraPath>());
-        }
-
-        estacionamientoNaveAnim = estacionamientoNaveGO.GetComponent<Animator>();
+        }   
+        if(estacionamientoNaveGO != null){estacionamientoNaveAnim = estacionamientoNaveGO.GetComponent<Animator>();}
+        
     }
 
     void Update()

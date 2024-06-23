@@ -34,7 +34,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     void Start()
     {
         Application.targetFrameRate = 60;
-        nivelActual = PlayerPrefs.GetInt("nivelActual");
+        nivelActual = 1;
         pasoTutorial = PlayerPrefs.GetInt("pasoTutorial");
 
         

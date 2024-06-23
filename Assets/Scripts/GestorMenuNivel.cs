@@ -18,7 +18,7 @@ public class GestorMenuNivel : MonoBehaviour
     {
         AudioClip musicaPaPoner = musicaNivel0;
         Material skyBoxPaPoner = skyboxNivel0;
-        int nivel = PlayerPrefs.GetInt("nivelActual");
+        int nivel = MenuPrincipal.Instance.nivelActual;
         if (nivel == 1)
         {
             musicaPaPoner = musicaNivel1;

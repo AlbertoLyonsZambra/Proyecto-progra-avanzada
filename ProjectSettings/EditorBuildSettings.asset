@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Juego.unity
     guid: 2fc6fa25589b9e14ca5dd1532dabf35e
   - enabled: 0
-    path: Assets/Scenes/PruebasMatias.unity
+    path: Assets/Scenes/por si se me olvido algo/PruebasMatias PORSIACASO.unity
     guid: 632af6eaa8d26fc498a56bc23ee6f453
   - enabled: 0
     path: Assets/Scenes/PruebasAlberto.unity
