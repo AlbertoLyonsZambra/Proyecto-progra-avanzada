@@ -13,6 +13,8 @@ public class EnemigoLobo : MonoBehaviour
     public GameObject target;
     public bool atacando;
 
+    public int health = 10; // Variable de salud
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +51,7 @@ public class EnemigoLobo : MonoBehaviour
                     break;
                 case 2:
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, angulo, 0.5f);
-                    transform.Translate(Vector3.forward * 3 * Time.deltaTime); // Aumenta la velocidad de caminar
+                    transform.Translate(Vector3.forward * 5 * Time.deltaTime); // Aumenta la velocidad de caminar
                     ani.SetBool("walk", true);
                     break;
             }
@@ -65,7 +67,7 @@ public class EnemigoLobo : MonoBehaviour
                 ani.SetBool("walk", false);
 
                 ani.SetBool("run", true);
-                transform.Translate(Vector3.forward * 5 * Time.deltaTime); // Aumenta la velocidad de correr
+                transform.Translate(Vector3.forward * 8 * Time.deltaTime); // Aumenta la velocidad de correr
 
                 ani.SetBool("attack", false);
             }
@@ -84,5 +86,14 @@ public class EnemigoLobo : MonoBehaviour
     {
         ani.SetBool("attack", false);
         atacando = false;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

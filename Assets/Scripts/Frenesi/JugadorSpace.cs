@@ -14,10 +14,9 @@ public class JugadorSpace : MonoBehaviour
     public Transform shotPos;
     public float fireForce = 500f;
     public float fireSpread = 0.1f;
-    public GameObject muzFlashPrefab;
     public float detectionRadius = 10f;
-    public LayerMask enemyLayer; // Asegúrate de configurar esto en el Inspector
-    public GameObject detectionCircle; // Arrastra el círculo rojo aquí en el Inspector
+    public LayerMask enemyLayer;
+    public Transform detectionCircleTransform; // Cambiado de GameObject a Transform
 
     private GameObject closestEnemy;
 
@@ -28,6 +27,7 @@ public class JugadorSpace : MonoBehaviour
         DetectEnemies();
         RotateTowardsEnemy();
         TryShoot();
+        UpdateDetectionCircleOrientation(); // Nueva línea añadida
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -73,12 +73,11 @@ public class JugadorSpace : MonoBehaviour
 
         if (closestEnemy != null)
         {
-            //Debug.Log($"Girando hacia el enemigo: {closestEnemy.name} en posición {closestEnemy.transform.position}");
-            detectionCircle.SetActive(true);
+            detectionCircleTransform.gameObject.SetActive(true);
         }
         else
         {
-            if (detectionCircle.activeSelf)
+            if (detectionCircleTransform.gameObject.activeSelf)
             {
                 StartCoroutine(FadeOutDetectionCircle());
             }
@@ -91,28 +90,18 @@ public class JugadorSpace : MonoBehaviour
         {
             fireNext = Time.time + fireRate;
 
-            // Calcular la dirección hacia el enemigo sin la componente Y
             Vector3 directionToEnemy = (closestEnemy.transform.position - shotPos.position).normalized;
-            directionToEnemy.y = 0; // Eliminar la componente Y para mantener la altura constante
+            directionToEnemy.y = 0;
 
-            // Ajustar la altura del disparo
             Vector3 shotPosition = new Vector3(shotPos.position.x, shotPos.position.y, shotPos.position.z);
 
-            // Instanciar la bala y disparar hacia el enemigo
             Rigidbody bulletInstance = Instantiate(bulletPrefab, shotPosition, Quaternion.LookRotation(directionToEnemy));
             bulletInstance.velocity = directionToEnemy * fireForce;
-            bulletInstance.velocity = new Vector3(bulletInstance.velocity.x, 0, bulletInstance.velocity.z); // Asegurarse de que la velocidad en Y sea 0
-
-            // Opcional: añadir un efecto visual de disparo
-            if (muzFlashPrefab != null)
-            {
-                Instantiate(muzFlashPrefab, shotPos.position, shotPos.rotation);
-            }
+            bulletInstance.velocity = new Vector3(bulletInstance.velocity.x, 0, bulletInstance.velocity.z);
 
             Debug.Log($"Disparando hacia el enemigo: {closestEnemy.name}");
         }
     }
-
 
     void OnDrawGizmosSelected()
     {
@@ -136,7 +125,7 @@ public class JugadorSpace : MonoBehaviour
         }
         else
         {
-            return; // No rotation if no enemy and no movement
+            return;
         }
 
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 0.15f);
@@ -144,9 +133,9 @@ public class JugadorSpace : MonoBehaviour
 
     IEnumerator FadeOutDetectionCircle()
     {
-        SpriteRenderer sr = detectionCircle.GetComponent<SpriteRenderer>();
+        SpriteRenderer sr = detectionCircleTransform.GetComponent<SpriteRenderer>();
         Color originalColor = sr.color;
-        float fadeDuration = 0.7f; // Duración del desvanecimiento
+        float fadeDuration = 0.7f;
         float fadeSpeed = 1 / fadeDuration;
         float t = 0;
 
@@ -157,7 +146,22 @@ public class JugadorSpace : MonoBehaviour
             yield return null;
         }
 
-        detectionCircle.SetActive(false);
-        sr.color = originalColor; // Restaurar el color original para el próximo uso
+        detectionCircleTransform.gameObject.SetActive(false);
+        sr.color = originalColor;
+    }
+
+    // Nuevo método añadido
+    private void UpdateDetectionCircleOrientation()
+    {
+        if (detectionCircleTransform != null)
+        {
+            Vector3 localPosition = detectionCircleTransform.localPosition;
+            
+            detectionCircleTransform.SetParent(null);
+            detectionCircleTransform.rotation = Quaternion.Euler(90, 0, 0);
+            detectionCircleTransform.SetParent(transform);
+            
+            detectionCircleTransform.localPosition = localPosition;
+        }
     }
 }
