@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PruebasAdan.unity
     guid: 9dbd82c1b901a604f9ca53dcc698cc3a
+  - enabled: 1
+    path: Assets/Scenes/Frenesi/Frenesi.unity
+    guid: 907e894bf4d2deb448502e503bdf8213
   m_configObjects: {}

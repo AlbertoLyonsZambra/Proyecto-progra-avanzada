@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuPrincipal : GenericSingleton<MenuPrincipal>
 {
@@ -12,6 +12,8 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     [SerializeField] public GameObject pantallaTutorial;
     [SerializeField] private Ayuda ayudaScript;
     [SerializeField] public GameObject barraProgreso;
+    [SerializeField] private GameObject panel1; 
+    [SerializeField] private Button botonFrenesi;
 
     [Header("Del jugador")]
     [SerializeField] private GameObject laseres;
@@ -31,11 +33,22 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     [HideInInspector] public float duracionNivel;
     [HideInInspector] public float tiempoTranscurrido;
 
+    public Animator animator;
+
     void Start()
     {
         Application.targetFrameRate = 60;
-        nivelActual = 1;
+        nivelActual = PlayerPrefs.GetInt("nivelActual");
         pasoTutorial = PlayerPrefs.GetInt("pasoTutorial");
+
+        // Desactiva el botón de frenesí por defecto
+        if (botonFrenesi != null)
+        {
+            botonFrenesi.gameObject.SetActive(false);
+        }
+
+        // Verifica si el nivel actual es 1 y activa el botón si es así
+        ActualizarBotonFrenesi();
 
         
         // Establece la pantalla de ayuda inicial como la pantalla inicial
@@ -84,6 +97,24 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         //ayudaScript.CambiarPantallaActual("juego");
         
     }
+
+    public void Frenesi()
+    {
+        int nivel = PlayerPrefs.GetInt("nivelActual");
+
+        if (nivel == 1)
+        {
+            panel1.SetActive(true);
+            StartCoroutine(CargarFrenesiScene());
+        }
+    }
+
+    private IEnumerator CargarFrenesiScene()
+    {
+        yield return new WaitForSeconds(2); // Espera 2 segundos
+        SceneManager.LoadScene("Frenesi"); // Carga la escena "Frenesi"
+    }
+    
     public void Taller()
     {
         GestorAnimaciones.Instance.InicioATaller();
@@ -93,6 +124,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         // Establece la pantalla de ayuda actual como la pantalla de taller
         ayudaScript.CambiarPantallaActual("taller");
     }
+
     public IEnumerator EsperarAEventoCoroutine(float tiempoInicio, float tiempoFinal, string evento)
     {
         yield return new WaitForSeconds(tiempoFinal); // Espera (si usa WaitForSecondsRealtime puede funcionar distinto)
@@ -108,15 +140,27 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             print(" no paso na companero ");
         }
     }
-    private void PantallaTaller(){
-            pantallaTaller.SetActive(true);
-            StartCoroutine(SeleccionarNave());
+
+    private void PantallaTaller()
+    {
+        pantallaTaller.SetActive(true);
+        StartCoroutine(SeleccionarNave());
     }
+
     IEnumerator SeleccionarNave()
     {
         yield return new WaitForSeconds(3);
         if(!JugadorNivel.Instance.escogioNave){
             pantallaTaller.transform.Find("Seleccionar nave").gameObject.SetActive(true);
+        }
+    }
+
+    public void ActualizarBotonFrenesi()
+    {
+        int nivel = PlayerPrefs.GetInt("nivelActual");
+        if (botonFrenesi != null)
+        {
+            botonFrenesi.gameObject.SetActive(nivel == 1);
         }
     }
 }
