@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.031459253, g: 0.009866884, b: 0.013233621, a: 1}
+  m_IndirectSpecularColor: {r: 0.031427085, g: 0.009846414, b: 0.013195235, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -46640,9 +46640,17 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2571118854743697038, guid: 15e42b16ad4cf074ab1cd13b5ae348ea, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fef8f747fb612184bab668ae72bcb9e9, type: 2}
+    - target: {fileID: -2571118854743697038, guid: 15e42b16ad4cf074ab1cd13b5ae348ea, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 944c39347f7460d468fe44765d30ba1e, type: 2}
     - target: {fileID: 919132149155446097, guid: 15e42b16ad4cf074ab1cd13b5ae348ea, type: 3}
       propertyPath: m_Name
-      value: mars
+      value: planeta
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -62290,7 +62298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &905063218
 Transform:
   m_ObjectHideFlags: 0
@@ -62322,8 +62330,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pantallaFinal: {fileID: 1105139752}
+  destino: {fileID: 1541677185}
+  planeta: {fileID: 1749698341}
   clipVictoria: {fileID: 8300000, guid: ad722a70a33772a49b0ddabd001757d8, type: 3}
   clipTransicion: {fileID: 8300000, guid: 4b02502499319d8499a1a4e5fc554e30, type: 3}
+  planetaNivel0: {fileID: 3216828140875866387, guid: fe35aea2f0511bf469fe982c46720a55, type: 3}
+  planetaNivel1: {fileID: 3216828140875866387, guid: 7cdc3cb01d8a7ee46b758277a415978e, type: 3}
+  planetaNivel2: {fileID: 3216828140875866387, guid: c6e496ef17c0b9449bc415ba9e6b9dec, type: 3}
+  planetaNivel3: {fileID: 3216828140875866387, guid: 956dd05d2883f6e4ab628e35db85ebad, type: 3}
   victoria: 0
 --- !u!1 &933201151
 GameObject:
@@ -93801,6 +93815,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1749649567}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1749698341 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 15e42b16ad4cf074ab1cd13b5ae348ea, type: 3}
+  m_PrefabInstance: {fileID: 806838714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1754227948
 PrefabInstance:
   m_ObjectHideFlags: 0

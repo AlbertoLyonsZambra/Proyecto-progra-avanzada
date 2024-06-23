@@ -1,15 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.UI.Image;
+using UnityEngine.UIElements;
 
 public class FinalNivel : GenericSingleton<FinalNivel>
 {
     [SerializeField] private GameObject pantallaFinal;
+    [SerializeField] private GameObject destino;
+    [SerializeField] private GameObject planeta;
     [SerializeField] private AudioClip clipVictoria;
     [SerializeField] private AudioClip clipTransicion;
+    [SerializeField] private GameObject planetaNivel0;
+    [SerializeField] private GameObject planetaNivel1;
+    [SerializeField] private GameObject planetaNivel2;
+    [SerializeField] private GameObject planetaNivel3;
     [HideInInspector] public bool victoria = false;
     private Vector3 plataforma;
-
+    private void OnEnable()
+    {
+        GameObject planetaCargar = planetaNivel0;
+        int nivel = PlayerPrefs.GetInt("nivelActual");
+        if (nivel == 1)
+        {
+            planetaCargar = planetaNivel1;
+        }
+        if (nivel == 2)
+        {
+            planetaCargar = planetaNivel2;
+        }
+        if (nivel == 3)
+        {
+            planetaCargar = planetaNivel3;
+        }
+        Vector3 posicion = planeta.transform.position;
+        Instantiate(planetaCargar, posicion,Quaternion.identity, destino.transform);
+        Destroy(planeta);
+    }
     public void Victoria()
     {
         GestorTaller.Instance.guardarMats();
@@ -23,7 +50,7 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         {
             PlayerPrefs.SetInt("nivelActual", nivelActual + 1);
         }
-        nivelActual = PlayerPrefs.GetInt("nivelActual");
+        //nivelActual = PlayerPrefs.GetInt("nivelActual");
         GameObject.Find("Sistema carriles").transform.Find("Instanciador_objetos").gameObject.SetActive(false);
         GameObject.Find("Animaciones").gameObject.SetActive(false);
         JugadorNivel.Instance.enabled = false;

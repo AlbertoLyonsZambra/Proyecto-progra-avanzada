@@ -56,8 +56,8 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             pantallaTaller.SetActive(false);
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
             // Formula = 2 segundos de transicion del taller a juego, mas 5 minutos de base (300s), mas el nivel en el que est�
-            duracionNivel = 2.0f + 230 + nivelActual * 30f; // +30s de duracion por nivel
-            duracionNivel = 3;
+            duracionNivel = 2.0f + 70 + nivelActual * 30f; // +30s de duracion por nivel
+            duracionNivel = 2;
             sistemaCarriles.SetActive(true);
             laseres.SetActive(true);
             GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);
