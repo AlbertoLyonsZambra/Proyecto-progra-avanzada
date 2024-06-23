@@ -14,20 +14,61 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
     [SerializeField] public SimpleObjectPool[] bateria;
     [SerializeField] private Transform[] generadoresAsteroidesPos;
     [SerializeField] private SimpleObjectPool[] finalNivel;
+
     void Start()
     {
-        matrizCarriles = MatrizCarriles.Instance.matrizCarriles;
-        StartCoroutine(AparecerObjetosCoroutine(null, asteroides, "Asteroide", 0, 1.5f));
-        StartCoroutine(AparecerObjetosCoroutine(null, verdes, "Verde", 5f, 7f));
-        if(MenuPrincipal.Instance.nivelActual >= 1){StartCoroutine(AparecerObjetosCoroutine(null, naranjas, "Naranja", 5f, 7f));}
-        if(MenuPrincipal.Instance.nivelActual >= 3){StartCoroutine(AparecerObjetosCoroutine(null, rosas, "Rosa", 5f, 7f));}
-        StartCoroutine(AparecerObjetosCoroutine(null, bateria, "Bateria" , 10f, 20f ));
-    }
+        // Tiempos para nivel 0
+        float tiempoMinAsteroides = 0;
+        float tiempoMaxAsteroides = 3;
+        float tiempoMinAsteroidesColor = 7;
+        float tiempoMaxAsteroidesColor = 8;
+        float tiempoMinBateria = 5;
+        float tiempoMaxBateria = 15;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        int nivel = MenuPrincipal.Instance.nivelActual;
+        if (nivel == 1)
+        {
+            tiempoMinAsteroides = 0;
+            tiempoMinAsteroides = 1f;
+            tiempoMinAsteroidesColor = 5;
+            tiempoMinAsteroidesColor = 6;
+            tiempoMinBateria = 7;
+            tiempoMaxBateria = 17;
+        }
+        if (nivel == 2)
+        {
+            List<float> tiempoDecimal = new List<float> {0.1f, 0.2f, 0.3f, 0.4f, 0.5f, 0.6f, 0.7f};
+            int indice = Random.Range(0, tiempoDecimal.Count);
+
+            float decimalt = tiempoDecimal[indice];
+            tiempoMinAsteroides = 0;
+            tiempoMinAsteroides = 0.5f + decimalt;
+            tiempoMinAsteroidesColor = 4;
+            tiempoMinAsteroidesColor = 6;
+            tiempoMinBateria = 8;
+            tiempoMaxBateria = 19;
+        }
+        // Estos son los tiempos base antes de haber aplicado el escalador
+        if (nivel == 3)
+        {
+            List<float> tiempoDecimal = new List<float> { 0.1f, 0.2f, 0.3f, 0.4f, 0.5f};
+            int indice = Random.Range(0, tiempoDecimal.Count);
+
+            float decimalt = tiempoDecimal[indice];
+            tiempoMinAsteroides = 0;
+            tiempoMinAsteroides = 0.3f + decimalt;
+            tiempoMinAsteroidesColor = 4;
+            tiempoMinAsteroidesColor = 6;
+            tiempoMinBateria = 10;
+            tiempoMaxBateria = 20;
+        }
+
+        matrizCarriles = MatrizCarriles.Instance.matrizCarriles;
+        StartCoroutine(AparecerObjetosCoroutine(null, asteroides, "Asteroide", tiempoMinAsteroides, tiempoMaxAsteroides));
+        StartCoroutine(AparecerObjetosCoroutine(null, verdes, "Verde", tiempoMinAsteroidesColor, tiempoMaxAsteroidesColor));
+        if (nivel >= 1) { StartCoroutine(AparecerObjetosCoroutine(null, naranjas, "Naranja", tiempoMinAsteroidesColor, tiempoMaxAsteroidesColor)); }
+        if (nivel >= 3) { StartCoroutine(AparecerObjetosCoroutine(null, rosas, "Rosa", tiempoMinAsteroidesColor, tiempoMaxAsteroidesColor)); }
+        StartCoroutine(AparecerObjetosCoroutine(null, bateria, "Bateria", tiempoMinBateria, tiempoMaxBateria));
     }
 
     // Retorna lista con la posicion [fila, columna] y pasa el nombre del objeto a generar como string (sirve como debug)
@@ -45,19 +86,19 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
     IEnumerator AparecerObjetosCoroutine(List<int> posMatrizPrevia, SimpleObjectPool[] objetos, string nombre, float tiempoMin, float tiempoMax)
     {
         yield return new WaitForSeconds(Random.Range(tiempoMin, tiempoMax));
-        if (posMatrizPrevia==null){posMatrizPrevia = GenerarPos("FIRST IF");}
+        if (posMatrizPrevia == null) { posMatrizPrevia = GenerarPos("FIRST IF"); }
         List<int> posMatriz = GenerarPos(nombre);
         if (!posMatrizPrevia.SequenceEqual(posMatriz))
         {
-            GameObject objeto = objetos[Random.Range(0, objetos.Length-1)].GetPooledGameObject();
-            if(!objeto.GetComponent<MeshRenderer>().enabled){objeto.GetComponent<MeshRenderer>().enabled = true;}
+            GameObject objeto = objetos[Random.Range(0, objetos.Length - 1)].GetPooledGameObject();
+            if (!objeto.GetComponent<MeshRenderer>().enabled) { objeto.GetComponent<MeshRenderer>().enabled = true; }
             objeto.transform.position = new Vector3(matrizCarriles[posMatriz[0], posMatriz[1]].x, matrizCarriles[posMatriz[0], posMatriz[1]].y, transform.position.z);
             objeto.SetActive(true);
             StartCoroutine(AparecerObjetosCoroutine(posMatriz, objetos, nombre, tiempoMin, tiempoMax));
-        } 
+        }
         else if (posMatrizPrevia.SequenceEqual(posMatriz))
         {
-            while (posMatrizPrevia.SequenceEqual(posMatriz)){posMatriz = GenerarPos("WHILE");}
+            while (posMatrizPrevia.SequenceEqual(posMatriz)) { posMatriz = GenerarPos("WHILE"); }
             StartCoroutine(AparecerObjetosCoroutine(posMatriz, objetos, nombre, tiempoMin, tiempoMax));
         }
     }
@@ -65,11 +106,11 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
     public void GenerarUnObjeto(SimpleObjectPool[] objetos, string nombre)
     {
         List<int> posMatriz = GenerarPos(nombre);
-        GameObject objeto = objetos[Random.Range(0, objetos.Length-1)].GetPooledGameObject();
-        if(!objeto.GetComponent<MeshRenderer>().enabled){objeto.GetComponent<MeshRenderer>().enabled = true;}
+        GameObject objeto = objetos[Random.Range(0, objetos.Length - 1)].GetPooledGameObject();
+        if (!objeto.GetComponent<MeshRenderer>().enabled) { objeto.GetComponent<MeshRenderer>().enabled = true; }
         objeto.transform.position = new Vector3(matrizCarriles[posMatriz[0], posMatriz[1]].x, matrizCarriles[posMatriz[0], posMatriz[1]].y, transform.position.z);
         objeto.SetActive(true);
-        
+
     }
-    
+
 }
