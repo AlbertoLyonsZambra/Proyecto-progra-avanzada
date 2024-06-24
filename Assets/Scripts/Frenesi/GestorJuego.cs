@@ -27,6 +27,9 @@ public class GestorJuego : MonoBehaviour
 
     [SerializeField] private GameObject sueloPrefab;
     [SerializeField] private GameObject rocaPrefab;
+    [SerializeField] private GameObject[] naves;
+    [SerializeField] private GameObject naveMapa;
+
 
     // Start is called before the first frame update
     void Start()
@@ -42,24 +45,32 @@ public class GestorJuego : MonoBehaviour
             skyBoxPaPoner = skyboxNivel1;
             sueloPaPoner = sueloNivel1;
             rocaPaPoner = rocaNivel1;
+            naveMapa = naves[0];
+            naveMapa.SetActive(true);
         }
         else if (nivel == 2)
         {
             skyBoxPaPoner = skyboxNivel2;
             sueloPaPoner = sueloNivel2;
             rocaPaPoner = rocaNivel2;
+            naveMapa = naves[1];
+            naveMapa.SetActive(true);
         }
         else if (nivel == 3)
         {
             skyBoxPaPoner = skyboxNivel3;
             sueloPaPoner = sueloNivel3;
             rocaPaPoner = rocaNivel3;
+            naveMapa = naves[2];
+            naveMapa.SetActive(true);
         }
         else if (nivel >= 4)
         {
             skyBoxPaPoner = skyboxNivel4;
             sueloPaPoner = sueloNivel4;
             rocaPaPoner = rocaNivel4;
+            naveMapa = naves[3];
+            naveMapa.SetActive(true);
         }
 
         if (skyBoxPaPoner != null)
