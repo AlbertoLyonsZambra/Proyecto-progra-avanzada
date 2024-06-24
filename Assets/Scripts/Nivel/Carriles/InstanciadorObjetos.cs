@@ -12,6 +12,7 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
     [SerializeField] private SimpleObjectPool[] naranjas;
     [SerializeField] private SimpleObjectPool[] rosas;
     [SerializeField] public SimpleObjectPool[] bateria;
+    [SerializeField] public SimpleObjectPool[] kits;
     [SerializeField] private Transform[] generadoresAsteroidesPos;
     [SerializeField] private SimpleObjectPool[] finalNivel;
 
@@ -24,6 +25,8 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         float tiempoMaxAsteroidesColor = 8;
         float tiempoMinBateria = 5;
         float tiempoMaxBateria = 15;
+        float tiempoMinKit = 30;
+        float tiempoMaxKit = 35;
 
         int nivel = MenuPrincipal.Instance.nivelActual;
         if (nivel == 1)
@@ -34,6 +37,8 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
             tiempoMinAsteroidesColor = 6;
             tiempoMinBateria = 7;
             tiempoMaxBateria = 17;
+            tiempoMinKit = 32;
+            tiempoMaxKit = 37;
         }
         if (nivel == 2)
         {
@@ -47,6 +52,8 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
             tiempoMinAsteroidesColor = 6;
             tiempoMinBateria = 8;
             tiempoMaxBateria = 19;
+            tiempoMinKit = 34;
+            tiempoMaxKit = 39;
         }
         // Estos son los tiempos base antes de haber aplicado el escalador
         if (nivel == 3)
@@ -61,6 +68,8 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
             tiempoMinAsteroidesColor = 6;
             tiempoMinBateria = 10;
             tiempoMaxBateria = 20;
+            tiempoMinKit = 35;
+            tiempoMaxKit = 40;
         }
 
         matrizCarriles = MatrizCarriles.Instance.matrizCarriles;
@@ -69,6 +78,7 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         if (nivel >= 1) { StartCoroutine(AparecerObjetosCoroutine(null, naranjas, "Naranja", tiempoMinAsteroidesColor, tiempoMaxAsteroidesColor)); }
         if (nivel >= 3) { StartCoroutine(AparecerObjetosCoroutine(null, rosas, "Rosa", tiempoMinAsteroidesColor, tiempoMaxAsteroidesColor)); }
         StartCoroutine(AparecerObjetosCoroutine(null, bateria, "Bateria", tiempoMinBateria, tiempoMaxBateria));
+        StartCoroutine(AparecerObjetosCoroutine(null, kits, "Kit Reparacion", tiempoMinBateria, tiempoMaxBateria));
     }
 
     // Retorna lista con la posicion [fila, columna] y pasa el nombre del objeto a generar como string (sirve como debug)

@@ -36,8 +36,8 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         {
             temporizadorDisparoLaser = 0f;
             if(gameObject.transform.parent.name == "0"){cadenciaLaser = 0.25f;}
-            else if(gameObject.transform.parent.name == "1"){cadenciaLaser = 0.10f;}
-            else if(gameObject.transform.parent.name == "2"){cadenciaLaser = 0.10f;}
+            else if(gameObject.transform.parent.name == "1"){cadenciaLaser = 0.05f;}
+            else if(gameObject.transform.parent.name == "2"){cadenciaLaser = 0.05f;}
             else if(gameObject.transform.parent.name == "3"){cadenciaLaser = 0.15f;}
             else if(gameObject.transform.parent.name == "4"){cadenciaLaser = 0.2f;}
         }
@@ -109,8 +109,17 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             other.gameObject.SetActive(false);
             //Debug.Log("Colision ");
             Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.bateriaSFX);
-            bateria += 30;
-            if(bateria >= 100){bateria = 100;}
+            if(other.gameObject.name.Contains("Industrial_Barrel"))
+            {
+                bateria += 30;
+                if(bateria >= 100){bateria = 100;}
+            }
+            else if(other.gameObject.name.Contains("KitReparacion") && MuerteJugador.Instance.vecesQueHaChocado > 0)
+            {
+                MuerteJugador.Instance.humoNaveDaniada.Stop();
+                MuerteJugador.Instance.vecesQueHaChocado = 0; // HELEA LA NAVE ENTERA
+            }
+
         }
     }
     private float Promediar(int[] valores)

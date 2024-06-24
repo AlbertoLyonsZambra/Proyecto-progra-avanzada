@@ -18,7 +18,7 @@ public class ColisionLaser : MonoBehaviour
         {
             other.transform.parent.gameObject.SetActive(false); // "Destruye" laser
             if (tag == "MatNormal" && cantLasers % 3 == 0) { RomperMaterial(other); }
-            else if (tag == "MatRaro" && cantLasers % 6 == 0) { RomperMaterial(other); }
+            else if (tag == "MatRaro" && cantLasers >= 5) { RomperMaterial(other); }
             else if (tag == "MatSuper" && cantLasers % 9 == 0) { RomperMaterial(other); }
             else if (tag == "MatTutorial" && cantLasers == 1) { RomperMaterial(other); }
         }

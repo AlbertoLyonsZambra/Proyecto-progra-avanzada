@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MuerteJugador : GenericSingleton<MuerteJugador>
 {
+     [Header("Para la animación de muerte")]
     [SerializeField] private GameObject explosion;
     [SerializeField] private float fuerzaX;
     [SerializeField] private float fuerzaY;
@@ -13,7 +14,9 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
     private int sentidoX;
     private int sentidoY;
 
-    [SerializeField] private ParticleSystem humoNaveDaniada;
+    [Header("Para los choques")]
+    [HideInInspector] public ParticleSystem humoNaveDaniada;
+    [HideInInspector] public int vecesQueHaChocado = 0;
 
     // Update is called once per frame
     void Start()
@@ -36,7 +39,6 @@ public class MuerteJugador : GenericSingleton<MuerteJugador>
             sentidoY = Random.Range(-1, 2);
         }
     }
-    private int vecesQueHaChocado = 0;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Obs_Asteroide") || other.gameObject.CompareTag("MatNormal") || other.gameObject.CompareTag("MatRaro") || other.gameObject.CompareTag("MatSuper") || other.gameObject.CompareTag("MatTutorial"))
