@@ -150,7 +150,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     IEnumerator SeleccionarNave()
     {
         yield return new WaitForSeconds(3);
-        if(!JugadorNivel.Instance.escogioNave){
+        if(!JugadorNivel.Instance.escogioNave && nivelActual <= 1){
             pantallaTaller.transform.Find("Seleccionar nave").gameObject.SetActive(true);
         }
     }

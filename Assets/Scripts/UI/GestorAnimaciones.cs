@@ -31,6 +31,7 @@ public class GestorAnimaciones : GenericSingleton<GestorAnimaciones>
         }
         else if ((alreves && !MenuPrincipal.Instance.enTaller)) {
             MenuPrincipal.Instance.enTerminal = false;
+            GestorHabilidades.Instance.DesaparecerPanelDetalle(true);
             Transicion(movsCamCPC[7], movsCamCPC[6], movsCamCPC[2], 1.0f, 10.0f, "taller"); 
         }
     }
