@@ -32,9 +32,9 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         if (nivel == 1)
         {
             tiempoMinAsteroides = 0;
-            tiempoMinAsteroides = 1f;
+            tiempoMaxAsteroides = 1f;
             tiempoMinAsteroidesColor = 5;
-            tiempoMinAsteroidesColor = 6;
+            tiempoMaxAsteroidesColor = 6;
             tiempoMinBateria = 7;
             tiempoMaxBateria = 17;
             tiempoMinKit = 32;
@@ -47,25 +47,24 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
 
             float decimalt = tiempoDecimal[indice];
             tiempoMinAsteroides = 0;
-            tiempoMinAsteroides = 0.5f + decimalt;
+            tiempoMaxAsteroides = 0.5f + decimalt;
             tiempoMinAsteroidesColor = 4;
-            tiempoMinAsteroidesColor = 6;
+            tiempoMaxAsteroidesColor = 6;
             tiempoMinBateria = 8;
             tiempoMaxBateria = 19;
             tiempoMinKit = 34;
             tiempoMaxKit = 39;
         }
-        // Estos son los tiempos base antes de haber aplicado el escalador
-        if (nivel == 3)
+        if (nivel >= 3)
         {
             List<float> tiempoDecimal = new List<float> { 0.1f, 0.2f, 0.3f, 0.4f, 0.5f};
             int indice = Random.Range(0, tiempoDecimal.Count);
 
             float decimalt = tiempoDecimal[indice];
             tiempoMinAsteroides = 0;
-            tiempoMinAsteroides = 0.3f + decimalt;
+            tiempoMaxAsteroides = 0.3f + decimalt;
             tiempoMinAsteroidesColor = 4;
-            tiempoMinAsteroidesColor = 6;
+            tiempoMaxAsteroidesColor = 6;
             tiempoMinBateria = 10;
             tiempoMaxBateria = 20;
             tiempoMinKit = 35;
@@ -78,7 +77,7 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         if (nivel >= 1) { StartCoroutine(AparecerObjetosCoroutine(null, naranjas, "Naranja", tiempoMinAsteroidesColor, tiempoMaxAsteroidesColor)); }
         if (nivel >= 3) { StartCoroutine(AparecerObjetosCoroutine(null, rosas, "Rosa", tiempoMinAsteroidesColor, tiempoMaxAsteroidesColor)); }
         StartCoroutine(AparecerObjetosCoroutine(null, bateria, "Bateria", tiempoMinBateria, tiempoMaxBateria));
-        StartCoroutine(AparecerObjetosCoroutine(null, kits, "Kit Reparacion", tiempoMinBateria, tiempoMaxBateria));
+        StartCoroutine(AparecerObjetosCoroutine(null, kits, "Kit Reparacion", tiempoMinKit, tiempoMaxKit));
     }
 
     // Retorna lista con la posicion [fila, columna] y pasa el nombre del objeto a generar como string (sirve como debug)
@@ -98,6 +97,10 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         yield return new WaitForSeconds(Random.Range(tiempoMin, tiempoMax));
         if (posMatrizPrevia == null) { posMatrizPrevia = GenerarPos("FIRST IF"); }
         List<int> posMatriz = GenerarPos(nombre);
+        if (MenuPrincipal.Instance.nivelActual >= 4)
+        {
+            tiempoMax -= 0.01f;
+        }
         if (!posMatrizPrevia.SequenceEqual(posMatriz))
         {
             GameObject objeto = objetos[Random.Range(0, objetos.Length - 1)].GetPooledGameObject();
