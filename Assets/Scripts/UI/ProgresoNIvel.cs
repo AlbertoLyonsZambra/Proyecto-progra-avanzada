@@ -18,7 +18,7 @@ public class ProgresoNivel : GenericSingleton<ProgresoNivel> {
         porcentaje = porcentajeTexto.GetComponent<TextMeshProUGUI>();
         tiempoInicial = Time.time;
         // Calculate total time
-        total = MenuPrincipal.Instance.duracionNivel + 232;
+        total = MenuPrincipal.Instance.duracionNivel + 160;
     }
 
     private void Update()
