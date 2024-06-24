@@ -10,6 +10,7 @@ public class ProgresoNivel : GenericSingleton<ProgresoNivel> {
     [HideInInspector] public TextMeshProUGUI porcentaje;
     private float total;
     private float tiempoInicial;
+    
 
     private void Start()
     {

@@ -17,8 +17,14 @@ public class JugadorSpace : MonoBehaviour
     public float detectionRadius = 10f;
     public LayerMask enemyLayer;
     public Transform detectionCircleTransform; // Cambiado de GameObject a Transform
+    private GestorVida gestorVida;
 
     private GameObject closestEnemy;
+
+    void Start()
+    {
+        gestorVida = GestorVida.Instance;
+    }
 
     void Update()
     {
@@ -99,7 +105,7 @@ public class JugadorSpace : MonoBehaviour
             bulletInstance.velocity = directionToEnemy * fireForce;
             bulletInstance.velocity = new Vector3(bulletInstance.velocity.x, 0, bulletInstance.velocity.z);
 
-            Debug.Log($"Disparando hacia el enemigo: {closestEnemy.name}");
+            //Debug.Log($"Disparando hacia el enemigo: {closestEnemy.name}");
         }
     }
 
@@ -162,6 +168,17 @@ public class JugadorSpace : MonoBehaviour
             detectionCircleTransform.SetParent(transform);
             
             detectionCircleTransform.localPosition = localPosition;
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+  
+
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            gestorVida.vida--;
+            Debug.Log($"Se reduce la vida a: {gestorVida.vida}");
         }
     }
 }

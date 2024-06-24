@@ -6,11 +6,11 @@ public class Bullet : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Colision detectada con: {other.name}");
+        //Debug.Log($"Colision detectada con: {other.name}");
 
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log($"Impacto con enemigo: {other.name}");
+            //Debug.Log($"Impacto con enemigo: {other.name}");
             Enemigo enemigo = other.GetComponent<Enemigo>();
             if (enemigo != null)
             {

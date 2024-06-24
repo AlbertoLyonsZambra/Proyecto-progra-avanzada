@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3929429096323713371}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)_02 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1177910199544660994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8396038218165517498}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3370232053830822921}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6274709813125318959}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IK Chain01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5508737208849223081}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot30
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7265912703075380456}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot26
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2702096329694767826}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +263,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6504564084580936630}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IK Chain08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3592885218037947202}
   - component: {fileID: 8966023332513559573}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: 'Wood Louse '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6652696689490650804}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2138281175706577055}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -469,7 +469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7660992519428652783}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)_02 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2701569518370863305}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)_02 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1265170009581602672}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -565,7 +565,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8478329037055532109}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot29
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3292147620347977119}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1570560580713218728}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7756913901095116850}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -692,7 +692,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7973448843426981705}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IK Chain07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3385260970744900985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -758,9 +758,9 @@ GameObject:
   - component: {fileID: 7711534767939517293}
   - component: {fileID: 8795233232714486424}
   - component: {fileID: 117991276768094349}
-  - component: {fileID: 8198780975921797473}
   - component: {fileID: -9024322166349326860}
-  m_Layer: 0
+  - component: {fileID: 7925897651755716426}
+  m_Layer: 9
   m_Name: Wood Louse
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -824,47 +824,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf61be09bff57d9448fa8082e1749425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _CanFollowPlayer: 0
-  _CanFollowBreadcrumbs: 0
-  _CanFollowAi: 0
-  _CanWander: 0
-  _CanPatrol: 0
+  _CanFollowPlayer: 1
+  _CanFollowBreadcrumbs: 1
+  _CanFollowAi: 1
+  _CanWander: 1
+  _CanPatrol: 1
   _CanIgnoreAi: 0
-  _CanWanderAnywhere: 0
+  _CanWanderAnywhere: 1
   _CanHover: 0
   _CanFlee: 0
   _CanJump: 0
   _CanLongJump: 0
   _IsJumping: 0
-  _HasAvoidance: 0
+  _HasAvoidance: 1
   _HasEdgeAvoidance: 0
-  _HasVision: 0
-  _HasFrontVision: 0
+  _HasVision: 1
+  _HasFrontVision: 1
   _IsMelee: 1
   _IsRanged: 0
   _IsGround: 1
   _IsAir: 0
   _IsInvincible: 0
-  followSpeed: 0
-  wanderSpeed: 0
-  patrolSpeed: 0
-  rotationSpeed: 0
-  avoidSpeed: 0
+  followSpeed: 8
+  wanderSpeed: 6
+  patrolSpeed: 5
+  rotationSpeed: 0.2
+  avoidSpeed: 100
   jumpDistance: 0
   jumpForce: 0
   longJumpForce: 0
-  followDistance: 0
-  wanderDistance: 0
-  attackDistance: 0
-  visionDistance: 0
-  avoidDistance: 0
+  followDistance: 1.5
+  wanderDistance: 5
+  attackDistance: 1.5
+  visionDistance: 20
+  avoidDistance: 1.5
   edgeDistance: 0
-  otherAiDistance: 0
-  wanderTimeLimit: 0
-  wanderTimeRate: 0
+  otherAiDistance: 1.5
+  wanderTimeLimit: 5
+  wanderTimeRate: 1
   hoverHeight: 0
   hoverForce: 0
-  Health: 0
+  Health: 125
   lifeState: 0
   visionState: 0
   moveState: 0
@@ -920,27 +920,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &8198780975921797473
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3735096090389226500}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.4505353, z: 2.2024121}
-  m_Center: {x: 0, y: 0.96838737, z: 0.0007715225}
 --- !u!114 &-9024322166349326860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -966,6 +945,27 @@ MonoBehaviour:
   rangedProjectilePrefab: {fileID: 0}
   bloodPrefab: {fileID: 0}
   specialPrefab: {fileID: 0}
+--- !u!65 &7925897651755716426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3735096090389226500}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.3709846, z: 2.4574337}
+  m_Center: {x: 0, y: 0.95896554, z: -0.07463074}
 --- !u!1 &3737741081085832299
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3337064359692477301}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1007,7 +1007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5161372766473120782}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IK Chain02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6238517399046731712}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +1069,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4512427652368950458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4888135668902311589}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1132,7 +1132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7333526395643213936}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1164,7 +1164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 605420792784707812}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1196,7 +1196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1352790776076463250}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Dummy01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1235,7 +1235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2431725342157272716}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IK Chain06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1266,7 +1266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7488366989256068438}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)_02 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1298,7 +1298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6602289873202937348}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1330,7 +1330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6365961987994144573}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IK Chain04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1361,7 +1361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6662071833902128093}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)_02 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1393,7 +1393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4786886635386104812}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IK Chain03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1424,7 +1424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 879105550589811457}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot24
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1456,7 +1456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2100620302874298616}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1488,7 +1488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 119883982675421835}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1520,7 +1520,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3198080995347148254}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1551,7 +1551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 27827558014623333}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1582,7 +1582,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4600502584949712141}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)_02 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1614,7 +1614,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3645387531201620287}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot27
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1646,7 +1646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3906955871466508232}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1677,7 +1677,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6769785328598400776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot28
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1709,7 +1709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4664995927766917419}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: IK Chain05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1740,7 +1740,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 62486793915163102}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot22
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1772,7 +1772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2611240477700028548}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1804,7 +1804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4222296301841129725}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wood Louse (Attack)_02 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1836,7 +1836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8078548469745387409}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1868,7 +1868,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7714178437921745035}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1900,7 +1900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8224776378434589044}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bone_foot03
   m_TagString: Untagged
   m_Icon: {fileID: 0}

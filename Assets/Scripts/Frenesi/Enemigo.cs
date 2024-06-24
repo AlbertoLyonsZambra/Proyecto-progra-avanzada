@@ -13,13 +13,16 @@ public class Enemigo : MonoBehaviour
     public GameObject target;
     public bool atacando;
 
-    public int health = 5; // Variable de salud
+    public int health = 3; // Variable de salud
+
+    private DemoSpawnerControl spawner;
 
     // Start is called before the first frame update
     void Start()
     {
         ani = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player");
+        spawner = DemoSpawnerControl.Instance;
     }
 
     // Update is called once per frame
@@ -30,7 +33,7 @@ public class Enemigo : MonoBehaviour
 
     public void Comportamiento()
     {
-        if (Vector3.Distance(transform.position, target.transform.position) > 10)
+        if (Vector3.Distance(transform.position, target.transform.position) > 1000000000)
         {
             ani.SetBool("run", false);
             cronometro += 1 * Time.deltaTime;
@@ -67,7 +70,7 @@ public class Enemigo : MonoBehaviour
                 ani.SetBool("walk", false);
 
                 ani.SetBool("run", true);
-                transform.Translate(Vector3.forward * 7 * Time.deltaTime); // Aumenta la velocidad de correr
+                transform.Translate(Vector3.forward * 5 * Time.deltaTime); // Aumenta la velocidad de correr
 
                 ani.SetBool("attack", false);
             }
@@ -94,6 +97,7 @@ public class Enemigo : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            spawner.enemyCount -= 1;
         }
     }
 }
