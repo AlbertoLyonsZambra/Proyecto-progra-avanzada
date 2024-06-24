@@ -4,49 +4,53 @@ using UnityEngine;
 
 public class GestorMenuNivel : MonoBehaviour
 {
-    [SerializeField] private AudioClip musicaNivel0;
-    [SerializeField] private AudioClip musicaNivel1;
-    [SerializeField] private AudioClip musicaNivel2;
-    [SerializeField] private AudioClip musicaNivel3;
-    [SerializeField] private AudioClip musicaNivel4;
-    [SerializeField] private Material skyboxNivel0;
-    [SerializeField] private Material skyboxNivel1;
-    [SerializeField] private Material skyboxNivel2;
-    [SerializeField] private Material skyboxNivel3;
-    [SerializeField] private Material skyboxNivel4;
+    [SerializeField] private AudioClip[] musicasNivel;
+    [SerializeField] private Material[] skyboxNiveles;
+    [SerializeField] private GameObject[] planetasInicio;
+    [SerializeField] private GameObject planetaInicial;
     void Start()
     {
-        AudioClip musicaPaPoner = musicaNivel0;
-        Material skyBoxPaPoner = skyboxNivel0;
+        AudioClip musicaPaPoner = musicasNivel[0];
+        Material skyBoxPaPoner = skyboxNiveles[0];
         int nivel = MenuPrincipal.Instance.nivelActual;
+
+        bool puedeAparecer = true;
+        Vector3 posicion = planetaInicial.transform.position;
+        Vector3 escala = planetaInicial.transform.localScale;
+        GameObject planeta = planetaInicial;
+
+        if (nivel == 0) { planetaInicial.SetActive(false); puedeAparecer = false; }
         if (nivel == 1)
         {
-            musicaPaPoner = musicaNivel1;
-            skyBoxPaPoner = skyboxNivel1;
+            musicaPaPoner = musicasNivel[1];
+            skyBoxPaPoner = skyboxNiveles[1];
+            planeta = planetasInicio[0];
         }
         else if (nivel == 2)
         {
-            musicaPaPoner = musicaNivel2;
-            skyBoxPaPoner = skyboxNivel2;
+            musicaPaPoner = musicasNivel[2];
+            skyBoxPaPoner = skyboxNiveles[2];
+            planeta = planetasInicio[1];
         }
         else if (nivel == 3)
         {
-            musicaPaPoner = musicaNivel3;
-            skyBoxPaPoner = skyboxNivel3;
+            musicaPaPoner = musicasNivel[3];
+            skyBoxPaPoner = skyboxNiveles[3];
+            planeta = planetasInicio[2];
         }
         else if (nivel >= 4)
         {
-            musicaPaPoner = musicaNivel4;
-            skyBoxPaPoner = skyboxNivel4;
+            musicaPaPoner = musicasNivel[4];
+            skyBoxPaPoner = skyboxNiveles[4];
+            planeta = planetasInicio[3];
         }
+        if (puedeAparecer)
+        {
+            GameObject planetaNuevo = Instantiate(planeta, posicion, Quaternion.identity);
+            planeta.transform.localScale = escala;
+            
+        }
+        planetaInicial.SetActive(false);
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, musicaPaPoner);
-        if (skyBoxPaPoner != null)
-        {
-            RenderSettings.skybox = skyBoxPaPoner;
-        }
-        else
-        {
-            Debug.LogWarning("No hay skybox seleccionada");
-        }
     }
 }
