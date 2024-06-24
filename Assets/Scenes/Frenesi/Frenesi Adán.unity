@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.66
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.103325725, g: 0.20163873, b: 0.40612516, a: 0.66}
+  m_IndirectSpecularColor: {r: 0.1033048, g: 0.20159087, b: 0.40594664, a: 0.66}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2600,6 +2600,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4936821779956942, guid: 29b4a7fc34fd3d149b5c4a4657967ef4, type: 3}
   m_PrefabInstance: {fileID: 750172415}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &751462232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 751462233}
+  m_Layer: 0
+  m_Name: Gestores
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &751462233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 751462232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.0426842, y: 21.608833, z: -31.45901}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1041068007}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &781688770
 GameObject:
   m_ObjectHideFlags: 0
@@ -3174,6 +3206,56 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4462071481596022, guid: 6dcf98e9e264196439c4ce7e1c2ea192, type: 3}
   m_PrefabInstance: {fileID: 1002884697}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1041068006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1041068007}
+  - component: {fileID: 1041068008}
+  m_Layer: 0
+  m_Name: GestorJuego
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1041068007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041068006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 751462233}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1041068008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1041068006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cff96ec421b7a934dbfe28b90ad33908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nivelActual: 0
+  skyboxNivel0: {fileID: 2100000, guid: 9f69d571a9cb54943b5a80ccd6b19e96, type: 2}
+  skyboxNivel1: {fileID: 2100000, guid: 269967744bbed1849a317b8175dc3f43, type: 2}
+  skyboxNivel2: {fileID: 2100000, guid: 246d4b1ad4a63004d8fcf3949494e5b3, type: 2}
+  skyboxNivel3: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
+  skyboxNivel4: {fileID: 2100000, guid: a4be220830e90ea4eb88b48b7fd376ce, type: 2}
 --- !u!1001 &1049178487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6471,3 +6553,4 @@ SceneRoots:
   - {fileID: 598649717}
   - {fileID: 526526400}
   - {fileID: 1749640313}
+  - {fileID: 751462233}
