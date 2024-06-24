@@ -9,13 +9,12 @@ public class EnemigoLobo : MonoBehaviour
     public Animator ani;
     public Quaternion angulo;
     public float grado;
-
     public GameObject target;
     public bool atacando;
-
     public int health = 5; // Variable de salud
 
     private DemoSpawnerControl spawner;
+    public Collider attackCollider; // Agrega una referencia al collider
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +22,7 @@ public class EnemigoLobo : MonoBehaviour
         ani = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player");
         spawner = DemoSpawnerControl.Instance;
+        attackCollider.enabled = false; // Asegúrate de que el collider esté desactivado al inicio
     }
 
     // Update is called once per frame
@@ -99,5 +99,17 @@ public class EnemigoLobo : MonoBehaviour
             Destroy(gameObject);
             spawner.enemyCount -= 1;
         }
+    }
+
+    // Método para activar el collider
+    public void ActivarCollider()
+    {
+        attackCollider.enabled = true;
+    }
+
+    // Método para desactivar el collider
+    public void DesactivarCollider()
+    {
+        attackCollider.enabled = false;
     }
 }

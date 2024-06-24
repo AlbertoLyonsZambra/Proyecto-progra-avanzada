@@ -16,6 +16,7 @@ public class Enemigo : MonoBehaviour
     public int health = 3; // Variable de salud
 
     private DemoSpawnerControl spawner;
+    public Collider attackCollider; // Agrega una referencia al collider
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class Enemigo : MonoBehaviour
         ani = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player");
         spawner = DemoSpawnerControl.Instance;
+        attackCollider.enabled = false; // Asegúrate de que el collider esté desactivado al inicio
     }
 
     // Update is called once per frame
@@ -89,6 +91,7 @@ public class Enemigo : MonoBehaviour
     {
         ani.SetBool("attack", false);
         atacando = false;
+        attackCollider.enabled = false; // Asegúrate de desactivar el collider al finalizar la animación
     }
 
     public void TakeDamage(int damage)
@@ -99,5 +102,17 @@ public class Enemigo : MonoBehaviour
             Destroy(gameObject);
             spawner.enemyCount -= 1;
         }
+    }
+
+    // Método para activar el collider
+    public void ActivarCollider()
+    {
+        attackCollider.enabled = true;
+    }
+
+    // Método para desactivar el collider
+    public void DesactivarCollider()
+    {
+        attackCollider.enabled = false;
     }
 }

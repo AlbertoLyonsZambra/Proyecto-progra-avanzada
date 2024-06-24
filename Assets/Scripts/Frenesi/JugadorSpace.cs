@@ -173,12 +173,11 @@ public class JugadorSpace : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-  
-
         if (other.gameObject.CompareTag("Enemy"))
         {
             gestorVida.vida--;
             Debug.Log($"Se reduce la vida a: {gestorVida.vida}");
         }
     }
+    
 }
