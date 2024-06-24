@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class GestorJuego : MonoBehaviour
 {
-
     [HideInInspector] public int nivelActual;
     [SerializeField] private Material skyboxNivel0;
     [SerializeField] private Material skyboxNivel1;
@@ -14,34 +13,55 @@ public class GestorJuego : MonoBehaviour
     [SerializeField] private Material skyboxNivel3;
     [SerializeField] private Material skyboxNivel4;
 
+    [SerializeField] private Material sueloNivel0;
+    [SerializeField] private Material sueloNivel1;
+    [SerializeField] private Material sueloNivel2;
+    [SerializeField] private Material sueloNivel3;
+    [SerializeField] private Material sueloNivel4;
+
+    [SerializeField] private Material rocaNivel0;
+    [SerializeField] private Material rocaNivel1;
+    [SerializeField] private Material rocaNivel2;
+    [SerializeField] private Material rocaNivel3;
+    [SerializeField] private Material rocaNivel4;
+
+    [SerializeField] private GameObject sueloPrefab;
+    [SerializeField] private GameObject rocaPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
-        //AudioClip musicaPaPoner = musicaNivel0;
+        // Skybox setup
         Material skyBoxPaPoner = skyboxNivel0;
+        Material sueloPaPoner = sueloNivel0;
+        Material rocaPaPoner = rocaNivel0;
         int nivel = PlayerPrefs.GetInt("nivelActual");
+
         if (nivel == 1)
         {
-            //musicaPaPoner = musicaNivel1;
             skyBoxPaPoner = skyboxNivel1;
+            sueloPaPoner = sueloNivel1;
+            rocaPaPoner = rocaNivel1;
         }
         else if (nivel == 2)
         {
-            //musicaPaPoner = musicaNivel2;
             skyBoxPaPoner = skyboxNivel2;
+            sueloPaPoner = sueloNivel2;
+            rocaPaPoner = rocaNivel2;
         }
         else if (nivel == 3)
         {
-            //musicaPaPoner = musicaNivel3;
             skyBoxPaPoner = skyboxNivel3;
+            sueloPaPoner = sueloNivel3;
+            rocaPaPoner = rocaNivel3;
         }
         else if (nivel >= 4)
         {
-            //musicaPaPoner = musicaNivel4;
             skyBoxPaPoner = skyboxNivel4;
+            sueloPaPoner = sueloNivel4;
+            rocaPaPoner = rocaNivel4;
         }
-        //Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, musicaPaPoner);
+
         if (skyBoxPaPoner != null)
         {
             RenderSettings.skybox = skyBoxPaPoner;
@@ -50,6 +70,32 @@ public class GestorJuego : MonoBehaviour
         {
             Debug.LogWarning("No hay skybox seleccionada");
         }
+
+        if (sueloPaPoner != null && sueloPrefab != null)
+        {
+            ChangeMaterialOfChildren(sueloPrefab, sueloPaPoner);
+        }
+        else
+        {
+            Debug.LogWarning("No hay material de suelo seleccionado o prefab del suelo no asignado");
+        }
+
+        if (rocaPaPoner != null && rocaPrefab != null)
+        {
+            ChangeMaterialOfChildren(rocaPrefab, rocaPaPoner);
+        }
+        else
+        {
+            Debug.LogWarning("No hay material de roca seleccionado o prefab de roca no asignado");
+        }
     }
 
+    void ChangeMaterialOfChildren(GameObject parentObject, Material newMaterial)
+    {
+        MeshRenderer[] meshRenderers = parentObject.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer meshRenderer in meshRenderers)
+        {
+            meshRenderer.material = newMaterial;
+        }
+    }
 }
