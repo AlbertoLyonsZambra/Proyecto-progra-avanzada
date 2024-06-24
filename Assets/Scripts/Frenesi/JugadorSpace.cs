@@ -18,11 +18,17 @@ public class JugadorSpace : MonoBehaviour
     public LayerMask enemyLayer;
     public Transform detectionCircleTransform; // Cambiado de GameObject a Transform
     private GestorVida gestorVida;
+    private Rigidbody rb;
 
     private GameObject closestEnemy;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        // Congela las rotaciones en los ejes X y Z
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+
         gestorVida = GestorVida.Instance;
     }
 
@@ -34,6 +40,8 @@ public class JugadorSpace : MonoBehaviour
         RotateTowardsEnemy();
         TryShoot();
         UpdateDetectionCircleOrientation(); // Nueva línea añadida
+        ResetXZRotation();
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -115,6 +123,11 @@ public class JugadorSpace : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 
+    void FixedUpdate()
+    {
+        ResetXZRotation();
+    }
+
     private void RotateTowardsEnemy()
     {
         Quaternion targetRotation;
@@ -177,7 +190,25 @@ public class JugadorSpace : MonoBehaviour
         {
             gestorVida.vida--;
             Debug.Log($"Se reduce la vida a: {gestorVida.vida}");
+
+            ResetXZRotation();
         }
     }
-    
+
+    void OnCollisionStay(Collision collision)
+    {
+        ResetXZRotation();
+    }
+
+    void ResetXZRotation()
+    {
+        // Obtén la rotación actual del objeto
+        Vector3 rotation = transform.rotation.eulerAngles;
+        // Mantén la rotación en Y, pero establece X y Z en cero
+        transform.rotation = Quaternion.Euler(0, rotation.y, 0);
+
+        // Asegúrate de que la velocidad angular en X y Z sea cero
+        rb.angularVelocity = new Vector3(0, rb.angularVelocity.y, 0);
+    }
+
 }
