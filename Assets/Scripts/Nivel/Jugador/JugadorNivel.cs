@@ -106,16 +106,18 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
         }
         if(other.gameObject.CompareTag("Consumible"))
         {
-            other.gameObject.SetActive(false);
-            //Debug.Log("Colision ");
-            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.bateriaSFX);
+            //Debug.Log("Colision con other.gameObject.name");
             if(other.gameObject.name.Contains("Industrial_Barrel"))
             {
+                other.gameObject.SetActive(false);
+                Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.bateriaSFX);
                 bateria += 30;
                 if(bateria >= 100){bateria = 100;}
             }
             else if(other.gameObject.name.Contains("KitReparacion") && MuerteJugador.Instance.vecesQueHaChocado > 0)
             {
+                other.gameObject.SetActive(false);
+                Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.bateriaSFX);
                 MuerteJugador.Instance.humoNaveDaniada.Stop();
                 MuerteJugador.Instance.vecesQueHaChocado = 0; // HELEA LA NAVE ENTERA
             }
