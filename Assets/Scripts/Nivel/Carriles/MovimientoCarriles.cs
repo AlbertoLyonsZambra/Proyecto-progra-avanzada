@@ -31,7 +31,7 @@ public class MovimientoCarriles : GenericSingleton<MovimientoCarriles>
        
         if (transform.gameObject.CompareTag("Player"))
         {
-            if (MenuPrincipal.Instance.jugando)
+            if (MenuPrincipal.Instance.jugando && !MenuPrincipal.Instance.enTerminal)
             {
                 if(jugador.bateria == 0){ mover = false; }
                 else{ mover = true;}
