@@ -32,9 +32,9 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         if (nivel == 1)
         {
             tiempoMinAsteroides = 0;
-            tiempoMaxAsteroides = 1f;
+            tiempoMaxAsteroides = 1.7f;
             tiempoMinAsteroidesColor = 5;
-            tiempoMaxAsteroidesColor = 6;
+            tiempoMaxAsteroidesColor = 6.5f;
             tiempoMinBateria = 7;
             tiempoMaxBateria = 17;
             tiempoMinKit = 32;
@@ -64,7 +64,7 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
             tiempoMinAsteroides = 0;
             tiempoMaxAsteroides = 0.3f + decimalt;
             tiempoMinAsteroidesColor = 4;
-            tiempoMaxAsteroidesColor = 6;
+            tiempoMaxAsteroidesColor = 5.7f;
             tiempoMinBateria = 10;
             tiempoMaxBateria = 20;
             tiempoMinKit = 35;
@@ -97,6 +97,7 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         yield return new WaitForSeconds(Random.Range(tiempoMin, tiempoMax));
         if (posMatrizPrevia == null) { posMatrizPrevia = GenerarPos("FIRST IF"); }
         List<int> posMatriz = GenerarPos(nombre);
+        // Modo infinito
         if (MenuPrincipal.Instance.nivelActual >= 4)
         {
             tiempoMax -= 0.01f;
