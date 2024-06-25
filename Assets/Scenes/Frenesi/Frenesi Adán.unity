@@ -5668,6 +5668,7 @@ MonoBehaviour:
   prontoTexto: {fileID: 1445149986}
   oleadasTexto: {fileID: 0}
   spawnerGameObject: {fileID: 1118268392}
+  panel1: {fileID: 396197335}
   controlSpawn: {fileID: 0}
   duration: 40
   nextSceneName: juego

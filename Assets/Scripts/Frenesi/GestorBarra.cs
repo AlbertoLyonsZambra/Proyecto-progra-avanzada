@@ -27,7 +27,7 @@ public class GestorBarra : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        duration = 10;
+        duration = 40;
         gestorVida = GestorVida.Instance;
         oleadasPermitidas = PlayerPrefs.GetInt("nivelActual");
         controlSpawn = DemoSpawnerControl.Instance;
