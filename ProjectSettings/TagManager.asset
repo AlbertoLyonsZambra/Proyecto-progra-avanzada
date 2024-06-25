@@ -33,6 +33,7 @@ TagManager:
   - Breadcrumb
   - EnemyDamage
   - Timer
+  - Bullet
   layers:
   - Default
   - TransparentFX

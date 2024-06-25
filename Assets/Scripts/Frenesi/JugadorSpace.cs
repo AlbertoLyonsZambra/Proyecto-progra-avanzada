@@ -22,11 +22,18 @@ public class JugadorSpace : MonoBehaviour
 
     private GameObject closestEnemy;
 
+    public AudioClip hit; // Clip de sonido de impacto
+    private AudioSource audioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         // Congela las rotaciones en los ejes X y Z
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.clip = hit;
 
 
         gestorVida = GestorVida.Instance;
@@ -112,6 +119,8 @@ public class JugadorSpace : MonoBehaviour
             Rigidbody bulletInstance = Instantiate(bulletPrefab, shotPosition, Quaternion.LookRotation(directionToEnemy));
             bulletInstance.velocity = directionToEnemy * fireForce;
             bulletInstance.velocity = new Vector3(bulletInstance.velocity.x, 0, bulletInstance.velocity.z);
+
+            audioSource.Play();
 
             //Debug.Log($"Disparando hacia el enemigo: {closestEnemy.name}");
         }

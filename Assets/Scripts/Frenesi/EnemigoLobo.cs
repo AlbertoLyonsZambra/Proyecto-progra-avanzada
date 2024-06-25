@@ -17,7 +17,11 @@ public class EnemigoLobo : MonoBehaviour
     public Collider attackCollider; // Agrega una referencia al collider
 
     [SerializeField] private GameObject particleSystemPrefab;
-     [SerializeField] private float particleSystemDuration = 2f;
+    [SerializeField] private float particleSystemDuration = 2f;
+
+    [SerializeField] private AudioClip collisionSound; // Clip de audio para la colisión
+    private AudioSource audioSource; // Componente AudioSource
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +30,12 @@ public class EnemigoLobo : MonoBehaviour
         target = GameObject.FindWithTag("Player");
         spawner = DemoSpawnerControl.Instance;
         attackCollider.enabled = false; // Asegúrate de que el collider esté desactivado al inicio
+
+        audioSource = GetComponent<AudioSource>(); // Obtener el componente AudioSource
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>(); // Añadir AudioSource si no existe
+        }
     }
 
     // Update is called once per frame
@@ -104,26 +114,31 @@ public class EnemigoLobo : MonoBehaviour
                 Vector3 particlePosition = transform.position;
                 Quaternion particleRotation = Quaternion.Euler(-90, 0, 0);
                 GameObject particleInstance = Instantiate(particleSystemPrefab, particlePosition, particleRotation);
-                
-                // Opción 1: Usar ParticleSystem directamente
+
                 ParticleSystem ps = particleInstance.GetComponent<ParticleSystem>();
                 if (ps != null)
                 {
                     Destroy(particleInstance, ps.main.duration);
                 }
-                else
-                {
-                    // Opción 2: Usar corrutina
-                    //StartCoroutine(DestroyAfterTime(particleInstance, particleSystemDuration));
-                }
             }
 
-            Destroy(gameObject);
+            // Reproducir el sonido de colisión antes de destruir el objeto
+            if (collisionSound != null)
+            {
+                if (audioSource == null)
+                {
+                    audioSource = gameObject.AddComponent<AudioSource>();
+                }
+                audioSource.PlayOneShot(collisionSound);
+            }
+
+            StartCoroutine(DelayedDestroy(gameObject, 1f)); // Espera 0.1 segundos antes de destruir el enemigo
             spawner.enemyCount -= 1;
         }
     }
 
-    private IEnumerator DestroyAfterTime(GameObject obj, float delay)
+
+    private IEnumerator DelayedDestroy(GameObject obj, float delay)
     {
         yield return new WaitForSeconds(delay);
         Destroy(obj);
@@ -139,5 +154,17 @@ public class EnemigoLobo : MonoBehaviour
     public void DesactivarCollider()
     {
         attackCollider.enabled = false;
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            // Reproducir el sonido de colisión
+            if (audioSource != null && collisionSound != null)
+            {
+                audioSource.PlayOneShot(collisionSound);
+            }
+        }
     }
 }
