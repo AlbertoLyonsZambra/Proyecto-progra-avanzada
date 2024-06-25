@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.SceneManagement; // Aseg˙rate de importar este namespace
+using UnityEngine.SceneManagement; // Aseg√∫rate de importar este namespace
 using UnityEngine.UI;
 using TMPro;
 
@@ -13,6 +11,9 @@ public class GestorBarra : MonoBehaviour
     [SerializeField] private TextMeshProUGUI uiText;
     [SerializeField] private GameObject felicidadesTexto;
     [SerializeField] private GameObject prontoTexto;
+    [SerializeField] private GameObject panel1; 
+    [SerializeField] private GameObject spawnerGameObject; // Referencia al GameObject del spawner
+    private GestorVida gestorVida;
 
     public int duration;
     private int remainingDuration;
@@ -21,7 +22,8 @@ public class GestorBarra : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        duration = 10;
+        duration = 40;
+        gestorVida = GestorVida.Instance;
         Begin(duration);
     }
 
@@ -40,16 +42,33 @@ public class GestorBarra : MonoBehaviour
             remainingDuration--;
             yield return new WaitForSeconds(1f);
         }
-        felicidadesTexto.SetActive(true);
-        prontoTexto.SetActive(true);
+        if (!gestorVida.hasMuerto && gestorVida.vida > 0)
+        {
+            felicidadesTexto.SetActive(true);
+            prontoTexto.SetActive(true);
+            DestroyAllEnemies(); // Destruir todos los enemigos y el spawner
+            StartCoroutine(ExecuteOnEndAfterDelay1(2f));
+            StartCoroutine(ExecuteOnEndAfterDelay(5f)); // Ejecutar OnEnd despu√©s de 2 segundos
+        }
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay); // Esperar durante el retraso en tiempo real
         OnEnd();
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay1(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay); // Esperar durante el retraso en tiempo real
+        panel1.SetActive(true);
     }
 
     private void OnEnd()
     {
         print("End");
         Time.timeScale = 0; // Pausar el juego
-        StartCoroutine(LoadNextSceneAfterDelay(3f)); // Cargar la nueva escena despuÈs de un retraso de 3 segundos
+        StartCoroutine(LoadNextSceneAfterDelay(3f)); // Cargar la nueva escena despu√©s de un retraso de 3 segundos
     }
 
     private IEnumerator LoadNextSceneAfterDelay(float delay)
@@ -58,5 +77,18 @@ public class GestorBarra : MonoBehaviour
         Time.timeScale = 1; // Reanudar el tiempo antes de cambiar de escena
         SceneManager.LoadScene(nextSceneName);
     }
-}
 
+    private void DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        if (spawnerGameObject != null)
+        {
+            //Destroy(spawnerGameObject);
+            spawnerGameObject.SetActive(false);
+        }
+    }
+}

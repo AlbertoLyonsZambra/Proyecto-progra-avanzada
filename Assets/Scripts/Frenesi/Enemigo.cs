@@ -18,6 +18,9 @@ public class Enemigo : MonoBehaviour
     private DemoSpawnerControl spawner;
     public Collider attackCollider; // Agrega una referencia al collider
 
+    [SerializeField] private GameObject particleSystemPrefab;
+     [SerializeField] private float particleSystemDuration = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -99,9 +102,34 @@ public class Enemigo : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            if (particleSystemPrefab != null)
+            {
+                Vector3 particlePosition = transform.position;
+                Quaternion particleRotation = Quaternion.Euler(-90, 0, 0);
+                GameObject particleInstance = Instantiate(particleSystemPrefab, particlePosition, particleRotation);
+                
+                // Opción 1: Usar ParticleSystem directamente
+                ParticleSystem ps = particleInstance.GetComponent<ParticleSystem>();
+                if (ps != null)
+                {
+                    Destroy(particleInstance, ps.main.duration);
+                }
+                else
+                {
+                    // Opción 2: Usar corrutina
+                    //StartCoroutine(DestroyAfterTime(particleInstance, particleSystemDuration));
+                }
+            }
+
             Destroy(gameObject);
             spawner.enemyCount -= 1;
         }
+    }
+
+    private IEnumerator DestroyAfterTime(GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(obj);
     }
 
     // Método para activar el collider

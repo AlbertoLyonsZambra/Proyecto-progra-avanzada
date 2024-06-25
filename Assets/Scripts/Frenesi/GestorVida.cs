@@ -12,14 +12,16 @@ public class GestorVida : GenericSingleton<GestorVida>
     public string tallerScene = "juego";
     [SerializeField] private GameObject hasMuertoTexto;
     [SerializeField] private GameObject prontoTexto;
+    [SerializeField] private GameObject panel1;
+    [SerializeField] private GameObject spawnerGameObject;
+    [SerializeField] private GameObject particleSystemPrefab; // Prefab del sistema de partÃ­culas
     public bool hasMuerto = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         vida = 3;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (vida == 3)
@@ -28,7 +30,7 @@ public class GestorVida : GenericSingleton<GestorVida>
             corazones[1].SetActive(true);
             corazones[2].SetActive(true);
         }
-        else if (vida == 2) 
+        else if (vida == 2)
         {
             corazones[0].SetActive(true);
             corazones[1].SetActive(true);
@@ -40,7 +42,6 @@ public class GestorVida : GenericSingleton<GestorVida>
             corazones[1].SetActive(false);
             corazones[2].SetActive(false);
         }
-
         else if (vida == 0)
         {
             corazones[0].SetActive(false);
@@ -49,25 +50,60 @@ public class GestorVida : GenericSingleton<GestorVida>
             hasMuertoTexto.SetActive(true);
             prontoTexto.SetActive(true);
             hasMuerto = true;
-            Die();
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            GameObject reloj = GameObject.FindGameObjectWithTag("Timer");
+            reloj.SetActive(false);
+
+            // Instanciar el sistema de partÃ­culas en la posiciÃ³n del jugador con rotaciÃ³n -90 en X
+            if (particleSystemPrefab != null && player != null)
+            {
+                Vector3 particlePosition = player.transform.position;
+                Quaternion particleRotation = Quaternion.Euler(-90, 0, 0);
+                Instantiate(particleSystemPrefab, particlePosition, particleRotation);
+            }
+
+            Destroy(player);
+            DestroyAllEnemies();
+            StartCoroutine(ExecuteOnEndAfterDelay1(1f));
+            StartCoroutine(ExecuteOnEndAfterDelay(4f));
         }
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        Die();
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay1(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        panel1.SetActive(true);
     }
 
     void Die()
     {
-       
-        // Pausar el juego
         Time.timeScale = 0;
-        // Cambiar a la escena de Game Over después de un pequeño retraso para mostrar la pausa
         StartCoroutine(LoadGameOverScene());
+        panel1.SetActive(true);
     }
 
     IEnumerator LoadGameOverScene()
     {
-        yield return new WaitForSecondsRealtime(3); // Puedes ajustar el tiempo de retraso según sea necesario
-        Time.timeScale = 1; // Asegurarte de reanudar el tiempo antes de cambiar de escena
-        SceneManager.LoadScene(tallerScene);
+        yield return new WaitForSecondsRealtime(3);
+        Time.timeScale = 1;
     }
 
-
+    private void DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+        if (spawnerGameObject != null)
+        {
+            spawnerGameObject.SetActive(false);
+        }
+    }
 }
