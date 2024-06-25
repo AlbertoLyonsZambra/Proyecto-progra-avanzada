@@ -7,17 +7,17 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Juego.unity
-    guid: 2fc6fa25589b9e14ca5dd1532dabf35e
+    guid: 3a1b52ddb5698d44c8f4fcc4d7bd7291
+  - enabled: 1
+    path: Assets/Scenes/Frenesi/Frenesi.unity
+    guid: 907e894bf4d2deb448502e503bdf8213
   - enabled: 0
     path: Assets/Scenes/por si se me olvido algo/PruebasMatias PORSIACASO.unity
     guid: 632af6eaa8d26fc498a56bc23ee6f453
   - enabled: 0
     path: Assets/Scenes/PruebasAlberto.unity
-    guid: 79fe2e90db509614da52a2379a227797
+    guid: 867f759769802a9468f8c74a80c9bef5
   - enabled: 0
     path: Assets/Scenes/PruebasAdan.unity
     guid: 9dbd82c1b901a604f9ca53dcc698cc3a
-  - enabled: 1
-    path: Assets/Scenes/Frenesi/Frenesi.unity
-    guid: 907e894bf4d2deb448502e503bdf8213
   m_configObjects: {}

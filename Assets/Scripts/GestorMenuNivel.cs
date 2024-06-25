@@ -57,7 +57,7 @@ public class GestorMenuNivel : MonoBehaviour
     }
     private void Update()
     {
-        if (MenuPrincipal.Instance.jugando)
+        if (MenuPrincipal.Instance.jugando && MenuPrincipal.Instance.nivelActual != 0)
         {
             Vector3 velocidadPlataforma = Vector3.back * 6 * Time.deltaTime;
             planetaNuevo.transform.Translate(velocidadPlataforma);
