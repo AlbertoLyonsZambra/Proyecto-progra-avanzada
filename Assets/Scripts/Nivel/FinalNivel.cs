@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.UI.Image;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class FinalNivel : GenericSingleton<FinalNivel>
 {
@@ -16,6 +17,7 @@ public class FinalNivel : GenericSingleton<FinalNivel>
     [SerializeField] private GameObject planetaNivel2;
     [SerializeField] private GameObject planetaNivel3;
     [HideInInspector] public bool victoria = false;
+    [SerializeField] private GameObject panel1; 
     
     private Vector3 plataforma;
     private Transform nave;
@@ -75,7 +77,8 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         InstanciadorObjetos.Instance.enabled = false;
         MatrizCarriles.Instance.enabled = false;
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, clipTransicion);
-        StartCoroutine(MostrarPantallaFinal(2));
+        StartCoroutine(MostrarPantallaFinal(3));
+        //StartCoroutine(ExecuteOnEndAfterDelay(2f));
         
     }
     IEnumerator MostrarPantallaFinal(int segundos)
@@ -85,7 +88,8 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, clipVictoria);
         Gestor_audio.Instance.audioSourceMusica.loop = false;
         pantallaFinal.SetActive(true);
-        Time.timeScale = 0;
+        panel1.SetActive(true);
+        StartCoroutine(ExecuteOnEndAfterDelay(3f));
     }
     void Update()
     {
@@ -94,5 +98,28 @@ public class FinalNivel : GenericSingleton<FinalNivel>
             plataforma = transform.Find("Destino").position;
             nave.position = Vector3.Lerp(nave.position, plataforma, 0.1f);
         }
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        panel1.SetActive(true);
+        StartCoroutine(ExecuteOnEndAfterDelay1(3f));
+
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay1(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        
+        StartCoroutine(CargarFrenesiScene());
+
+    }
+
+    private IEnumerator CargarFrenesiScene()
+    {
+        yield return new WaitForSeconds(2); // Espera 2 segundos
+        SceneManager.LoadScene("Frenesi"); // Carga la escena "Frenesi"
+        Time.timeScale = 0;
     }
 }
