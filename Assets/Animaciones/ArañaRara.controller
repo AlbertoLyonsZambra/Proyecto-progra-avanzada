@@ -222,19 +222,19 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: run
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -429,9 +429,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.0402748
-  m_TransitionOffset: 0.5719777
-  m_ExitTime: 0.9070582
+  m_TransitionDuration: 0.20014882
+  m_TransitionOffset: 0.3875076
+  m_ExitTime: 0.5381182
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -479,9 +479,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.035940766
-  m_TransitionOffset: 0.5837978
-  m_ExitTime: 0.90197986
+  m_TransitionDuration: 0.14806198
+  m_TransitionOffset: 0.45442706
+  m_ExitTime: 0.5961947
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

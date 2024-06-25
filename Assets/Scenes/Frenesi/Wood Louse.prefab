@@ -761,6 +761,7 @@ MonoBehaviour:
   health: 2
   attackCollider: {fileID: 3290842943433389545}
   particleSystemPrefab: {fileID: 6894074016585206242, guid: 30cd21b140ba1834ea376934b30635b2, type: 3}
+  particleSystemDuration: 2
 --- !u!54 &327665510435223793
 Rigidbody:
   m_ObjectHideFlags: 0
