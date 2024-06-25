@@ -81,12 +81,13 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);
             if (pasoTutorial == 1)
             {
+                barraProgreso.SetActive(true);
                 gestorBateria.SetActive(true); // Antes este gestor se activaba fuera del if
                 print("EmpezoJuego");
                 if(nivelActual <= 3) 
                 { 
                     StartCoroutine(EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
-                    barraProgreso.SetActive(true);
+                    //barraProgreso.SetActive(true);
                 }
                 
                 ayudaScript.CambiarPantallaActual("juego1");
