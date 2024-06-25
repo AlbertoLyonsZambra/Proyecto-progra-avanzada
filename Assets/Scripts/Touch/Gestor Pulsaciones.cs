@@ -81,7 +81,7 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
     }
     public void touchJugador()
     {
-        if (!pulsando && (inicioPulsacion != Vector2.zero || finPulsacion != Vector2.zero))
+        if (!pulsando && (inicioPulsacion != Vector2.zero || finPulsacion != Vector2.zero) && MenuPrincipal.Instance.jugando)
         {
             Vector2 diferencia = finPulsacion - inicioPulsacion;
 
