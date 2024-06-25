@@ -22,6 +22,7 @@ public class EnemigoLobo : MonoBehaviour
     [SerializeField] private AudioClip collisionSound; // Clip de audio para la colisión
     private AudioSource audioSource; // Componente AudioSource
 
+    private bool isDying = false;
 
     // Start is called before the first frame update
     void Start()
@@ -102,46 +103,72 @@ public class EnemigoLobo : MonoBehaviour
     {
         ani.SetBool("attack", false);
         atacando = false;
+        attackCollider.enabled = false;
     }
 
     public void TakeDamage(int damage)
     {
+        if (isDying) return; // Evita daño adicional si ya está muriendo
+
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && !isDying)
         {
-            if (particleSystemPrefab != null)
-            {
-                Vector3 particlePosition = transform.position;
-                Quaternion particleRotation = Quaternion.Euler(-90, 0, 0);
-                GameObject particleInstance = Instantiate(particleSystemPrefab, particlePosition, particleRotation);
-
-                ParticleSystem ps = particleInstance.GetComponent<ParticleSystem>();
-                if (ps != null)
-                {
-                    Destroy(particleInstance, ps.main.duration);
-                }
-            }
-
-            // Reproducir el sonido de colisión antes de destruir el objeto
-            if (collisionSound != null)
-            {
-                if (audioSource == null)
-                {
-                    audioSource = gameObject.AddComponent<AudioSource>();
-                }
-                audioSource.PlayOneShot(collisionSound);
-            }
-
-            StartCoroutine(DelayedDestroy(gameObject, 1f)); // Espera 0.1 segundos antes de destruir el enemigo
-            spawner.enemyCount -= 1;
+            isDying = true;
+            StartCoroutine(DieSequence());
         }
     }
 
-
-    private IEnumerator DelayedDestroy(GameObject obj, float delay)
+    private IEnumerator DieSequence()
     {
-        yield return new WaitForSeconds(delay);
-        Destroy(obj);
+        // Desactivar el collider y los scripts que controlan el comportamiento
+        GetComponent<Collider>().enabled = false;
+        this.enabled = false; // Desactiva este script
+
+        // Reproducir partículas si existen
+        if (particleSystemPrefab != null)
+        {
+            Vector3 particlePosition = transform.position;
+            Quaternion particleRotation = Quaternion.Euler(-90, 0, 0);
+            GameObject particleInstance = Instantiate(particleSystemPrefab, particlePosition, particleRotation);
+
+            ParticleSystem ps = particleInstance.GetComponent<ParticleSystem>();
+            if (ps != null)
+            {
+                Destroy(particleInstance, ps.main.duration);
+            }
+        }
+
+        // Detener animaciones
+        if (ani != null)
+        {
+            ani.enabled = false;
+        }
+
+        // Reproducir el sonido de muerte
+        if (collisionSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(collisionSound);
+            yield return new WaitForSeconds(collisionSound.length);
+        }
+
+        // Desactivar el renderizador para hacer invisible al enemigo
+        Renderer renderer = GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            renderer.enabled = false;
+        }
+
+        // Esperar un frame adicional para asegurar que todo se ha procesado
+        yield return null;
+
+        // Destruir el objeto
+        Destroy(gameObject);
+
+        // Actualizar el contador de enemigos
+        if (spawner != null)
+        {
+            spawner.enemyCount -= 1;
+        }
     }
 
     // Método para activar el collider

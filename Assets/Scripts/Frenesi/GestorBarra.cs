@@ -14,6 +14,7 @@ public class GestorBarra : MonoBehaviour
     [SerializeField] private GameObject prontoTexto;
     [SerializeField] private GameObject oleadasTexto; // Referencia al texto que muestra las oleadas
     [SerializeField] private GameObject spawnerGameObject;
+    [SerializeField] private GameObject panel1; 
     [SerializeField] private DemoSpawnerControl controlSpawn;// Referencia al GameObject del spawner
     private GestorVida gestorVida;
 
@@ -26,7 +27,7 @@ public class GestorBarra : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        duration = 40;
+        duration = 10;
         gestorVida = GestorVida.Instance;
         oleadasPermitidas = PlayerPrefs.GetInt("nivelActual");
         controlSpawn = DemoSpawnerControl.Instance;
@@ -67,7 +68,8 @@ public class GestorBarra : MonoBehaviour
                 felicidadesTexto.SetActive(true);
                 prontoTexto.SetActive(true);
                 DestroyAllEnemies(); // Destruir todos los enemigos y el spawner
-                OnEnd();
+                StartCoroutine(ExecuteOnEndAfterDelay2(2f));
+                StartCoroutine(ExecuteOnEndAfterDelay3(5f)); // Ejecutar OnEnd después de 5 segundos
             }
         }
     }
@@ -89,6 +91,20 @@ public class GestorBarra : MonoBehaviour
             OnEnd();
         }
     }
+
+    private IEnumerator ExecuteOnEndAfterDelay2(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        panel1.SetActive(true);
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay3(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        OnEnd();
+    }
+
+
 
     private IEnumerator ExecuteOnEndAfterDelay1(float delay)
     {
