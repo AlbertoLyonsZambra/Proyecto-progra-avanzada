@@ -27,6 +27,10 @@ public class GestorBarra : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.GetInt("nivelActual") <=3)
+        {
+            oleadasTexto.SetActive(false);
+        }
         duration = 40;
         gestorVida = GestorVida.Instance;
         oleadasPermitidas = PlayerPrefs.GetInt("nivelActual");
@@ -83,7 +87,10 @@ public class GestorBarra : MonoBehaviour
             // Reiniciar el temporizador y comenzar una nueva oleada
             felicidadesTexto.SetActive(false);
             oleadaSuperada.SetActive(false);
-            oleadasTexto.GetComponentInChildren<TextMeshProUGUI>().text = $"Oleada: {waveCount}";
+            if (PlayerPrefs.GetInt("nivelActual") >= 4)
+            {
+                oleadasTexto.GetComponentInChildren<TextMeshProUGUI>().text = $"Oleada: {waveCount}";
+            }
             Begin(duration);
         }
         else
@@ -109,7 +116,10 @@ public class GestorBarra : MonoBehaviour
     private IEnumerator ExecuteOnEndAfterDelay1(float delay)
     {
         yield return new WaitForSecondsRealtime(delay); // Esperar durante el retraso en tiempo real
-        oleadasTexto.SetActive(true);
+        if (PlayerPrefs.GetInt("nivelActual") >= 4)
+        {
+            oleadasTexto.SetActive(true);
+        }
     }
 
     private void OnEnd()
