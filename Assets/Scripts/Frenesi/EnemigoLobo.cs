@@ -11,7 +11,7 @@ public class EnemigoLobo : MonoBehaviour
     public float grado;
     public GameObject target;
     public bool atacando;
-    public int health = 5; // Variable de salud
+    public int health = 3; // Variable de salud
 
     private DemoSpawnerControl spawner;
     public Collider attackCollider; // Agrega una referencia al collider
@@ -70,7 +70,7 @@ public class EnemigoLobo : MonoBehaviour
                 ani.SetBool("walk", false);
 
                 ani.SetBool("run", true);
-                transform.Translate(Vector3.forward * 6 * Time.deltaTime); // Aumenta la velocidad de correr
+                transform.Translate(Vector3.forward * 5 * Time.deltaTime); // Aumenta la velocidad de correr
 
                 ani.SetBool("attack", false);
             }

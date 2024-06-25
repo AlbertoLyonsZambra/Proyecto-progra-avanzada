@@ -188,8 +188,11 @@ public class JugadorSpace : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            gestorVida.vida--;
-            Debug.Log($"Se reduce la vida a: {gestorVida.vida}");
+            // Verificar si la vida es mayor que 0 antes de disminuirla
+            if (gestorVida.vida > 0)
+            {
+                gestorVida.vida--;
+            }
 
             ResetXZRotation();
         }

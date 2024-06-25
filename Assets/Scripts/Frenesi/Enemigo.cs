@@ -13,7 +13,7 @@ public class Enemigo : MonoBehaviour
     public GameObject target;
     public bool atacando;
 
-    public int health = 3; // Variable de salud
+    public int health = 2; // Variable de salud
 
     private DemoSpawnerControl spawner;
     public Collider attackCollider; // Agrega una referencia al collider
