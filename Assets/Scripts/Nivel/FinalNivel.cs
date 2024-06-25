@@ -16,6 +16,7 @@ public class FinalNivel : GenericSingleton<FinalNivel>
     [SerializeField] private GameObject planetaNivel2;
     [SerializeField] private GameObject planetaNivel3;
     [HideInInspector] public bool victoria = false;
+    
     private Vector3 plataforma;
     private Transform nave;
     private void OnEnable()
@@ -75,6 +76,7 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         MatrizCarriles.Instance.enabled = false;
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, clipTransicion);
         StartCoroutine(MostrarPantallaFinal(2));
+        
     }
     IEnumerator MostrarPantallaFinal(int segundos)
     {

@@ -19,21 +19,40 @@ public class DemoSpawnerControl: GenericSingleton<DemoSpawnerControl> {
 
 	
 	private void SpawnEnemy(){
-		if(Time.time > spawnMeleeNext && enemyCount != maxEnemyCount){
+		if(Time.time > spawnMeleeNext && enemyCount <= maxEnemyCount){
 			spawnMeleeNext = Time.time + spawnMeleeRate;
             GameObject[] enemyPrefabs = new GameObject[] { enemyMeleePrefab, enemyMeleePrefab2};
-            int rand = Random.Range(0, spawners.Length);
-			Vector3 spawnPos = spawners[rand].position;
-			float randEnemy = Random.value;
-            
-            // Generar un índice aleatorio para seleccionar un prefab
-            int randomIndex = Random.Range(0, enemyPrefabs.Length);
+			if (spawners != null && spawners.Length > 0)
+			{
+				int rand = Random.Range(0, spawners.Length);
 
-            // Asignar el prefab seleccionado a spawnEnemyPrefab
-            GameObject spawnEnemyPrefab = enemyPrefabs[randomIndex];
-           
-            Instantiate(spawnEnemyPrefab,spawnPos,Quaternion.identity);
-			enemyCount++;
-		}
+				if (spawners[rand] != null)
+				{
+					Vector3 spawnPos = spawners[rand].position;
+					// Resto del código de spawnEnemyPrefab
+					int randomIndex = Random.Range(0, enemyPrefabs.Length);
+
+					// Asignar el prefab seleccionado a spawnEnemyPrefab
+					GameObject spawnEnemyPrefab = enemyPrefabs[randomIndex];
+
+					Instantiate(spawnEnemyPrefab, spawnPos, Quaternion.identity);
+                    float randEnemy = Random.value;
+                    enemyCount++;
+				}
+				
+
+                else
+                {
+                    Debug.LogWarning("El elemento seleccionado de spawners es nulo.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("El arreglo spawners no está inicializado o no contiene elementos.");
+            }
+
+            // Generar un índice aleatorio para seleccionar un prefab
+        }
+		
 	}
 }

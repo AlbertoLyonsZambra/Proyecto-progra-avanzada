@@ -165,7 +165,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
         int nivel = PlayerPrefs.GetInt("nivelActual");
         if (botonFrenesi != null)
         {
-            botonFrenesi.gameObject.SetActive(nivel == 1);
+            botonFrenesi.gameObject.SetActive(nivel == 4);
         }
     }
 }
