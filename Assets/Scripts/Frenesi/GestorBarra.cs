@@ -17,7 +17,7 @@ public class GestorBarra : MonoBehaviour
 
     public int duration;
     private int remainingDuration;
-    public string nextSceneName = "juego"; // Nombre de la siguiente escena
+    public string nextSceneName = "Juego"; // Nombre de la siguiente escena
 
     // Start is called before the first frame update
     void Start()

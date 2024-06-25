@@ -9,17 +9,19 @@ public class GestorVida : GenericSingleton<GestorVida>
 {
     public int vida;
     public GameObject[] corazones;
-    public string tallerScene = "juego";
+    public string tallerScene = "Juego";
     [SerializeField] private GameObject hasMuertoTexto;
     [SerializeField] private GameObject prontoTexto;
     [SerializeField] private GameObject panel1;
     [SerializeField] private GameObject spawnerGameObject;
-    [SerializeField] private GameObject particleSystemPrefab; // Prefab del sistema de partículas
-    public bool hasMuerto = false;
+    [SerializeField] private GameObject particleSystemPrefab;
+    [SerializeField] private GameObject reloj; 
+    public bool hasMuerto;
 
     void Start()
     {
         vida = 3;
+        hasMuerto = false;
     }
 
     void Update()
@@ -51,7 +53,6 @@ public class GestorVida : GenericSingleton<GestorVida>
             prontoTexto.SetActive(true);
             hasMuerto = true;
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            GameObject reloj = GameObject.FindGameObjectWithTag("Timer");
             reloj.SetActive(false);
 
             // Instanciar el sistema de partículas en la posición del jugador con rotación -90 en X
@@ -92,6 +93,7 @@ public class GestorVida : GenericSingleton<GestorVida>
     {
         yield return new WaitForSecondsRealtime(3);
         Time.timeScale = 1;
+        SceneManager.LoadScene(tallerScene);
     }
 
     private void DestroyAllEnemies()
