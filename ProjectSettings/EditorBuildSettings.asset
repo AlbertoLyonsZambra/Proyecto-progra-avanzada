@@ -12,12 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Frenesi/Frenesi.unity
     guid: 907e894bf4d2deb448502e503bdf8213
   - enabled: 0
-    path: Assets/Scenes/por si se me olvido algo/PruebasMatias PORSIACASO.unity
-    guid: 632af6eaa8d26fc498a56bc23ee6f453
-  - enabled: 0
     path: Assets/Scenes/PruebasAlberto.unity
     guid: 867f759769802a9468f8c74a80c9bef5
-  - enabled: 0
-    path: Assets/Scenes/PruebasAdan.unity
-    guid: 9dbd82c1b901a604f9ca53dcc698cc3a
   m_configObjects: {}
