@@ -16,6 +16,7 @@ public class Gestor_audio : GenericSingleton<Gestor_audio>
     [SerializeField] public AudioClip musicaMenu;
     [SerializeField] public AudioClip musicaTienda;
     [SerializeField] public AudioClip musicaJuego;
+    public AudioClip musicaInfinito;
     [SerializeField] public AudioClip impactoAsteroideSFX;
     
     void Start()

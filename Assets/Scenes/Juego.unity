@@ -93427,7 +93427,8 @@ MonoBehaviour:
   recogerMaterialSFX: {fileID: 8300000, guid: 28957b1744372184e830d864070fd628, type: 3}
   musicaMenu: {fileID: 8300000, guid: 82893ecc57e8d8745934737452f5d379, type: 3}
   musicaTienda: {fileID: 8300000, guid: 8d7914a9da6566149ad40c98bfa36fda, type: 3}
-  musicaJuego: {fileID: 8300000, guid: cd5dc8524293e734abad50ce5aab9b19, type: 3}
+  musicaJuego: {fileID: 8300000, guid: f0289333f32326b4f893558dc517dd6f, type: 3}
+  musicaInfinito: {fileID: 8300000, guid: 09e96ed8a70578e4fa6672e44b01d45a, type: 3}
   impactoAsteroideSFX: {fileID: 8300000, guid: 153a05bf952862240a63de031a255815, type: 3}
 --- !u!1 &1321374833
 GameObject:

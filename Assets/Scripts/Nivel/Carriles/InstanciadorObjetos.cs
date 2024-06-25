@@ -100,7 +100,7 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         // Modo infinito
         if (MenuPrincipal.Instance.nivelActual >= 4)
         {
-            tiempoMax -= 0.01f;
+            tiempoMax -= 0.000001f;
         }
         if (!posMatrizPrevia.SequenceEqual(posMatriz))
         {

@@ -8,6 +8,7 @@ public class GestorMenuNivel : MonoBehaviour
     [SerializeField] private Material[] skyboxNiveles;
     [SerializeField] private GameObject[] planetasInicio;
     [SerializeField] private GameObject planetaInicial;
+    private GameObject planetaNuevo;
     void Start()
     {
         AudioClip musicaPaPoner = musicasNivel[0];
@@ -46,11 +47,20 @@ public class GestorMenuNivel : MonoBehaviour
         }
         if (puedeAparecer)
         {
-            GameObject planetaNuevo = Instantiate(planeta, posicion, Quaternion.identity);
+            planetaNuevo = Instantiate(planeta, posicion, Quaternion.identity);
             planeta.transform.localScale = escala;
-            
+            planetaNuevo.tag = "Obs_Asteroide";
         }
+        RenderSettings.skybox = skyBoxPaPoner;
         planetaInicial.SetActive(false);
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, musicaPaPoner);
+    }
+    private void Update()
+    {
+        if (MenuPrincipal.Instance.jugando)
+        {
+            Vector3 velocidadPlataforma = Vector3.back * 6 * Time.deltaTime;
+            planetaNuevo.transform.Translate(velocidadPlataforma);
+        }
     }
 }
