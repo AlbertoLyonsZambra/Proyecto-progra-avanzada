@@ -6,15 +6,17 @@ using TMPro;
 
 public class Enlaces : MonoBehaviour
 {
-    [SerializeField] public Button habilidadEntrada;
-    [SerializeField] public Button habilidadSalida;
+    [SerializeField] public Button habilidadEntradaBTN;
+    [SerializeField] public Button habilidadSalidaBTN;
+    private Habilidad habilidadEntrada;
+    private Habilidad habilidadSalida;
+    private Image relleno;
+
     void Start()
     {
-        
+        habilidadEntrada = habilidadEntradaBTN.gameObject.GetComponent<Habilidad>();
+        habilidadSalida = habilidadSalidaBTN.gameObject.GetComponent<Habilidad>();
+        relleno = transform.Find("relleno").GetComponent<Image>();
     }
 
-    void Update()
-    {
-        
-    }
 }

@@ -34,6 +34,7 @@ TagManager:
   - EnemyDamage
   - Timer
   - Bullet
+  - primeraHabilidad
   layers:
   - Default
   - TransparentFX
