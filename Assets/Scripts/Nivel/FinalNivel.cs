@@ -21,7 +21,7 @@ public class FinalNivel : GenericSingleton<FinalNivel>
     
     private Vector3 plataforma;
     private Transform nave;
-    private void OnEnable()
+    private void Start()
     {
 
         GameObject planetaCargar = planetaNivel0;
@@ -41,25 +41,19 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         Vector3 posicion = planeta.transform.position;
         Instantiate(planetaCargar, posicion,Quaternion.identity, destino.transform);
         Destroy(planeta);
-        Transform padre = GameObject.Find("Jugador").transform.Find("Naves Jugador");
-        nave = BuscarNave(padre, "default");
-    }
-    private Transform BuscarNave(Transform padre, string nombre)
-    {
-        foreach (Transform hijo in padre)
-        {
-            if (hijo.name == nombre)
-                return hijo;
-
-            Transform resultado = BuscarNave(hijo, nombre);
-            if (resultado != null)
-                return resultado;
-        }
-        return null;
+        nave = GestorTaller.Instance.ultimaNaveJugador.Find("default");
     }
     public void Victoria()
     {
-        nave.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        string nombre = nave.parent.name;
+        if (nombre == "0" || nombre == "2")
+        {
+            nave.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        }
+        else
+        {
+            nave.gameObject.GetComponent<BoxCollider>().enabled = false;
+        }
         GestorTaller.Instance.guardarMats();
         int nivelActual = PlayerPrefs.GetInt("nivelActual");
         victoria = true;

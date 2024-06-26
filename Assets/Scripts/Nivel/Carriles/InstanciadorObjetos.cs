@@ -15,23 +15,30 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
     [SerializeField] public SimpleObjectPool[] kits;
     [SerializeField] private Transform[] generadoresAsteroidesPos;
     [SerializeField] private SimpleObjectPool[] finalNivel;
+    [HideInInspector] public float tiempoMinAsteroides;
+    [HideInInspector] public float tiempoMaxAsteroides;
+    [HideInInspector] public float tiempoMinAsteroidesColor;
+    [HideInInspector] public float tiempoMaxAsteroidesColor;
+    [HideInInspector] public float tiempoMinBateria;
+    [HideInInspector] public float tiempoMaxBateria;
+    [HideInInspector] public float tiempoMinKit;
+    [HideInInspector] public float tiempoMaxKit;
 
     void Start()
     {
         // Tiempos para nivel 0
-        float tiempoMinAsteroides = 0;
-        float tiempoMaxAsteroides = 3;
-        float tiempoMinAsteroidesColor = 7;
-        float tiempoMaxAsteroidesColor = 8;
-        float tiempoMinBateria = 5;
-        float tiempoMaxBateria = 15;
-        float tiempoMinKit = 30;
-        float tiempoMaxKit = 35;
+        tiempoMinAsteroides = 0;
+        tiempoMaxAsteroides = 3;
+        tiempoMinAsteroidesColor = 7;
+        tiempoMaxAsteroidesColor = 8;
+        tiempoMinBateria = 5;
+        tiempoMaxBateria = 15;
+        tiempoMinKit = 30;
+        tiempoMaxKit = 35;
 
         int nivel = MenuPrincipal.Instance.nivelActual;
         if (nivel == 1)
         {
-            tiempoMinAsteroides = 0;
             tiempoMaxAsteroides = 1.7f;
             tiempoMinAsteroidesColor = 5;
             tiempoMaxAsteroidesColor = 6.5f;
@@ -46,7 +53,6 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
             int indice = Random.Range(0, tiempoDecimal.Count);
 
             float decimalt = tiempoDecimal[indice];
-            tiempoMinAsteroides = 0;
             tiempoMaxAsteroides = 0.5f + decimalt;
             tiempoMinAsteroidesColor = 4;
             tiempoMaxAsteroidesColor = 6;
@@ -61,7 +67,6 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
             int indice = Random.Range(0, tiempoDecimal.Count);
 
             float decimalt = tiempoDecimal[indice];
-            tiempoMinAsteroides = 0;
             tiempoMaxAsteroides = 0.3f + decimalt;
             tiempoMinAsteroidesColor = 4;
             tiempoMaxAsteroidesColor = 5.7f;
