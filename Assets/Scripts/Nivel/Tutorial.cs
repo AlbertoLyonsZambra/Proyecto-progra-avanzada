@@ -9,6 +9,7 @@ public class Tutorial : GenericSingleton<Tutorial>
     [SerializeField] private RectTransform horizontal;
     [SerializeField] private RectTransform vertical;
     [SerializeField] private GameObject gestorBateria;
+    [SerializeField] private GameObject barraProgreso;
     [SerializeField] private GameObject indicadorBateria;
     [SerializeField] private GameObject AsteroideParaDisparar;
     [SerializeField] private GameObject FlechaAsteroide;
@@ -106,11 +107,12 @@ public class Tutorial : GenericSingleton<Tutorial>
         Time.timeScale = 1;
         PlayerPrefs.SetInt("pasoTutorial", 1);
         gestorBateria.SetActive(true);
+        barraProgreso.SetActive(true);
         //GestorBateria.Instance.enabled = true;
         InstanciadorObjetos.Instance.enabled = true;
         int nivelActual = PlayerPrefs.GetInt("nivelActual");
         indicadorBateria.SetActive(true);
-        float duracionNivel = 300 + nivelActual * 30f; // +30s de duracion por nivel
+        float duracionNivel = 2.0f + 20 + (nivelActual + 1) * 30f; // +30s de duracion por nivel
         StartCoroutine(MenuPrincipal.Instance.EsperarAEventoCoroutine(Time.time, duracionNivel, "finalNivel"));
         gameObject.SetActive(false);
     }

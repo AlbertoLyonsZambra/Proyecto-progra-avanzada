@@ -27,9 +27,17 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
         cadenciaLvl = PlayerPrefs.GetInt("cadenciaLvl", 1);
         laserLvl = PlayerPrefs.GetInt("laserLvl", 1); 
         tieneArmatoste = PlayerPrefs.GetInt("tieneArmatoste", 0) == 1; 
+        if (cuantasVecesPuedeChocar > 4 && !tieneArmatoste)
+        {
+            cuantasVecesPuedeChocar = 4;
+            PlayerPrefs.SetInt("cuantasVecesPuedeChocar", cuantasVecesPuedeChocar);
+        }
+        if (tieneArmatoste)
+        {
+            cuantasVecesPuedeChocar = 10;
+            PlayerPrefs.SetInt("cuantasVecesPuedeChocar", cuantasVecesPuedeChocar);
+        }
     }
-
-    
 
     // limpia todo el panel negro de la izq de la terminal
     public void DesaparecerPanelDetalle(bool desaparecer)
@@ -44,11 +52,42 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
         desc.text = "";
         precio.text = "";
     }
+
+    public bool EfectuarCompra()
+    {
+        int[] matsTaller = new int[] {PlayerPrefs.GetInt("MatsTallerV"), PlayerPrefs.GetInt("MatsTallerN"), PlayerPrefs.GetInt("MatsTallerR")};
+        if(habilidadSeleccionada == null){return false;}
+        for(int i = 0; i < habilidadSeleccionada.precio.Length; i++)
+        {
+            if(habilidadSeleccionada.precio[i] > matsTaller[i]) // si no tiene plata no pasa nada in-game
+            {
+                return false;
+            }
+        }
+        if(habilidadSeleccionada.precio.Length == 1)
+        {
+            PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsTallerV") - habilidadSeleccionada.precio[0]);
+        }
+        else if(habilidadSeleccionada.precio.Length == 2)
+        {
+            PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsTallerV") - habilidadSeleccionada.precio[0]);
+            PlayerPrefs.SetInt("MatsTallerN", PlayerPrefs.GetInt("MatsTallerN") - habilidadSeleccionada.precio[1]);
+        }
+        else if(habilidadSeleccionada.precio.Length == 3)
+        {
+            PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsTallerV") - habilidadSeleccionada.precio[0]);
+            PlayerPrefs.SetInt("MatsTallerN", PlayerPrefs.GetInt("MatsTallerN") - habilidadSeleccionada.precio[1]);
+            PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsTallerR") - habilidadSeleccionada.precio[2]);
+        }
+        GestorTaller.Instance.ActualizarMatsTerminal();
+        return true;
+    }
    
     public void Comprar()
     {   
         if(habilidadSeleccionada == null){return;}
         if(!habilidadSeleccionada.comprable){return;}
+        if(!EfectuarCompra()){return;}
         ActualizarNivelesHabilidades();
         habilidadSeleccionada.Comprado();
         habilidadSeleccionada.comprable = false;
@@ -58,7 +97,7 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
             
         }
         habilidadSeleccionada.ActualizarInteractuabilidad();
-      
+        
     }
 
     private void ActualizarNivelesHabilidades()
@@ -83,12 +122,19 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
             {
                 PlayerPrefs.SetInt("tieneArmatoste", 1);
                 tieneArmatoste = true;
+                cuantasVecesPuedeChocar = 10;
+                PlayerPrefs.SetInt("cuantasVecesPuedeChocar", cuantasVecesPuedeChocar);
             }
         }
         else if(nombreH.Contains("coraza"))
         {
             PlayerPrefs.SetInt("cuantasVecesPuedeChocar", cuantasVecesPuedeChocar + 1);
             cuantasVecesPuedeChocar = PlayerPrefs.GetInt("cuantasVecesPuedeChocar");
+            if(cuantasVecesPuedeChocar > 4 && !tieneArmatoste)
+            {
+                cuantasVecesPuedeChocar = 4;
+                PlayerPrefs.SetInt("cuantasVecesPuedeChocar", cuantasVecesPuedeChocar);
+            }
         }
     }
 

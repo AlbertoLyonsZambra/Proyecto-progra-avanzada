@@ -45,10 +45,13 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         {
             planetaCargar = planetaNivel3;
         }
-        Vector3 posicion = planeta.transform.position;
-        Instantiate(planetaCargar, posicion,Quaternion.identity, destino.transform);
-        Destroy(planeta);
-        nave = GestorTaller.Instance.ultimaNaveJugador.Find("default");
+        if(planeta != null)
+        {
+            Vector3 posicion = planeta.transform.position;
+            Instantiate(planetaCargar, posicion,Quaternion.identity, destino.transform);
+            Destroy(planeta);
+            nave = GestorTaller.Instance.ultimaNaveJugador.Find("default");
+        }
     }
     public void Victoria()
     {

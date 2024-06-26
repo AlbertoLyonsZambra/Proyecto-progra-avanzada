@@ -56,13 +56,13 @@ public class GestorTaller : GenericSingleton<GestorTaller>
         {
             // Si no hay victoria, mantener las naves en su estado actual (probablemente bloqueadas)
             
-            ActualizarNavesTaller((MenuPrincipal.Instance.nivelActual)); // Mantener el último nivel desbloqueado
+            ActualizarNavesTaller((MenuPrincipal.Instance.nivelActual)); // Mantener el ï¿½ltimo nivel desbloqueado
         }
     }
 
     public void ActualizarNavesTaller(int nivelDesbloqueado)
     {
-        // Asegurarse de que el nivel desbloqueado esté dentro de los límites de la lista de naves
+        // Asegurarse de que el nivel desbloqueado estï¿½ dentro de los lï¿½mites de la lista de naves
         if (nivelDesbloqueado >= 0 && nivelDesbloqueado < nave.Count)
         {
             // Activar las naves hasta el nivel desbloqueado
@@ -84,7 +84,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
         }
         else
         {
-            Debug.LogError("El nivel desbloqueado está fuera de los límites de la lista de naves.");
+            Debug.LogError("El nivel desbloqueado estï¿½ fuera de los lï¿½mites de la lista de naves.");
         }
     }
 
@@ -153,7 +153,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
         PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsTallerR") + PlayerPrefs.GetInt("MatsR"));
     }
 
-    private void ActualizarMatsTerminal()
+    public void ActualizarMatsTerminal()
     {
         textoVerde.text = PlayerPrefs.GetInt("MatsTallerV").ToString();
         textoNaranja.text = PlayerPrefs.GetInt("MatsTallerN").ToString();

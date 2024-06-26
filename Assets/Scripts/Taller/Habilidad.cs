@@ -10,7 +10,7 @@ public class Habilidad : MonoBehaviour
     [Header("Habilidad:")]
     [SerializeField] public string nombre;
     [SerializeField] private string desc;
-    [SerializeField] private int[] precio;
+    [SerializeField] public int[] precio;
     public bool comprado = false;
     public bool comprable = false;
 
@@ -23,6 +23,7 @@ public class Habilidad : MonoBehaviour
     [HideInInspector] public Habilidad[] habilidadAnterior;
     void Start()
     {
+        
         IniciliazacionListas();
         InicializarHabilidadesCompradas();
         if (comprado)
