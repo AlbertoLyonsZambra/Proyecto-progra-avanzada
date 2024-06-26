@@ -18,6 +18,13 @@ public class FinalNivel : GenericSingleton<FinalNivel>
     [SerializeField] private GameObject planetaNivel3;
     [HideInInspector] public bool victoria = false;
     [SerializeField] private GameObject panel1; 
+
+    [SerializeField] private GameObject panelNivel0; 
+    [SerializeField] private GameObject panelNivel1;
+    [SerializeField] private GameObject panelNivel2;
+    [SerializeField] private GameObject panelNivel3;
+
+    [SerializeField] private GameObject instrucciones;
     
     private Vector3 plataforma;
     private Transform nave;
@@ -78,7 +85,7 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, clipVictoria);
         Gestor_audio.Instance.audioSourceMusica.loop = false;
         pantallaFinal.SetActive(true);
-        panel1.SetActive(true);
+        //panel1.SetActive(true);
         StartCoroutine(ExecuteOnEndAfterDelay(3f));
     }
     void Update()
@@ -94,21 +101,41 @@ public class FinalNivel : GenericSingleton<FinalNivel>
     {
         yield return new WaitForSecondsRealtime(delay);
         panel1.SetActive(true);
-        StartCoroutine(ExecuteOnEndAfterDelay1(3f));
-
+        StartCoroutine(ExecuteOnEndAfterDelay1(2f));
     }
 
     private IEnumerator ExecuteOnEndAfterDelay1(float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
+        pantallaFinal.SetActive(false);
+        int nivel = PlayerPrefs.GetInt("nivelActual");
+        if (nivel == 0){
+            panelNivel0.SetActive(true);
+        }
+        if (nivel == 1){
+            panelNivel1.SetActive(true);
+        }
+        if (nivel == 2){
+            panelNivel2.SetActive(true);
+        }
+        if (nivel == 3){
+            panelNivel3.SetActive(true);
+        }
+        StartCoroutine(ExecuteOnEndAfterDelay2(4f));
         
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay2(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        instrucciones.SetActive(true);
         StartCoroutine(CargarFrenesiScene());
 
     }
 
     private IEnumerator CargarFrenesiScene()
     {
-        yield return new WaitForSeconds(2); // Espera 2 segundos
+        yield return new WaitForSeconds(4); // Espera 2 segundos
         SceneManager.LoadScene("Frenesi"); // Carga la escena "Frenesi"
         Time.timeScale = 0;
     }
