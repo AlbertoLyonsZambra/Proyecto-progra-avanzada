@@ -15,7 +15,8 @@ public class GestorVida : GenericSingleton<GestorVida>
     [SerializeField] private GameObject panel1;
     [SerializeField] private GameObject spawnerGameObject;
     [SerializeField] private GameObject particleSystemPrefab;
-    [SerializeField] private GameObject reloj; 
+    [SerializeField] private GameObject reloj;
+    [SerializeField] private GameObject joystick;
     public bool hasMuerto;
     private GestorBarra gestorBarra;
 
@@ -57,7 +58,7 @@ public class GestorVida : GenericSingleton<GestorVida>
             gestorBarra.victoria = false;
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             reloj.SetActive(false);
-
+            joystick.SetActive(false);
             // Instanciar el sistema de partículas en la posición del jugador con rotación -90 en X
             if (particleSystemPrefab != null && player != null)
             {
@@ -96,7 +97,7 @@ public class GestorVida : GenericSingleton<GestorVida>
     {
         yield return new WaitForSecondsRealtime(3);
         Time.timeScale = 1;
-        SceneManager.LoadScene(tallerScene);
+        //SceneManager.LoadScene(tallerScene);
     }
 
     private void DestroyAllEnemies()

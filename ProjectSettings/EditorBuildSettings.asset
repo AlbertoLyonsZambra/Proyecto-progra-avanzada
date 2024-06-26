@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Juego.unity
     guid: 3a1b52ddb5698d44c8f4fcc4d7bd7291
   - enabled: 1
-    path: Assets/Scenes/Frenesi/Frenesi.unity
+    path: Assets/Scenes/Frenesi.unity
     guid: 907e894bf4d2deb448502e503bdf8213
   - enabled: 0
     path: Assets/Scenes/PruebasAlberto.unity
