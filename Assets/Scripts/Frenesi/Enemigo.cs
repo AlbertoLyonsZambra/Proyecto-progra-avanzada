@@ -172,15 +172,19 @@ public class Enemigo : MonoBehaviour
         // Esperar un frame adicional para asegurar que todo se ha procesado
         yield return null;
 
-        for (int i = 0; i < materialAmount; i++)
+        if (PlayerPrefs.GetInt("jugandoFrenesi", 0) == 1)
         {
-            int randomIndex = Random.Range(0, dropMaterials.Length);
-            Vector3 dropPosition = new Vector3(transform.position.x, transform.position.y + dropHeightOffset, transform.position.z);
-            Instantiate(dropMaterials[randomIndex], dropPosition, Quaternion.identity);
+            for (int i = 0; i < materialAmount; i++)
+            {
+                int randomIndex = Random.Range(0, dropMaterials.Length);
+                Vector3 dropPosition = new Vector3(transform.position.x, transform.position.y + dropHeightOffset, transform.position.z);
+                Instantiate(dropMaterials[randomIndex], dropPosition, Quaternion.identity);
+            }
         }
 
-        // Destruir el objeto
-        Destroy(gameObject);
+
+            // Destruir el objeto
+            Destroy(gameObject);
        
 
         // Actualizar el contador de enemigos

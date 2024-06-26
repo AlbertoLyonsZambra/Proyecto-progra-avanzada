@@ -145,12 +145,16 @@ public class EnemigoLobo : MonoBehaviour
                 Destroy(particleInstance, ps.main.duration);
             }
 
-            for (int i = 0; i < materialAmount; i++)
+            if(PlayerPrefs.GetInt("jugandoFrenesi",0) == 1)
             {
-                int randomIndex = Random.Range(0, dropMaterials.Length);
-                Vector3 dropPosition = new Vector3(transform.position.x, transform.position.y + dropHeightOffset, transform.position.z);
-                Instantiate(dropMaterials[randomIndex], dropPosition, Quaternion.identity);
+                for (int i = 0; i < materialAmount; i++)
+                {
+                    int randomIndex = Random.Range(0, dropMaterials.Length);
+                    Vector3 dropPosition = new Vector3(transform.position.x, transform.position.y + dropHeightOffset, transform.position.z);
+                    Instantiate(dropMaterials[randomIndex], dropPosition, Quaternion.identity);
+                }
             }
+            
         }
 
         // Detener animaciones

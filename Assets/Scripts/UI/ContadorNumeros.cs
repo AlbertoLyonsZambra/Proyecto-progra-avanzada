@@ -23,9 +23,9 @@ public class ContadorNumeros : MonoBehaviour
         
         else if (PlayerPrefs.GetInt("jugandoFrenesi") == 1)
         {
-            if(gameObject.transform.parent.tag == "numeroV"){tmpro.text = "+" + PlayerPrefs.GetInt("MatsTallerV").ToString();}
-            if(gameObject.transform.parent.tag == "numeroN"){tmpro.text = "+" + PlayerPrefs.GetInt("MatsTallerN").ToString();}
-            if(gameObject.transform.parent.tag == "numeroR"){tmpro.text = "+" + PlayerPrefs.GetInt("MatsTallerR").ToString();}
+            if(gameObject.transform.parent.tag == "numeroV"){tmpro.text = "+" + PlayerPrefs.GetInt("MatsFrenesiV").ToString();}
+            if(gameObject.transform.parent.tag == "numeroN"){tmpro.text = "+" + PlayerPrefs.GetInt("MatsFrenesiN").ToString();}
+            if(gameObject.transform.parent.tag == "numeroR"){tmpro.text = "+" + PlayerPrefs.GetInt("MatsFrenesiR").ToString();}
         }
         
     }

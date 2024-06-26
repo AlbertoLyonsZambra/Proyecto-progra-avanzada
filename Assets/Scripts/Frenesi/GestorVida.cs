@@ -58,7 +58,7 @@ public class GestorVida : GenericSingleton<GestorVida>
             prontoTexto.SetActive(true);
             hasMuerto = true;
             gestorBarra.victoria = false;
-            gestorBarra.jugando = false;
+            
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             reloj.SetActive(false);
             joystick.SetActive(false);

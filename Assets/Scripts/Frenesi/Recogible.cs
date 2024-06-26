@@ -20,42 +20,59 @@ public class Recogible : MonoBehaviour
     void Update()
     {
           guardarMats();
+
+        if(PlayerPrefs.GetInt("jugandoFrenesi", 0) == 0)
+        {
+            PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsTallerV") + PlayerPrefs.GetInt("MatsFrenesiV"));
+            PlayerPrefs.SetInt("MatsTallerN", PlayerPrefs.GetInt("MatsTallerN") + PlayerPrefs.GetInt("MatsFrenesiN"));
+            PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsTallerR") + PlayerPrefs.GetInt("MatsFrenesiR"));
+
+            PlayerPrefs.SetInt("MatsFrenesiV", 0);
+            PlayerPrefs.SetInt("MatsFrenesiN", 0);
+            PlayerPrefs.SetInt("MatsFrenesiR", 0);
+        }
+        
     }
 
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag("ConsumibleV"))
+        if (PlayerPrefs.GetInt("jugandoFrenesi",0) == 1)
         {
-            consumibleV++;
-            Debug.Log("ConsumibleV: " + consumibleV);
-            Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
-        }
-        else if (other.CompareTag("ConsumibleN"))
-        {
-            consumibleN++;
-            Debug.Log("ConsumibleN: " + consumibleN);
-            Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
-        }
-        else if (other.CompareTag("ConsumibleR"))
-        {
-            consumibleR++;
-            Debug.Log("ConsumibleR: " + consumibleR); 
-            Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
+            if (other.CompareTag("ConsumibleV"))
+            {
+                consumibleV++;
+                Debug.Log("ConsumibleV: " + consumibleV);
+                Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
+            }
+            else if (other.CompareTag("ConsumibleN"))
+            {
+                consumibleN++;
+                Debug.Log("ConsumibleN: " + consumibleN);
+                Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
+            }
+            else if (other.CompareTag("ConsumibleR"))
+            {
+                consumibleR++;
+                Debug.Log("ConsumibleR: " + consumibleR);
+                Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
+            }
+
         }
     }
 
+
+
+        public void guardarMats()
+        {
+            PlayerPrefs.SetInt("MatsFrenesiV", PlayerPrefs.GetInt("MatsFrenesiV") + consumibleV);
+            PlayerPrefs.SetInt("MatsFrenesiN", PlayerPrefs.GetInt("MatsFrenesiN") + consumibleN / 2);
+            PlayerPrefs.SetInt("MatsFrenesiR", PlayerPrefs.GetInt("MatsFrenesiR") + consumibleR / 2);
+
+            consumibleV = 0;
+            consumibleN = 0;
+            consumibleR = 0;
+
+        }
     
-
-    public void guardarMats()
-    {
-        PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsTallerV") + consumibleV);
-        PlayerPrefs.SetInt("MatsTallerN", PlayerPrefs.GetInt("MatsTallerN") + consumibleN/2);
-        PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsTallerR") + consumibleR/2);
-
-        consumibleV = 0;
-        consumibleN = 0;
-        consumibleR = 0;
-
-    }
 }

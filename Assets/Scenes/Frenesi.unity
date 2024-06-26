@@ -1109,8 +1109,11 @@ MonoBehaviour:
   - {fileID: 493328898}
   - {fileID: 486848358}
   cofreMapa: {fileID: 977217476}
+  matRecogibles:
+  - {fileID: 950005189}
+  - {fileID: 862235883}
+  - {fileID: 959904103}
   victoria: 0
-  jugando: 0
   duration: 40
   nextSceneName: juego
   oleadasPermitidas: 1
@@ -5328,7 +5331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &862235884
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5659,7 +5662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -256, y: 500}
+  m_AnchoredPosition: {x: -256, y: 450}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &941468722
@@ -5774,7 +5777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &950005190
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5947,7 +5950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &959904104
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7275,6 +7278,9 @@ MonoBehaviour:
   bateriaSFX: {fileID: 0}
   asteroideRomperSFX: {fileID: 0}
   recogerMaterialSFX: {fileID: 0}
+  toqueFallidoSFX: {fileID: 0}
+  botonTallerSFX: {fileID: 0}
+  seleccionarNaveSFX: {fileID: 0}
   musicaMenu: {fileID: 0}
   musicaTienda: {fileID: 0}
   musicaJuego: {fileID: 8300000, guid: fe3962841af91d148a4045f7dd11ca64, type: 3}
@@ -9337,7 +9343,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d8e1b2b5d1772bd4f9c6e4109f95fda6, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9607844, g: 0.7803922, b: 0.23137257, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
