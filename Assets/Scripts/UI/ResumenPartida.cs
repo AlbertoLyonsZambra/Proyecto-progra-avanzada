@@ -53,7 +53,7 @@ public class ResumenPartida : MonoBehaviour
         }
         else
         {
-            hasConseguidoTEXTO.text = "No conseguiste nada :( ";
+            hasConseguidoTEXTO.text = "No conseguiste nada.";
         }
     }
 

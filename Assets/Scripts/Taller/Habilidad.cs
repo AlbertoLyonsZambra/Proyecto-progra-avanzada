@@ -32,6 +32,7 @@ public class Habilidad : MonoBehaviour
         }
         if(tag == "primeraHabilidad" && !comprado){comprable = true;}
         ActualizarInteractuabilidad();
+        
     }
     
     private void SeleccionarHabilidad()
@@ -55,15 +56,15 @@ public class Habilidad : MonoBehaviour
     {
         if(nombre.ToLower().Contains("cadencia"))
         {
-            comprado = PlayerPrefs.GetInt("cadenciaLvl") >= int.Parse(gameObject.name);
+            comprado = PlayerPrefs.GetInt("cadenciaLvl") > int.Parse(gameObject.name);
         }
         else if(nombre.ToLower().Contains("potencia"))
         {
-            comprado = PlayerPrefs.GetInt("bateriaLvl") >= int.Parse(gameObject.name);
+            comprado = PlayerPrefs.GetInt("bateriaLvl") > int.Parse(gameObject.name);
         }
         else if(nombre.ToLower().Contains("arma"))
         {
-            comprado = PlayerPrefs.GetInt("laserLvl") >= int.Parse(gameObject.name);
+            comprado = (PlayerPrefs.GetInt("laserLvl") > int.Parse(gameObject.name) && PlayerPrefs.GetInt("laserLvl") < 3);
 
             if(nombre.ToLower().Contains("armatoste"))
             {
@@ -72,7 +73,7 @@ public class Habilidad : MonoBehaviour
         }
         else if(nombre.ToLower().Contains("coraza"))
         {
-            comprado = PlayerPrefs.GetInt("cuantasVecesPuedeChocar") >= int.Parse(gameObject.name);
+            comprado = PlayerPrefs.GetInt("cuantasVecesPuedeChocar") > int.Parse(gameObject.name);
         }
         if(comprado){comprable = false;}
     }
