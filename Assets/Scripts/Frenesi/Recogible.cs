@@ -5,22 +5,57 @@ using UnityEngine;
 
 public class Recogible : MonoBehaviour
 {
-    public float attractionSpeed = 5f;
+    
+    private GestorBarra gestorBarra;
+     // Booleano para controlar si se cuentan los consumibles
 
+    private int consumibleV = 0;
+    private int consumibleN = 0;
+    private int consumibleR = 0;
+
+    void Start()
+    {
+        gestorBarra = GestorBarra.Instance;
+    }
     void Update()
     {
-        AttractConsumibleWithTag("ConsumibleV");
-        AttractConsumibleWithTag("ConsumibleN");
-        AttractConsumibleWithTag("ConsumibleR");
+          guardarMats();
     }
 
-    void AttractConsumibleWithTag(string tag)
+    void OnTriggerEnter(Collider other)
     {
-        GameObject consumible = GameObject.FindWithTag(tag);
-        if (consumible != null)
+
+        if (other.CompareTag("ConsumibleV"))
         {
-            Vector2 direction = (transform.position - consumible.transform.position).normalized;
-            consumible.transform.position = Vector2.MoveTowards(consumible.transform.position, transform.position, attractionSpeed * Time.deltaTime);
+            consumibleV++;
+            Debug.Log("ConsumibleV: " + consumibleV);
+            Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
         }
+        else if (other.CompareTag("ConsumibleN"))
+        {
+            consumibleN++;
+            Debug.Log("ConsumibleN: " + consumibleN);
+            Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
+        }
+        else if (other.CompareTag("ConsumibleR"))
+        {
+            consumibleR++;
+            Debug.Log("ConsumibleR: " + consumibleR); 
+            Destroy(other.gameObject); // Destruir el consumible al ser recogido (opcional)
+        }
+    }
+
+    
+
+    public void guardarMats()
+    {
+        PlayerPrefs.SetInt("MatsTallerV", PlayerPrefs.GetInt("MatsTallerV") + consumibleV);
+        PlayerPrefs.SetInt("MatsTallerN", PlayerPrefs.GetInt("MatsTallerN") + consumibleN/2);
+        PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsTallerR") + consumibleR/2);
+
+        consumibleV = 0;
+        consumibleN = 0;
+        consumibleR = 0;
+
     }
 }
