@@ -59,10 +59,6 @@ public class FinalNivel : GenericSingleton<FinalNivel>
         victoria = true;
         Tutorial.Instance.aparecioAsteroide = true;
         MovimientoCarriles.Instance.InclinacionJugador(1, 1);
-        if (nivelActual < 4)
-        {
-            PlayerPrefs.SetInt("nivelActual", nivelActual + 1);
-        }
         //nivelActual = PlayerPrefs.GetInt("nivelActual");
         GameObject.Find("Sistema carriles").transform.Find("Instanciador_objetos").gameObject.SetActive(false);
         GameObject.Find("Animaciones").gameObject.SetActive(false);
