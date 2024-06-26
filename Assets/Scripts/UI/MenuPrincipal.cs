@@ -59,6 +59,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     {
         if(JugadorNivel.Instance.escogioNave)
         {
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.naveSFX);
             PlayerPrefs.SetInt("jugandoFrenesi", 0);
             PlayerPrefs.SetInt("MatsV", 0);
             PlayerPrefs.SetInt("MatsN", 0);
@@ -99,7 +100,12 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
                 InstanciadorObjetos.Instance.enabled = false;
                 ayudaScript.CambiarPantallaActual("juego1");
             }
-        }else{print("No se ha seleccionado ninguna nave");}
+        }
+        else
+        {
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.toqueFallidoSFX);
+            print("No se ha seleccionado ninguna nave");
+        }
 
         //ayudaScript.CambiarPantallaActual("juego");
         

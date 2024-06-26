@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.031427085, g: 0.009846414, b: 0.013195235, a: 1}
+  m_IndirectSpecularColor: {r: 0.03146235, g: 0.009871539, b: 0.013235097, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -23250,7 +23250,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: v1.3.3
+  m_text: v1.3.5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17481d4d5ca9e7542ac55747e5b91b8e, type: 2}
   m_sharedMaterial: {fileID: -6743927171654171806, guid: 17481d4d5ca9e7542ac55747e5b91b8e, type: 2}
@@ -100027,6 +100027,9 @@ MonoBehaviour:
   bateriaSFX: {fileID: 8300000, guid: 7d7526baf9c3c554fade84ee47fd5e39, type: 3}
   asteroideRomperSFX: {fileID: 8300000, guid: d5a37d9dddced7c4f8e0f59399110350, type: 3}
   recogerMaterialSFX: {fileID: 8300000, guid: 28957b1744372184e830d864070fd628, type: 3}
+  toqueFallidoSFX: {fileID: 8300000, guid: 2cf619f0ac1c579419adfda082253b66, type: 3}
+  botonTallerSFX: {fileID: 8300000, guid: 6d001d8b864e5a04ca221b883fd12b25, type: 3}
+  seleccionarNaveSFX: {fileID: 8300000, guid: 9d78702482bf52e47b18a1cf856eaf24, type: 3}
   musicaMenu: {fileID: 8300000, guid: 82893ecc57e8d8745934737452f5d379, type: 3}
   musicaTienda: {fileID: 8300000, guid: 8d7914a9da6566149ad40c98bfa36fda, type: 3}
   musicaJuego: {fileID: 8300000, guid: f0289333f32326b4f893558dc517dd6f, type: 3}

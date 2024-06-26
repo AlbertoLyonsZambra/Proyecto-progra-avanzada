@@ -136,8 +136,16 @@ public class GestorTaller : GenericSingleton<GestorTaller>
     {
         Vector3 elevacion = Vector3.up * 0.15f;
         elevados[int.Parse(objeto.name)] = !elevado;
-        if(elevado){elevacion *= -1f; nave[int.Parse(objeto.name)].transform.Find("Luz").gameObject.SetActive(false);}
-        else{nave[int.Parse(objeto.name)].transform.Find("Luz").gameObject.SetActive(true);}
+        if(elevado)
+        {
+            elevacion *= -1f; nave[int.Parse(objeto.name)].transform.Find("Luz").gameObject.SetActive(false);
+        }
+        else
+        {
+            nave[int.Parse(objeto.name)].transform.Find("Luz").gameObject.SetActive(true);
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.seleccionarNaveSFX);
+            
+        }
         float tiempoTranscurrido = 0f;
         while (tiempoTranscurrido < 0.5f)
         {

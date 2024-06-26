@@ -38,6 +38,7 @@ public class Habilidad : MonoBehaviour
     
     private void SeleccionarHabilidad()
     {
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.botonTallerSFX);
         Color colorPanelDetalle;
         ColorUtility.TryParseHtmlString("#000000", out colorPanelDetalle);
         colorPanelDetalle.a = 0.8f;

@@ -42,6 +42,7 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
     // limpia todo el panel negro de la izq de la terminal
     public void DesaparecerPanelDetalle(bool desaparecer)
     {
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.botonTallerSFX);
         Color disabledColor;
         ColorUtility.TryParseHtmlString("#000000", out disabledColor);
         if(desaparecer){disabledColor.a = 0f;}
@@ -80,14 +81,16 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
             PlayerPrefs.SetInt("MatsTallerR", PlayerPrefs.GetInt("MatsTallerR") - habilidadSeleccionada.precio[2]);
         }
         GestorTaller.Instance.ActualizarMatsTerminal();
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.botonTallerSFX);
         return true;
     }
    
     public void Comprar()
     {   
+        
         if(habilidadSeleccionada == null){return;}
         if(!habilidadSeleccionada.comprable){return;}
-        if(!EfectuarCompra()){return;}
+        if(!EfectuarCompra()){Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.botonTallerSFX); return;}
         ActualizarNivelesHabilidades();
         habilidadSeleccionada.Comprado();
         habilidadSeleccionada.comprable = false;
