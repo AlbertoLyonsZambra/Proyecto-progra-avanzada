@@ -59,6 +59,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     {
         if(JugadorNivel.Instance.escogioNave)
         {
+            PlayerPrefs.SetInt("jugandoFrenesi", 0);
             PlayerPrefs.SetInt("MatsV", 0);
             PlayerPrefs.SetInt("MatsN", 0);
             PlayerPrefs.SetInt("MatsR", 0);
