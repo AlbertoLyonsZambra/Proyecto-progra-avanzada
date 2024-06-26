@@ -5,6 +5,7 @@ public class Ayuda : MonoBehaviour
 {
     [SerializeField] private GameObject pantallaAyudaJuego;
     [SerializeField] private GameObject pantallaAyudaTaller;
+    [SerializeField] private GameObject pantallaInfinito;
     [SerializeField] private Button botonAyuda;
     [SerializeField] private Button botonCerrarAyuda; // Botón para cerrar la pantalla de ayuda
     [SerializeField] private Button botonCerrarAyudaT; // Botón para cerrar la pantalla de ayuda del taller
@@ -13,6 +14,7 @@ public class Ayuda : MonoBehaviour
     {
         Juego,
         Tutorial
+        
         // Añade más pantallas aquí si es necesario
     }
 
@@ -23,13 +25,23 @@ public class Ayuda : MonoBehaviour
         // Asegúrate de que las pantallas de ayuda estén desactivadas al inicio
         pantallaAyudaJuego.SetActive(false);
         pantallaAyudaTaller.SetActive(false);
+        pantallaInfinito.SetActive(false);
+
+        if (PlayerPrefs.GetInt("cerroPantallaDesbloqueoInfinito") == 0 && PlayerPrefs.GetInt("nivelActual") >= 4)
+        {
+            pantallaInfinito.SetActive(true);
+        }
 
         // Asigna los métodos a los eventos OnClick de los botones
         botonAyuda.onClick.AddListener(MostrarAyuda);
         botonCerrarAyuda.onClick.AddListener(CerrarAyuda); // Asigna el método CerrarAyuda al botón de cerrar
         botonCerrarAyudaT.onClick.AddListener(CerrarAyuda); // Asigna el método CerrarAyuda al botón de cerrar
     }
-
+    public void OcultarDesbloqueoInfinito()
+    {
+        pantallaInfinito.SetActive(false);
+        PlayerPrefs.SetInt("cerroPantallaDesbloqueoInfinito", 1);
+    }
     public void MostrarAyuda()
     {
         // Alternar el estado de activación del GameObject pantallaAyudaJuego o pantallaAyudaTaller
