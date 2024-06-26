@@ -12,23 +12,13 @@ public class Enemigo : MonoBehaviour
     public GameObject target;
     public bool atacando;
     public int health = 2; // Variable de salud
-
-    public AudioClip cofreSound;
-    private AudioSource audioSource1;
-
     private DemoSpawnerControl spawner;
     public Collider attackCollider; // Agrega una referencia al collider
-
     [SerializeField] private GameObject particleSystemPrefab;
     [SerializeField] private float particleSystemDuration = 2f;
-
-    [SerializeField] private AudioClip collisionSound; // Clip de audio para la colisión
-    private AudioSource audioSource; // Componente AudioSource
-
     public GameObject[] dropMaterials; // Array de prefabs de materiales
     public int materialAmount = 1;
     public float dropHeightOffset = 1f;
-
     private bool isDying = false;
 
     // Start is called before the first frame update
@@ -38,17 +28,8 @@ public class Enemigo : MonoBehaviour
         target = GameObject.FindWithTag("Player");
         spawner = DemoSpawnerControl.Instance;
         attackCollider.enabled = false; // Asegúrate de que el collider esté desactivado al inicio
-
-       
-        audioSource = GetComponent<AudioSource>(); // Obtener el componente AudioSource
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-           
-        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Comportamiento();
@@ -156,11 +137,7 @@ public class Enemigo : MonoBehaviour
         }
 
         // Reproducir el sonido de muerte
-        if (collisionSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(collisionSound);
-            yield return new WaitForSeconds(collisionSound.length);
-        }
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.asteroideRomperSFX);
 
         // Desactivar el renderizador para hacer invisible al enemigo
         Renderer renderer = GetComponent<Renderer>();
@@ -211,10 +188,7 @@ public class Enemigo : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             // Reproducir el sonido de colisión
-            if (audioSource != null && collisionSound != null)
-            {
-                audioSource.PlayOneShot(collisionSound);
-            }
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.asteroideRomperSFX);
         }
     }
 }

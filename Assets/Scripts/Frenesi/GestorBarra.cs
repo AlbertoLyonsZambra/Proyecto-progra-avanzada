@@ -63,7 +63,12 @@ public class GestorBarra : GenericSingleton<GestorBarra>
             oleadasTexto.SetActive(false);
             PlayerPrefs.SetInt("jugandoFrenesi", 0);
         }
-
+        if (gestorVida.vida == 0)
+        {
+            matRecogibles[0].SetActive(false);
+            matRecogibles[1].SetActive(false);
+            matRecogibles[2].SetActive(false);
+        }
         if (gestorJuego.oleadas)
         {
             if (waveCount <= 5)

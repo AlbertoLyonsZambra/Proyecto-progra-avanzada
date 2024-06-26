@@ -12,39 +12,22 @@ public class EnemigoLobo : MonoBehaviour
     public GameObject target;
     public bool atacando;
     public int health = 3; // Variable de salud
-
     private DemoSpawnerControl spawner;
     public Collider attackCollider; // Agrega una referencia al collider
-
-    public AudioClip cofreSound;
-    
-
     [SerializeField] private GameObject particleSystemPrefab;
     [SerializeField] private float particleSystemDuration = 2f;
-
-    [SerializeField] private AudioClip collisionSound; // Clip de audio para la colisión
-    private AudioSource audioSource; // Componente AudioSource
-
     private bool isDying = false;
-
     public GameObject[] dropMaterials; // Array de prefabs de materiales
     public int materialAmount = 2;
     public float dropHeightOffset = 1f;
 
-    // Start is called before the first frame update
     void Start()
     {
         ani = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player");
         spawner = DemoSpawnerControl.Instance;
         attackCollider.enabled = false; // Asegúrate de que el collider esté desactivado al inicio
-
-        audioSource = GetComponent<AudioSource>(); // Obtener el componente AudioSource
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-            
-        }
+        
     }
 
     // Update is called once per frame
@@ -154,7 +137,6 @@ public class EnemigoLobo : MonoBehaviour
                     Instantiate(dropMaterials[randomIndex], dropPosition, Quaternion.identity);
                 }
             }
-            
         }
 
         // Detener animaciones
@@ -164,11 +146,7 @@ public class EnemigoLobo : MonoBehaviour
         }
 
         // Reproducir el sonido de muerte
-        if (collisionSound != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(collisionSound);
-            yield return new WaitForSeconds(collisionSound.length);
-        }
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.laserSFX);
 
         // Desactivar el renderizador para hacer invisible al enemigo
         Renderer renderer = GetComponent<Renderer>();
@@ -182,18 +160,7 @@ public class EnemigoLobo : MonoBehaviour
 
         // Destruir el objeto
         Destroy(gameObject);
-
-        // Asignar el audio clip al audio source
-        audioSource.clip = cofreSound;
-
-        // Reproducir el audio clip
-        audioSource.Play();
-
-        // Actualizar el contador de enemigos
-        if (spawner != null)
-        {
-            spawner.enemyCount -= 1;
-        }
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.recogerMaterialSFX);
     }
 
     // Método para activar el collider
@@ -213,10 +180,7 @@ public class EnemigoLobo : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             // Reproducir el sonido de colisión
-            if (audioSource != null && collisionSound != null)
-            {
-                audioSource.PlayOneShot(collisionSound);
-            }
+            Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.naveSFX);
         }
     }
 }
