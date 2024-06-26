@@ -19,6 +19,7 @@ public class JugadorSpace : MonoBehaviour
     public Transform detectionCircleTransform; // Cambiado de GameObject a Transform
     private GestorVida gestorVida;
     private Rigidbody rb;
+    [SerializeField] private GameObject particulas;
 
     private GameObject closestEnemy;
 
@@ -201,12 +202,19 @@ public class JugadorSpace : MonoBehaviour
             if (gestorVida.vida > 0)
             {
                 gestorVida.vida--;
+                StartCoroutine(activarParticulas(0.7f));
+                Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.laserSFX);
             }
 
             ResetXZRotation();
         }
     }
-
+    IEnumerator activarParticulas(float tiempo)
+    {
+        particulas.SetActive(true);
+        yield return new WaitForSeconds(tiempo);
+        particulas.SetActive(false);
+    }
     void OnCollisionStay(Collision collision)
     {
         ResetXZRotation();

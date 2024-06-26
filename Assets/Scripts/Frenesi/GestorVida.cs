@@ -52,6 +52,8 @@ public class GestorVida : GenericSingleton<GestorVida>
             corazones[0].SetActive(false);
             corazones[1].SetActive(false);
             corazones[2].SetActive(false);
+            Gestor_audio.Instance.audioSourceMusica.mute = true;
+            Gestor_audio.Instance.audioSourceSFX.mute = true;
             hasMuertoTexto.SetActive(true);
             prontoTexto.SetActive(true);
             hasMuerto = true;
