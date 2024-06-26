@@ -75,7 +75,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             
             // Formula = 2 segundos de transicion del taller a juego, mas 20 segundos en demorarse en llegar la plataforma, mas el nivel en el que est�
             duracionNivel = 2.0f + 20 + (nivelActual + 1) * 30f; // +30s de duracion por nivel
-            duracionNivel = 2;
+            //duracionNivel = 2;
             sistemaCarriles.SetActive(true);
             laseres.SetActive(true);
             GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);

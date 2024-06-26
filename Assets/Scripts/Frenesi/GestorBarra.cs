@@ -34,7 +34,7 @@ public class GestorBarra : GenericSingleton<GestorBarra>
     void Start()
     {
         
-        duration = 4;
+        duration = 40;
         victoria = false;
         gestorVida = GestorVida.Instance;
         oleadasPermitidas = PlayerPrefs.GetInt("nivelActual");
