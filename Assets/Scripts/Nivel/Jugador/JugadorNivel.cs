@@ -138,6 +138,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             //Debug.Log("Colision con other.gameObject.name");
             if(other.gameObject.name.Contains("Industrial_Barrel"))
             {
+                Advertencia.Instance.desactivarAdvertencia();
                 other.gameObject.SetActive(false);
                 Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceSFX, Gestor_audio.Instance.bateriaSFX);
                 bateria += 30;

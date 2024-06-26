@@ -8,23 +8,49 @@ public class GestorPulsaciones : GenericSingleton<GestorPulsaciones>
     private bool pulsando;
     private Vector2 inicioPulsacion;
     private Vector2 finPulsacion;
+    private int cantidadTouch = 0;
+    private float tiempoInactividad = 0f;
+    private float tiempoReinicio = 0.2f;
     [SerializeField] private float sensibilidadDeslizamiento = 200f;
     [SerializeField] private float capacidadDistanciaToque = 50f;
+    [SerializeField] private GameObject adelantar;
 
     void Update()
     {
         fasesTouch();
         entradaPulsaciones();
         touchJugador();
+        if (cantidadTouch >= 50)
+        {
+            adelantar.SetActive(true);
+        }
+        if (!pulsando)
+        {
+            tiempoInactividad += Time.deltaTime;
+            if (tiempoInactividad >= tiempoReinicio)
+            {
+                cantidadTouch = 0;
+                tiempoInactividad = 0f;
+            }
+        }
+        else
+        {
+            tiempoInactividad = 0f;
+        }
     }
     void fasesTouch()
     {
         if (Input.touchCount > 0)
         {
+            if (Input.touchCount >= 100)
+            {
+                adelantar.SetActive(true);
+            }
             pulsacion = Input.GetTouch(0);
             switch (pulsacion.phase)
             {
                 case TouchPhase.Began:
+                    cantidadTouch++;
                     pulsando = true;
                     inicioPulsacion = pulsacion.position;
                     break;

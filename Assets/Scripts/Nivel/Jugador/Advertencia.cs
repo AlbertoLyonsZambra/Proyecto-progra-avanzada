@@ -34,7 +34,10 @@ public class Advertencia : GenericSingleton<Advertencia>
 
         GestionarAdvertencia();        
     }
-
+    public void desactivarAdvertencia()
+    {
+        bateriaBaja.SetActive(false);
+    }
     void GestionarAdvertencia()
     {
         if (jugador.bateria == 0 && !MuerteJugador.Instance.estaMuerto)
