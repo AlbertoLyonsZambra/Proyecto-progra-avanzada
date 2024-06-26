@@ -15,10 +15,18 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
 
     [Header("De la escena")]
     [SerializeField] Button[] AguanteChoque;
-    private int cuantasVecesPuedeChocar;
+    public int cuantasVecesPuedeChocar;
+    public int bateriaLvl;
+    public int cadenciaLvl;
+    public int laserLvl;
+    public bool tieneArmatoste;
     void Start()
     {
         cuantasVecesPuedeChocar = PlayerPrefs.GetInt("cuantasVecesPuedeChocar", 1); // empieza de 1, lo que es poco intuitivo, pero hace como que es 0, porque inicialmente puede chocar 0 veces para seguir vivo, pero si pongo cero no funciona bn y un webeo
+        bateriaLvl = PlayerPrefs.GetInt("bateriaLvl", 1);
+        cadenciaLvl = PlayerPrefs.GetInt("cadenciaLvl", 1);
+        laserLvl = PlayerPrefs.GetInt("laserLvl", 1); 
+        tieneArmatoste = PlayerPrefs.GetInt("tieneArmatoste", 0) == 1; 
     }
 
     
@@ -39,15 +47,49 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
    
     public void Comprar()
     {   
+        if(habilidadSeleccionada == null){return;}
+        if(!habilidadSeleccionada.comprable){return;}
+        ActualizarNivelesHabilidades();
         habilidadSeleccionada.Comprado();
         habilidadSeleccionada.comprable = false;
         for (int i = 0; i < habilidadSeleccionada.ObtenerSiguientes().Length; i++)
         {
-            habilidadSeleccionada.ObtenerSiguientes()[i].comprable = habilidadSeleccionada.ObtenerSiguientes()[i].SePuedeComprar();
+            if(!habilidadSeleccionada.ObtenerSiguientes()[i].comprado){habilidadSeleccionada.ObtenerSiguientes()[i].comprable = habilidadSeleccionada.ObtenerSiguientes()[i].SePuedeComprar();}
+            
         }
         habilidadSeleccionada.ActualizarInteractuabilidad();
-        PlayerPrefs.SetInt("cuantasVecesPuedeChocar", cuantasVecesPuedeChocar + 1);
-        cuantasVecesPuedeChocar = PlayerPrefs.GetInt("cuantasVecesPuedeChocar");
+      
+    }
+
+    private void ActualizarNivelesHabilidades()
+    {
+        string nombreH = habilidadSeleccionada.nombre.ToLower();
+        if(nombreH.Contains("cadencia"))
+        {
+            PlayerPrefs.SetInt("cadenciaLvl", cadenciaLvl + 1);
+            cadenciaLvl = PlayerPrefs.GetInt("cadenciaLvl");
+        }
+        else if(nombreH.Contains("potencia"))
+        {
+            PlayerPrefs.SetInt("bateriaLvl", bateriaLvl + 1);
+            bateriaLvl = PlayerPrefs.GetInt("bateriaLvl");
+        }
+        else if(nombreH.Contains("arma"))
+        {
+            PlayerPrefs.SetInt("laserLvl", laserLvl + 1);
+            laserLvl = PlayerPrefs.GetInt("laserLvl");
+
+            if(nombreH.Contains("armatoste"))
+            {
+                PlayerPrefs.SetInt("tieneArmatoste", 1);
+                tieneArmatoste = true;
+            }
+        }
+        else if(nombreH.Contains("coraza"))
+        {
+            PlayerPrefs.SetInt("cuantasVecesPuedeChocar", cuantasVecesPuedeChocar + 1);
+            cuantasVecesPuedeChocar = PlayerPrefs.GetInt("cuantasVecesPuedeChocar");
+        }
     }
 
     public bool ChoqueAsteroide(int vecesQueHaChocado)

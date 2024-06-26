@@ -8,7 +8,7 @@ public class Habilidad : MonoBehaviour
 {
     
     [Header("Habilidad:")]
-    [SerializeField] private string nombre;
+    [SerializeField] public string nombre;
     [SerializeField] private string desc;
     [SerializeField] private int[] precio;
     public bool comprado = false;
@@ -24,7 +24,13 @@ public class Habilidad : MonoBehaviour
     void Start()
     {
         IniciliazacionListas();
-        if(tag == "primeraHabilidad"){comprable = true;}
+        InicializarHabilidadesCompradas();
+        if (comprado)
+        {
+            Comprado();
+            Interactuable(true);
+        }
+        if(tag == "primeraHabilidad" && !comprado){comprable = true;}
         ActualizarInteractuabilidad();
     }
     
@@ -43,6 +49,32 @@ public class Habilidad : MonoBehaviour
         else if(precio.Length == 3){GestorHabilidades.Instance.precio.text = precio[0].ToString() + " V,  " + precio[1].ToString() + " N,  " + precio[2].ToString() + " R";}
         else {print("precio ingresado a la habilidad " + nombre + "  no valido");}
         GestorHabilidades.Instance.habilidadSeleccionada = this;
+    }
+
+    private void InicializarHabilidadesCompradas()
+    {
+        if(nombre.ToLower().Contains("cadencia"))
+        {
+            comprado = PlayerPrefs.GetInt("cadenciaLvl") >= int.Parse(gameObject.name);
+        }
+        else if(nombre.ToLower().Contains("potencia"))
+        {
+            comprado = PlayerPrefs.GetInt("bateriaLvl") >= int.Parse(gameObject.name);
+        }
+        else if(nombre.ToLower().Contains("arma"))
+        {
+            comprado = PlayerPrefs.GetInt("laserLvl") >= int.Parse(gameObject.name);
+
+            if(nombre.ToLower().Contains("armatoste"))
+            {
+                comprado = PlayerPrefs.GetInt("tieneArmatoste") == 1;
+            }
+        }
+        else if(nombre.ToLower().Contains("coraza"))
+        {
+            comprado = PlayerPrefs.GetInt("cuantasVecesPuedeChocar") >= int.Parse(gameObject.name);
+        }
+        if(comprado){comprable = false;}
     }
 
     public void ActualizarInteractuabilidad()
@@ -66,36 +98,17 @@ public class Habilidad : MonoBehaviour
             }
         }
     }
-    public void Interactuable(bool interactuable)
-    {
-        Button boton = gameObject.GetComponent<Button>();
-        ColorBlock colorBlock = boton.colors;
-        if (!interactuable)
-        {
-            colorBlock.normalColor = Color.gray; 
-            colorBlock.highlightedColor = Color.black;
-
-            
-            Color highlightedColor = colorBlock.highlightedColor;
-            highlightedColor.a = 0.2f; 
-            colorBlock.highlightedColor = highlightedColor;
-            colorBlock.highlightedColor = Color.black;
-
-            colorBlock.disabledColor = Color.gray;
-            boton.colors = colorBlock;
-        }
-        else
-        {
-            colorBlock.normalColor = Color.white; 
-            colorBlock.highlightedColor = Color.white; 
-            colorBlock.disabledColor = Color.white;
-            boton.colors = colorBlock;
-        }
-    }
     public void Comprado()
     {
         transform.Find("ticket").gameObject.SetActive(true);
-        comprado = true;
+        for (int i = 0; i < habilidadSiguiente.Length; i++)
+        {
+            if(!habilidadSiguiente[i].comprado)
+            {
+                habilidadSiguiente[i].comprable = habilidadSiguiente[i].SePuedeComprar();
+            }            
+        }
+        InicializarHabilidadesCompradas();
     }
     public bool SePuedeComprar()
     {
@@ -106,25 +119,6 @@ public class Habilidad : MonoBehaviour
         return true;
     }
 
-    public Habilidad[] ObtenerSiguientes()
-    {
-        Habilidad[] habilidadSiguiente = new Habilidad[enlaceSiguiente.Length];
-        for (int i = 0; i < enlaceSiguiente.Length; i++)
-        {
-            habilidadSiguiente[i] = enlaceSiguiente[i].habilidadSalidaBTN.gameObject.GetComponent<Habilidad>();
-        }
-        return habilidadSiguiente;
-    }
-
-    public Habilidad[] ObtenerAnteriores()
-    {
-        Habilidad[] habilidadAnterior = new Habilidad[enlaceAnterior.Length];
-        for (int i = 0; i < enlaceAnterior.Length; i++)
-        {
-            habilidadAnterior[i] = enlaceAnterior[i].habilidadEntradaBTN.gameObject.GetComponent<Habilidad>();
-        }
-        return habilidadAnterior;
-    }
     private void ActualizarEnlaces()
     {
 
@@ -151,6 +145,32 @@ public class Habilidad : MonoBehaviour
                 gameObject.GetComponent<Button>();
             }
         }
+
+    }
+    public void Interactuable(bool interactuable)
+    {
+        Button boton = gameObject.GetComponent<Button>();
+        ColorBlock colorBlock = boton.colors;
+        if (!interactuable)
+        {
+            colorBlock.normalColor = Color.gray;
+            
+            Color highlightedColor = Color.black;
+            highlightedColor.a = 0.2f;
+            colorBlock.highlightedColor = highlightedColor;
+            
+            colorBlock.disabledColor = Color.gray;
+            boton.colors = colorBlock;
+        }
+        else
+        {
+            colorBlock.normalColor = Color.white;
+            Color highlightedColor = Color.white;
+            highlightedColor.a = 1f;
+            colorBlock.highlightedColor = highlightedColor;
+            colorBlock.disabledColor = Color.white;
+            boton.colors = colorBlock;
+        }
     }
 
     private void IniciliazacionListas()
@@ -164,6 +184,25 @@ public class Habilidad : MonoBehaviour
         habilidadAnterior = new Habilidad[enlaceAnterior.Length];
         habilidadSiguiente = ObtenerSiguientes();
         habilidadAnterior = ObtenerAnteriores();
+    }
+    public Habilidad[] ObtenerSiguientes()
+    {
+        Habilidad[] habilidadSiguiente = new Habilidad[enlaceSiguiente.Length];
+        for (int i = 0; i < enlaceSiguiente.Length; i++)
+        {
+            habilidadSiguiente[i] = enlaceSiguiente[i].habilidadSalidaBTN.gameObject.GetComponent<Habilidad>();
+        }
+        return habilidadSiguiente;
+    }
+
+    public Habilidad[] ObtenerAnteriores()
+    {
+        Habilidad[] habilidadAnterior = new Habilidad[enlaceAnterior.Length];
+        for (int i = 0; i < enlaceAnterior.Length; i++)
+        {
+            habilidadAnterior[i] = enlaceAnterior[i].habilidadEntradaBTN.gameObject.GetComponent<Habilidad>();
+        }
+        return habilidadAnterior;
     }
 
 }
