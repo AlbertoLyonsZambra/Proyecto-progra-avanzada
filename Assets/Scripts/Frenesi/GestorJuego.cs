@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GestorJuego : MonoBehaviour
+public class GestorJuego : GenericSingleton<GestorJuego>
 {
     [HideInInspector] public int nivelActual;
     [SerializeField] private Material skyboxNivel0;
@@ -29,18 +29,24 @@ public class GestorJuego : MonoBehaviour
     [SerializeField] private GameObject rocaPrefab;
     [SerializeField] private GameObject[] naves;
     [SerializeField] private GameObject naveMapa;
+    public bool oleadas;
 
+    [SerializeField] private GameObject panel;
 
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+        panel.SetActive(true);
+        StartCoroutine(ExecuteOnEndAfterDelay(2f));
         // Skybox setup
         Material skyBoxPaPoner = skyboxNivel0;
         Material sueloPaPoner = sueloNivel0;
         Material rocaPaPoner = rocaNivel0;
         int nivel = PlayerPrefs.GetInt("nivelActual");
+        oleadas = false;
 
-        if (nivel == 1)
+        if (nivel == 0)
         {
             skyBoxPaPoner = skyboxNivel1;
             sueloPaPoner = sueloNivel1;
@@ -48,7 +54,7 @@ public class GestorJuego : MonoBehaviour
             naveMapa = naves[0];
             naveMapa.SetActive(true);
         }
-        else if (nivel == 2)
+        else if (nivel == 1)
         {
             skyBoxPaPoner = skyboxNivel2;
             sueloPaPoner = sueloNivel2;
@@ -56,7 +62,7 @@ public class GestorJuego : MonoBehaviour
             naveMapa = naves[1];
             naveMapa.SetActive(true);
         }
-        else if (nivel == 3)
+        else if (nivel == 2)
         {
             skyBoxPaPoner = skyboxNivel3;
             sueloPaPoner = sueloNivel3;
@@ -64,13 +70,18 @@ public class GestorJuego : MonoBehaviour
             naveMapa = naves[2];
             naveMapa.SetActive(true);
         }
-        else if (nivel >= 4)
+        else if (nivel == 3)
         {
             skyBoxPaPoner = skyboxNivel4;
             sueloPaPoner = sueloNivel4;
             rocaPaPoner = rocaNivel4;
             naveMapa = naves[3];
             naveMapa.SetActive(true);
+        }
+
+        else if (nivel > 3)
+        {
+            oleadas = true;
         }
 
         if (skyBoxPaPoner != null)
@@ -108,5 +119,12 @@ public class GestorJuego : MonoBehaviour
         {
             meshRenderer.material = newMaterial;
         }
+    }
+
+    private IEnumerator ExecuteOnEndAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        panel.SetActive(false);
+
     }
 }

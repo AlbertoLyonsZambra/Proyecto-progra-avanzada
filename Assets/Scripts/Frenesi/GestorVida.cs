@@ -17,9 +17,11 @@ public class GestorVida : GenericSingleton<GestorVida>
     [SerializeField] private GameObject particleSystemPrefab;
     [SerializeField] private GameObject reloj; 
     public bool hasMuerto;
+    private GestorBarra gestorBarra;
 
     void Start()
     {
+        gestorBarra = GestorBarra.Instance;
         vida = 3;
         hasMuerto = false;
     }
@@ -52,6 +54,7 @@ public class GestorVida : GenericSingleton<GestorVida>
             hasMuertoTexto.SetActive(true);
             prontoTexto.SetActive(true);
             hasMuerto = true;
+            gestorBarra.victoria = false;
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             reloj.SetActive(false);
 

@@ -35,7 +35,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
         elevados = new bool[nave.Count];
         for (int i = 0; i < elevados.Length; i++){elevados[i] = false;}
 
-        ActualizarNavesTaller();
+        CheckVictory();
         ActualizarMatsTerminal();
         
     }
@@ -44,19 +44,48 @@ public class GestorTaller : GenericSingleton<GestorTaller>
     {
     }
 
-    public void ActualizarNavesTaller()
+    void CheckVictory()
     {
-        if (MenuPrincipal.Instance.nivelActual >= 0 && MenuPrincipal.Instance.nivelActual < nave.Count)
+        // Obtener el estado de victoria desde PlayerPrefs
+        if (PlayerPrefs.GetInt("Victoria", 0) == 1)
         {
-            for(int i = 0; i <= MenuPrincipal.Instance.nivelActual; i++){nave[i].SetActive(true);}
-            if (MenuPrincipal.Instance.nivelActual + 1 < nave.Count)
-            {
-                nave[MenuPrincipal.Instance.nivelActual + 1].transform.Find("default").GetComponent<MeshRenderer>().material = materialBloqueado;
-                nave[MenuPrincipal.Instance.nivelActual + 1].SetActive(true);
-            }
-            else{print(" Tienes todas las naves ");}
+            // Si hay victoria, actualizar las naves del taller
+            ActualizarNavesTaller(MenuPrincipal.Instance.nivelActual + 1);
         }
-        else{print(" Falta validar esto por ahora (GestorTaller.cs) ");}
+        else
+        {
+            // Si no hay victoria, mantener las naves en su estado actual (probablemente bloqueadas)
+            
+            ActualizarNavesTaller((MenuPrincipal.Instance.nivelActual)); // Mantener el último nivel desbloqueado
+        }
+    }
+
+    public void ActualizarNavesTaller(int nivelDesbloqueado)
+    {
+        // Asegurarse de que el nivel desbloqueado esté dentro de los límites de la lista de naves
+        if (nivelDesbloqueado >= 0 && nivelDesbloqueado < nave.Count)
+        {
+            // Activar las naves hasta el nivel desbloqueado
+            for (int i = 0; i <= nivelDesbloqueado; i++)
+            {
+                nave[i].SetActive(true);
+            }
+
+            // Bloquear la siguiente nave si no se han desbloqueado todas
+            if (nivelDesbloqueado + 1 < nave.Count)
+            {
+                nave[nivelDesbloqueado + 1].transform.Find("default").GetComponent<MeshRenderer>().material = materialBloqueado;
+                nave[nivelDesbloqueado + 1].SetActive(true);
+            }
+            else
+            {
+                Debug.Log("Tienes todas las naves desbloqueadas.");
+            }
+        }
+        else
+        {
+            Debug.LogError("El nivel desbloqueado está fuera de los límites de la lista de naves.");
+        }
     }
 
     public void SeleccionNave(RaycastHit colision)
