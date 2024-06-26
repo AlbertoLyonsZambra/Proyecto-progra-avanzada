@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.66
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1032959, g: 0.20158382, b: 0.40600988, a: 0.66}
+  m_IndirectSpecularColor: {r: 0.1033048, g: 0.20159087, b: 0.40594664, a: 0.66}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1027,6 +1027,7 @@ MonoBehaviour:
   - {fileID: 486848358}
   cofreMapa: {fileID: 977217476}
   victoria: 0
+  jugando: 0
   duration: 40
   nextSceneName: juego
   oleadasPermitidas: 1
@@ -8207,8 +8208,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 857717612}
-  - {fileID: 1978140544}
   - {fileID: 181770743}
   - {fileID: 1770954593}
   - {fileID: 699975862}
@@ -8216,6 +8215,8 @@ RectTransform:
   - {fileID: 39027590}
   - {fileID: 272999011}
   - {fileID: 1715214881}
+  - {fileID: 857717612}
+  - {fileID: 1978140544}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

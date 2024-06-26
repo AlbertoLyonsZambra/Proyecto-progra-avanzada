@@ -24,6 +24,7 @@ public class GestorBarra : GenericSingleton<GestorBarra>
     private GestorJuego gestorJuego;
 
     public bool victoria;
+    public bool jugando;
     public int duration;
     private int remainingDuration;
     public string nextSceneName = "Juego"; // Nombre de la siguiente escena
@@ -33,9 +34,10 @@ public class GestorBarra : GenericSingleton<GestorBarra>
     // Start is called before the first frame update
     void Start()
     {
-        
+
         duration = 40;
         victoria = false;
+        jugando = true;
         gestorVida = GestorVida.Instance;
         oleadasPermitidas = PlayerPrefs.GetInt("nivelActual");
         controlSpawn = DemoSpawnerControl.Instance;
@@ -43,6 +45,7 @@ public class GestorBarra : GenericSingleton<GestorBarra>
         waveCount = 1;
         Begin(duration);
         PlayerPrefs.SetInt("Victoria", victoria ? 1 : 0);
+        PlayerPrefs.SetInt("jugandoFrenesi", jugando ? 1 : 0);
     }
 
     void Update()
@@ -108,6 +111,7 @@ public class GestorBarra : GenericSingleton<GestorBarra>
 
         if (!gestorVida.hasMuerto && gestorVida.vida > 0)
         {
+            jugando = true;
             if (oleadasPermitidas == 4)
             {
                 waveCount++;

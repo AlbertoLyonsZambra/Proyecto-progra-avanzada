@@ -13,6 +13,9 @@ public class Enemigo : MonoBehaviour
     public bool atacando;
     public int health = 2; // Variable de salud
 
+    public AudioClip cofreSound;
+    private AudioSource audioSource1;
+
     private DemoSpawnerControl spawner;
     public Collider attackCollider; // Agrega una referencia al collider
 
@@ -21,6 +24,10 @@ public class Enemigo : MonoBehaviour
 
     [SerializeField] private AudioClip collisionSound; // Clip de audio para la colisión
     private AudioSource audioSource; // Componente AudioSource
+
+    public GameObject[] dropMaterials; // Array de prefabs de materiales
+    public int materialAmount = 1;
+    public float dropHeightOffset = 1f;
 
     private bool isDying = false;
 
@@ -32,10 +39,12 @@ public class Enemigo : MonoBehaviour
         spawner = DemoSpawnerControl.Instance;
         attackCollider.enabled = false; // Asegúrate de que el collider esté desactivado al inicio
 
+       
         audioSource = GetComponent<AudioSource>(); // Obtener el componente AudioSource
         if (audioSource == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>(); // Añadir AudioSource si no existe
+            audioSource = gameObject.AddComponent<AudioSource>();
+           
         }
     }
 
@@ -136,6 +145,8 @@ public class Enemigo : MonoBehaviour
             {
                 Destroy(particleInstance, ps.main.duration);
             }
+
+            
         }
 
         // Detener animaciones
@@ -161,8 +172,16 @@ public class Enemigo : MonoBehaviour
         // Esperar un frame adicional para asegurar que todo se ha procesado
         yield return null;
 
+        for (int i = 0; i < materialAmount; i++)
+        {
+            int randomIndex = Random.Range(0, dropMaterials.Length);
+            Vector3 dropPosition = new Vector3(transform.position.x, transform.position.y + dropHeightOffset, transform.position.z);
+            Instantiate(dropMaterials[randomIndex], dropPosition, Quaternion.identity);
+        }
+
         // Destruir el objeto
         Destroy(gameObject);
+       
 
         // Actualizar el contador de enemigos
         if (spawner != null)

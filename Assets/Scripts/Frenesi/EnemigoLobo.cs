@@ -16,6 +16,9 @@ public class EnemigoLobo : MonoBehaviour
     private DemoSpawnerControl spawner;
     public Collider attackCollider; // Agrega una referencia al collider
 
+    public AudioClip cofreSound;
+    
+
     [SerializeField] private GameObject particleSystemPrefab;
     [SerializeField] private float particleSystemDuration = 2f;
 
@@ -23,6 +26,10 @@ public class EnemigoLobo : MonoBehaviour
     private AudioSource audioSource; // Componente AudioSource
 
     private bool isDying = false;
+
+    public GameObject[] dropMaterials; // Array de prefabs de materiales
+    public int materialAmount = 2;
+    public float dropHeightOffset = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +42,8 @@ public class EnemigoLobo : MonoBehaviour
         audioSource = GetComponent<AudioSource>(); // Obtener el componente AudioSource
         if (audioSource == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>(); // Añadir AudioSource si no existe
+            audioSource = gameObject.AddComponent<AudioSource>();
+            
         }
     }
 
@@ -136,6 +144,13 @@ public class EnemigoLobo : MonoBehaviour
             {
                 Destroy(particleInstance, ps.main.duration);
             }
+
+            for (int i = 0; i < materialAmount; i++)
+            {
+                int randomIndex = Random.Range(0, dropMaterials.Length);
+                Vector3 dropPosition = new Vector3(transform.position.x, transform.position.y + dropHeightOffset, transform.position.z);
+                Instantiate(dropMaterials[randomIndex], dropPosition, Quaternion.identity);
+            }
         }
 
         // Detener animaciones
@@ -163,6 +178,12 @@ public class EnemigoLobo : MonoBehaviour
 
         // Destruir el objeto
         Destroy(gameObject);
+
+        // Asignar el audio clip al audio source
+        audioSource.clip = cofreSound;
+
+        // Reproducir el audio clip
+        audioSource.Play();
 
         // Actualizar el contador de enemigos
         if (spawner != null)
