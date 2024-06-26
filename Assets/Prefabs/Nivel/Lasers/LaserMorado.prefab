@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3137879184622283045}
   m_Layer: 0
   m_Name: LaserRojo
-  m_TagString: Laser
+  m_TagString: LaserMorado
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4948,7 +4948,7 @@ GameObject:
   - component: {fileID: 2869998571743642958}
   m_Layer: 0
   m_Name: LaserMorado
-  m_TagString: Laser
+  m_TagString: LaserMorado
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

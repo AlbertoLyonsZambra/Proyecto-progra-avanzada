@@ -127,7 +127,13 @@ public class InstanciadorObjetos : GenericSingleton<InstanciadorObjetos>
         List<int> posMatriz = GenerarPos(nombre);
         GameObject objeto = objetos[Random.Range(0, objetos.Length - 1)].GetPooledGameObject();
         if (!objeto.GetComponent<MeshRenderer>().enabled) { objeto.GetComponent<MeshRenderer>().enabled = true; }
-        objeto.transform.position = new Vector3(matrizCarriles[posMatriz[0], posMatriz[1]].x, matrizCarriles[posMatriz[0], posMatriz[1]].y, transform.position.z);
+        Vector3 posicion = new Vector3(matrizCarriles[posMatriz[0], posMatriz[1]].x, matrizCarriles[posMatriz[0], posMatriz[1]].y, transform.position.z);
+        if (nombre == "Bateria" && JugadorNivel.Instance.bateria == 0)
+        {
+            Vector2 posicionJugador = MatrizCarriles.Instance.getPosicion(MovimientoCarriles.Instance.filaActual, MovimientoCarriles.Instance.columnaActual);
+            posicion = new Vector3(posicionJugador.x, posicionJugador.y, transform.position.z);
+        }
+        objeto.transform.position = posicion;
         objeto.SetActive(true);
 
     }

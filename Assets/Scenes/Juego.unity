@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.03146235, g: 0.009871539, b: 0.013235097, a: 1}
+  m_IndirectSpecularColor: {r: 0.031459253, g: 0.009866884, b: 0.013233621, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -155,6 +155,7 @@ Transform:
   - {fileID: 1812951171}
   - {fileID: 243362384}
   - {fileID: 866033663}
+  - {fileID: 2137767724}
   - {fileID: 1304499764}
   - {fileID: 983679007}
   - {fileID: 548589890}
@@ -63707,6 +63708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserSolo: {fileID: 243362383}
+  laserMorado: {fileID: 2137767723}
   generadoresLaser:
   - {fileID: 2013915134}
   - {fileID: 1769507733}
@@ -65224,6 +65226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserSolo: {fileID: 243362383}
+  laserMorado: {fileID: 2137767723}
   generadoresLaser:
   - {fileID: 1828293800}
   - {fileID: 195561559}
@@ -70656,6 +70659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserSolo: {fileID: 243362383}
+  laserMorado: {fileID: 2137767723}
   generadoresLaser:
   - {fileID: 489155559}
   multiplicadorMaterial: 1
@@ -88473,6 +88477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserSolo: {fileID: 866033664}
+  laserMorado: {fileID: 2137767723}
   generadoresLaser:
   - {fileID: 1477840167}
   - {fileID: 184826030}
@@ -113354,6 +113359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserSolo: {fileID: 866033664}
+  laserMorado: {fileID: 2137767723}
   generadoresLaser:
   - {fileID: 1486177661}
   - {fileID: 625694044}
@@ -167134,6 +167140,53 @@ MonoBehaviour:
   gameObjectToPool: {fileID: 6123279987556253554, guid: 8d96f2c767ee38144a1069bf5a255bb9, type: 3}
   poolSize: 6
   poolCanExpand: 1
+--- !u!1 &2137767722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2137767724}
+  - component: {fileID: 2137767723}
+  m_Layer: 0
+  m_Name: LaserMorado OP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2137767723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137767722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15f9e0e060a9a7646ba70012d6a96eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObjectToPool: {fileID: 8217019375501296818, guid: 22001a19c881f5a4898b25debac8741f, type: 3}
+  poolSize: 6
+  poolCanExpand: 1
+--- !u!4 &2137767724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137767722}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.2290387, y: -3.35366, z: 1.8055573}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5929777}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2139990647
 PrefabInstance:
   m_ObjectHideFlags: 0

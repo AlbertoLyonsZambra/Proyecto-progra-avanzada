@@ -9,6 +9,7 @@ public class GestorBateria : MonoBehaviour
     
     private JugadorNivel jugador;
     public List<GameObject> cubos;
+    bool aparecioAngelDeLaGuardia = false;
 
     void Start()
     {
@@ -22,13 +23,18 @@ public class GestorBateria : MonoBehaviour
         if (jugador.bateria == 0)
         {
             SetVisibilidadCubo(0);
-            
+            if (!aparecioAngelDeLaGuardia && PlayerPrefs.GetInt("bateriaLvl") == 3)
+            {
+                aparecioAngelDeLaGuardia = true;
+                InstanciadorObjetos.Instance.GenerarUnObjeto(InstanciadorObjetos.Instance.bateria, "Bateria");
+            }
         }
         else if (jugador.bateria > 0 && jugador.bateria <= 20f)
         {
             CambiarColor(Color.grey);
             SetVisibilidadCubo(1);
-            if(jugador.bateria == 19){ InstanciadorObjetos.Instance.GenerarUnObjeto(InstanciadorObjetos.Instance.bateria, "Bateria"); }
+            aparecioAngelDeLaGuardia = false;
+            //if(jugador.bateria == 19){ InstanciadorObjetos.Instance.GenerarUnObjeto(InstanciadorObjetos.Instance.bateria, "Bateria"); }
         }
         else if (jugador.bateria > 20f && jugador.bateria <= 40f)
         {

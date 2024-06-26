@@ -7,6 +7,7 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
 {
     [HideInInspector] private float cadenciaLaser = 6000f;
     [SerializeField] private SimpleObjectPool laserSolo;
+    [SerializeField] private SimpleObjectPool laserMorado;
     private int posActualLaser = 0;
     [SerializeField] private Transform[] generadoresLaser;
     [SerializeField] private float multiplicadorMaterial = 1f;
@@ -40,6 +41,14 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             else if(gameObject.transform.parent.name == "2"){cadenciaLaser = 0.05f;}
             else if(gameObject.transform.parent.name == "3"){cadenciaLaser = 0.15f;}
             else if(gameObject.transform.parent.name == "4"){cadenciaLaser = 0.2f;}
+            if (PlayerPrefs.GetInt("cadenciaLvl") == 2)
+            {
+                cadenciaLaser = cadenciaLaser * 0.8f;
+            }
+            else if (PlayerPrefs.GetInt("cadenciaLvl") == 3)
+            {
+                cadenciaLaser = cadenciaLaser * 0.5f;
+            }
         }
 
     }
@@ -57,7 +66,27 @@ public class JugadorNivel : GenericSingleton<JugadorNivel>
             if (PlayerPrefs.GetInt("pasoTutorial") == 0) { Tutorial.Instance.disparoLaser = Tutorial.Instance.disparoLaser + 1; }
             temporizadorDisparoLaser = 0f;
             GameObject laser;
-            if(laserSolo != null)
+            int azar = 0;
+            if (PlayerPrefs.GetInt("laserLvl") == 2)
+            {
+                azar = Random.RandomRange(1, 150);
+            }
+            else if (PlayerPrefs.GetInt("laserLvl") == 3)
+            {
+                azar = Random.RandomRange(1, 110);
+            }
+            else if (PlayerPrefs.GetInt("tieneArmatoste") == 1)
+            {
+                azar = Random.RandomRange(1, 50);
+            }
+            if (laserMorado != null && azar < 15 && azar != 0)
+            {
+                laser = laserMorado.GetPooledGameObject();
+                laser.transform.position = generadoresLaser[posActualLaser].transform.position;
+                laser.SetActive(true);
+                posActualLaser = (posActualLaser + 1) % generadoresLaser.Length;
+            }
+            else if(laserSolo != null)
             {
                 laser = laserSolo.GetPooledGameObject();
                 laser.transform.position = generadoresLaser[posActualLaser].transform.position;

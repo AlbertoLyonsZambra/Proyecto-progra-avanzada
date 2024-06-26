@@ -35,6 +35,7 @@ TagManager:
   - Timer
   - Bullet
   - primeraHabilidad
+  - LaserMorado
   layers:
   - Default
   - TransparentFX

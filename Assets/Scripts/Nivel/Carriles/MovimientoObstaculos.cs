@@ -33,7 +33,7 @@ public class MovimientoObstaculos : MonoBehaviour
     void OnDisable()    
     {
         laserPuedeMoverse = false;
-        if(tag == "Laser")
+        if(tag == "Laser" || tag == "LaserMorado")
         {
             this.transform.position = new Vector3(0,0,0);
         }
@@ -121,7 +121,7 @@ public class MovimientoObstaculos : MonoBehaviour
             Vector3 rotacion = new Vector3(0, Random.Range(0, 360), 0);
             transform.Rotate(rotacion * Time.deltaTime, Space.Self);
         }
-        if(tag == "Laser")
+        if(tag == "Laser" || tag == "LaserMorado")
         {
             if(laserPuedeMoverse)
             {
