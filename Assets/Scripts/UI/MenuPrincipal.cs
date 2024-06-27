@@ -35,10 +35,8 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     void Start()
     {
         Application.targetFrameRate = 60;
-        nivelActual = 4;
-        pasoTutorial = 1;
-        PlayerPrefs.SetInt("nivelActual",4);
-        PlayerPrefs.SetInt("pasoTutorial",1);
+        nivelActual = PlayerPrefs.GetInt("nivelActual");
+        pasoTutorial = PlayerPrefs.GetInt("pasoTutorial");
         // Desactiva el botón de frenesí por defecto
         if (botonFrenesi != null)
         {
