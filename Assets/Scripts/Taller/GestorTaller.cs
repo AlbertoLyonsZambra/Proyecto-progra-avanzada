@@ -50,7 +50,7 @@ public class GestorTaller : GenericSingleton<GestorTaller>
         if (PlayerPrefs.GetInt("Victoria", 0) == 1)
         {
             // Si hay victoria, actualizar las naves del taller
-            ActualizarNavesTaller(MenuPrincipal.Instance.nivelActual + 1);
+            ActualizarNavesTaller(MenuPrincipal.Instance.nivelActual +0);
         }
         else
         {

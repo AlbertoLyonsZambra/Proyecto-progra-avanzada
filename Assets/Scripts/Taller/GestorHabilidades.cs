@@ -56,7 +56,8 @@ public class GestorHabilidades : GenericSingleton<GestorHabilidades>
 
     public bool EfectuarCompra()
     {
-        int[] matsTaller = new int[] {PlayerPrefs.GetInt("MatsTallerV"), PlayerPrefs.GetInt("MatsTallerN"), PlayerPrefs.GetInt("MatsTallerR")};
+        int[] matsTaller = new int[] {9999,9999,9999};
+        //atsTaller = {9999,9999,9999} ;
         if(habilidadSeleccionada == null){return false;}
         for(int i = 0; i < habilidadSeleccionada.precio.Length; i++)
         {

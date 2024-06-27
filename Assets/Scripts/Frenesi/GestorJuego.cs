@@ -36,6 +36,7 @@ public class GestorJuego : GenericSingleton<GestorJuego>
     // Start is called before the first frame update
     void Start()
     {
+        Gestor_audio.Instance.EjecutarAudio(Gestor_audio.Instance.audioSourceMusica, Gestor_audio.Instance.musicaJuego);
         Time.timeScale = 1;
         panel.SetActive(true);
         StartCoroutine(ExecuteOnEndAfterDelay(2f));

@@ -35,9 +35,10 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
     void Start()
     {
         Application.targetFrameRate = 60;
-        nivelActual = PlayerPrefs.GetInt("nivelActual");
-        pasoTutorial = PlayerPrefs.GetInt("pasoTutorial");
-
+        nivelActual = 4;
+        pasoTutorial = 1;
+        PlayerPrefs.SetInt("nivelActual",4);
+        PlayerPrefs.SetInt("pasoTutorial",1);
         // Desactiva el botón de frenesí por defecto
         if (botonFrenesi != null)
         {
@@ -77,7 +78,7 @@ public class MenuPrincipal : GenericSingleton<MenuPrincipal>
             
             // Formula = 2 segundos de transicion del taller a juego, mas 20 segundos en demorarse en llegar la plataforma, mas el nivel en el que est�
             duracionNivel = 2.0f + 20 + (nivelActual + 1) * 30f; // +30s de duracion por nivel
-            //duracionNivel = 2;
+            //duracionNivel = 2; // Se subio el apk con esto
             sistemaCarriles.SetActive(true);
             laseres.SetActive(true);
             GestorTaller.Instance.ultimaNaveJugador.gameObject.SetActive(true);

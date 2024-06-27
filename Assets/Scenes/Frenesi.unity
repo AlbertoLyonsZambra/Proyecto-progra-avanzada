@@ -6178,7 +6178,7 @@ MonoBehaviour:
   skyboxNivel2: {fileID: 2100000, guid: 246d4b1ad4a63004d8fcf3949494e5b3, type: 2}
   skyboxNivel3: {fileID: 2100000, guid: 81f714daf7144784b8a2f42f1cd30927, type: 2}
   skyboxNivel4: {fileID: 2100000, guid: a4be220830e90ea4eb88b48b7fd376ce, type: 2}
-  sueloNivel0: {fileID: 2100000, guid: ba8f0a96838550743b3b19b31a087ccf, type: 2}
+  sueloNivel0: {fileID: 2100000, guid: 339f49746dd9d5d44890c5b74cd783ca, type: 2}
   sueloNivel1: {fileID: 2100000, guid: fef8f747fb612184bab668ae72bcb9e9, type: 2}
   sueloNivel2: {fileID: 2100000, guid: 54e587ba6c277a3418c07ced0196d718, type: 2}
   sueloNivel3: {fileID: 2100000, guid: 6aa75692583efaf428c9e2154602e01f, type: 2}
